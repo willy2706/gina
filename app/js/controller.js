@@ -1,15 +1,23 @@
-var phonecatControllers = angular.module('phonecatControllers', []);
+var ginaAppControllers = angular.module('ginaApp.controllers', []);
 
-phonecatControllers.controller('PhoneListCtrl', ['$scope', '$http',
-  function ($scope, $http) {
-    $http.get('phone.json').success(function(data) {
-      $scope.phones = data;
-    });
+ginaAppControllers.controller('PhoneListCtrl', ['$scope', '$http',
+	function ($scope, $http) {
+		$http.get('phone.json').success(function(data) {
+			$scope.phones = data;
+		});
 
-    $scope.orderProp = 'id';
-  }]);
+		$scope.orderProp = 'id';
+	}
+]);
 
-phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams',
-  function($scope, $routeParams) {
-    $scope.phoneId = $routeParams.phoneId;
-  }]);
+ginaAppControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams',
+	function($scope, $routeParams) {
+		$scope.phoneId = $routeParams.phoneId;
+	}
+]);
+
+ginaAppControllers.controller('HeaderCtrl', 
+	function($scope) {
+		console.log('masiuk');
+	}
+);
