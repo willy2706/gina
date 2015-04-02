@@ -18,9 +18,9 @@
 			      <ul class="menu nav navbar-nav ">
 			        <li ng-class="{active : isHome}"><a ui-sref = "home" ng-click = "home()">home</a></li>
 			        <li ng-class="{active : isFeatures}"><a ui-sref="features" ng-click = "features()">features</a></li>
-			        <li><a href="blog.html">blog</a></li>
-			        <li><a href="about.html">about</a></li>
-			        <li><a href="contact.html">contact</a></li>
+			        <li ng-class="{active : isBlog}"><a ui-sref="blog" ng-click = "blog()">blog</a></li>
+			        <li ng-class="{active : isAbout}"><a ui-sref="about" ng-click = "about()">about</a></li>
+			        <li ng-class="{active : isContact}"><a ui-sref="contact" ng-click = "contact()">contact</a></li>
 			      </ul>
 			      <form class="navbar-form navbar-right" role="search">
 			        <div class="form-group my_search">

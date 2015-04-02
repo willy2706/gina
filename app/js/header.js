@@ -4,35 +4,55 @@ header.directive('header', function () {
 	return {
 		restrict: 'A',
 		replace: true, 
-		templateUrl: "header.html",
+		templateUrl: "app/partials/header.html",
 		controller: function($scope, $location, $state){
-			console.log($location.path());
-			console.log($location.path() == "");
 			$scope.reset = function() {
 				$scope.isHome = false;
 				$scope.isFeatures = false;
+				$scope.isBlog = false;
+				$scope.isAbout = false;
+				$scope.isContact = false;
 			};
 
 			$scope.features = function() {
 				$scope.reset();
-				$state.go('features');
 				$scope.isFeatures = true;
+				$state.go('features');
 			};
 
 			$scope.home = function() {
 				$scope.reset();
-				$state.go('home');
 				$scope.isHome = true;
-			};
-			if ($location.path() == "") {
 				$state.go('home');
+			};
+
+			$scope.blog = function() {
+				$scope.reset();
+				$scope.isBlog = true;
+				$state.go('blog');
 			}
+
+			$scope.about = function() {
+				$scope.reset();
+				$scope.isAbout = true;
+				$state.go('about');
+			}
+
+			$scope.contact = function() {
+				$scope.reset();
+				$scope.isContact = true;
+			}
+
 			if ($location.path() == '/' || $location.path() == '') {
-				console.log('home');
-				$scope.home();
+				$scope.isHome = true;
 			} else if ($location.path() == '/features') {
-				console.log('features');
-				$scope.features();
+				$scope.isFeatures = true;
+			} else if ($location.path() == '/blog') {
+				$scope.isBlog = true;
+			} else if ($location.path() == '/about') {
+				$scope.isAbout = true;
+			} else if ($location.path() == '/contact') {
+				$scope.isContact = true;
 			}
 		}
 	}
