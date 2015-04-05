@@ -16,6 +16,7 @@ class CreateMpTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('no_mp');
+			$table->index('no_mp');
 			$table->string('nik');
 			$table->string('alamat_tujuan');
 			$table->timestamps();

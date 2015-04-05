@@ -14,8 +14,9 @@ class CreateKkTable extends Migration {
 	{
 		Schema::create('kk', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->integer('id');
 			$table->string('no_kk');
+			$table->index('no_kk');
 			$table->string('nik_kepala_kel');
 			$table->timestamps();
 		});

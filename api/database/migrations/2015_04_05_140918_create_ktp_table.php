@@ -22,12 +22,12 @@ class CreateKtpTable extends Migration {
 			$table->string('jenis_kelamin');
 			$table->string('gol_darah');
 			$table->string('alamat');
-			$table->unsigned('rt');
-			$table->unsigned('rw');
+			$table->integer('rt')->unsigned();
+			$table->integer('rw')->unsigned();
 			$table->string('kel/desa');
 			$table->string('kec');
 			$table->string('kota/kab');
-			$table->unsigned('kode_pos');
+			$table->integer('kode_pos')->unsigned();
 			$table->string('agama');
 			$table->string('status');
 			$table->string('kewarganegaraan');
