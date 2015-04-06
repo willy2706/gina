@@ -34,6 +34,10 @@
 
 }
 
+.cust-form{
+	margin-left: 10px !important;
+}
+
 @media (max-width: 768px){
 	.rightheader{
 		margin-top: 0px;

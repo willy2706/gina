@@ -35,8 +35,22 @@ ginaAppControllers.controller('HeaderCtrl',
 
 ginaAppControllers.controller('CreateKKCtrl',
 	function($scope) {
-		$scope.tombol = function() {
-			
+		$scope.count = 1;
+		$scope.addKeluarga = function() {
+			angular.element(document.getElementById('form-keluarga'))
+				.append('<div class="form-group col-xs-5 cust-form">\
+				<input class="form-control" type="text" name="nik_keluarga_'+$scope.count+'" id="nik_keluarga_'+$scope.count+'" placeholder="NIK anggota keluarga"/>\
+			</div>\
+			<div class="form-group col-xs-5 cust-form">\
+				<select class="form-control" name="status_kel_'+$scope.count+'" id="status_kel_'+$scope.count+'">\
+				<option>Status dalam keluarga</option>\
+				<option>Kepala keluarga</option>\
+				<option>Istri</option>\
+				<option>Anak</option>\
+				<option>Cucu</option>\
+				</select>\
+			</div><br>');
+		$scope.count++;
 		}
 	}
 );
