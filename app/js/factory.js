@@ -1,6 +1,7 @@
 var ginaAppFactory = angular.module('ginaApp.factories', []);
 
 ginaAppFactory.factory('User', function() {
+	this.id = '';
 	this.nama = '';
 	this.isLogged = false;
 	return this;
@@ -25,10 +26,6 @@ ginaAppFactory.factory('Server', function($http, $q, ApiURL, User) {
 		$http.post(ApiURL + 'auth/login',params).
 		success(function(data) {
 			def.resolve(data);
-			console.log('suksesss');
-			console.log(data);
-			User.isLogged = true;
-			User.name = data.nama;
 		}).error(function(err){
 			def.reject(err);
 			console.log(err);

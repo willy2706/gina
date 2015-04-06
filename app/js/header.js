@@ -5,8 +5,9 @@ header.directive('header', function () {
 		restrict: 'A',
 		replace: true, 
 		templateUrl: "app/partials/header.html",
-		controller: function($scope, $location, $state, Server){
+		controller: function($scope, $location, $state, Server, User){
 			$scope.reset = function() {
+				$scope.user.isUserLogged = false;
 				$scope.isHome = false;
 				$scope.isFeatures = false;
 				$scope.isBlog = false;
@@ -54,11 +55,19 @@ header.directive('header', function () {
 			} else if ($location.path() == '/contact') {
 				$scope.isContact = true;
 			}
-			// Server.get('auth/check').then(function(data){
-			// 	console.log(data);
-			// }, function(err) {
-			// 	console.log(err);
-			// });
+
+			$scope.login = function () {
+				Server.login($scope.nik, $scope.password)
+				.then(function(data) {
+					$scope.user = angular.copy({});
+					User.id = data.id;
+					User.isLogged = true;
+					User.nama = data.nama;
+					console.log(data);
+					$scope.user.isUserLogged = true;
+					$scope.user.nama = User.nama;
+				});
+			}
 		}
 	}
 });
