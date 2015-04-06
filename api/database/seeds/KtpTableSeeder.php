@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-
-class DatabaseSeeder extends Seeder {
+use App\Ktp;
+class KtpTableSeeder extends Seeder {
 
 	/**
 	 * Run the database seeds.
@@ -13,8 +13,10 @@ class DatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
-
-		$this->call('KtpTableSeeder');
+		Ktp::create([
+			'nik' => 'a', 
+			'password' => 'aaa',
+		]);
 	}
 
 }

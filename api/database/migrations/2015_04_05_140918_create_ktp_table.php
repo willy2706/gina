@@ -16,6 +16,7 @@ class CreateKtpTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('nik');
+			$table->string('password');
 			$table->string('nama');
 			$table->string('kota_lahir');
 			$table->date('tanggal_lahir');
@@ -38,6 +39,7 @@ class CreateKtpTable extends Migration {
 			$table->string('prov_dikeluarkan');
 			$table->date('tgl_dikeluarkan');
 			$table->timestamps();
+			$table->rememberToken();
 		});
 	}
 
