@@ -54,11 +54,11 @@ header.directive('header', function () {
 			} else if ($location.path() == '/contact') {
 				$scope.isContact = true;
 			}
-			Server.get('auth/check').then(function(data){
-				console.log(data);
-			}, function(err) {
-				console.log(err);
-			});
+			// Server.get('auth/check').then(function(data){
+			// 	console.log(data);
+			// }, function(err) {
+			// 	console.log(err);
+			// });
 		}
 	}
 });

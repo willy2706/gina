@@ -10,6 +10,17 @@ ginaAppControllers.controller('PhoneListCtrl', ['$scope', '$http',
 	}
 ]);
 
+ginaAppControllers.controller('LoginCtrl', ['$scope', 'Server',
+	function ($scope, Server) {
+		$scope.submit = function() {
+			// console.log($scope.nik);
+			// console.log($scope.password);
+			// console.log($scope.nik, $scope.password);
+			Server.login($scope.nik, $scope.password);
+		}
+	}
+]);
+
 ginaAppControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams',
 	function($scope, $routeParams) {
 		$scope.phoneId = $routeParams.phoneId;
