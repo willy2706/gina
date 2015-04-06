@@ -38,12 +38,10 @@ class AuthController extends Controller {
 
 	public function postLogin(Request $request) {
 		$r = $request->all();	
-		// return $r['nik'];
-		// return $r['password'];
 		if (Auth::attempt(['nik' => $r['nik'], 'password' => $r['password']])) {
-			return 'true1';
+			return 'true';
 		}
-		return 'aaa';
+		return 'false';
 	}
 
 	public function getLogin() {

@@ -11,5 +11,22 @@ ginaAppFactory.factory('Server', function($http, $q, ApiURL) {
 		});
 		return def.promise;
 	}
+	this.login = function (nik, password) {
+		var def = $q.defer();
+		var params = angular.copy({});
+		params.nik = nik;
+		params.password = password
+		$http.post(ApiURL + 'auth/login',params).
+		success(function(data) {
+			def.resolve(data);
+			console.log(data);
+			console.log('berhasil');
+		}).error(function(err){
+			def.reject(err);
+			console.log(err);
+			console.log('gagal');
+		})
+		return def.promise;
+	}
 	return this;
 });
