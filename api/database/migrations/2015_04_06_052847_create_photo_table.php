@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKkTable extends Migration {
+class CreatePhotoTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,17 +12,16 @@ class CreateKkTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('kk', function(Blueprint $table)
+		Schema::create('photo', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('no_kk');
-			$table->index('no_kk');
-			$table->string('nik_kepala_kel');
-			$table->boolean('request');
+			$table->string('filename');
+			$table->string('mime');
+			$table->string('original_filename');
 			$table->timestamps();
 		});
 	}
-
+	
 	/**
 	 * Reverse the migrations.
 	 *
@@ -30,7 +29,7 @@ class CreateKkTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('kk');
+		Schema::drop('photo');
 	}
-
+	
 }

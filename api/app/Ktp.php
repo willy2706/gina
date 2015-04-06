@@ -6,7 +6,7 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class Ktp extends Model implements AuthenticatableContract, CanResetPasswordContract {
+class KTP extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
 	use Authenticatable, CanResetPassword;
 
@@ -33,6 +33,7 @@ class Ktp extends Model implements AuthenticatableContract, CanResetPasswordCont
 
 	//mutator password
 	public function setPasswordAttribute($value) {
-        $this->attributes['password'] = \Hash::make($value);
+        $this->attributes['password'] = Hash::make($value);
     }
+
 }

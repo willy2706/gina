@@ -10,6 +10,17 @@ ginaAppControllers.controller('PhoneListCtrl', ['$scope', '$http',
 	}
 ]);
 
+ginaAppControllers.controller('LoginCtrl', ['$scope', 'Server',
+	function ($scope, Server) {
+		$scope.submit = function() {
+			// console.log($scope.nik);
+			// console.log($scope.password);
+			// console.log($scope.nik, $scope.password);
+			Server.login($scope.nik, $scope.password);
+		}
+	}
+]);
+
 ginaAppControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams',
 	function($scope, $routeParams) {
 		$scope.phoneId = $routeParams.phoneId;
@@ -19,5 +30,51 @@ ginaAppControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams',
 ginaAppControllers.controller('HeaderCtrl', 
 	function($scope) {
 		console.log('masiuk');
+	}
+);
+
+ginaAppControllers.controller('PrintSuratCtrl',
+	function($scope){
+		$scope.count = 1;
+		$scope.addSurat = function(){
+			angular.element(document.getElementById('form-surat'))
+				.append('<div class="form-group col-xs-4 cust-form">\
+				<select class="form-control" name="jenis_'+$scope.count+'" id="jenis_'+$scope.count+'">\
+				<option>Jenis Surat</option>\
+				<option>Kartu Keluarga</option>\
+				<option>Surat Mutasi Penduduk</option>\
+				</select>\
+			</div>\
+			<div class="form-group col-xs-4 cust-form">\
+				<input class="form-control" type="text" name="no_surat_'+$scope.count+'" id="no_surat_'+$scope.count+'" placeholder="NIK anggota keluarga"/>\
+			</div>\
+			<div class="form-group col-xs-2 cust-form">\
+				<button type="button" name="btn_print_'+$scope.count+'" class="btn btn-default">Print</button>\
+			</div>\
+			<br>');
+		$scope.count++;
+		}
+	}
+);
+
+ginaAppControllers.controller('CreateKKCtrl',
+	function($scope) {
+		$scope.count = 1;
+		$scope.addKeluarga = function() {
+			angular.element(document.getElementById('form-keluarga'))
+				.append('<div class="form-group col-xs-5 cust-form">\
+				<input class="form-control" type="text" name="nik_keluarga_'+$scope.count+'" id="nik_keluarga_'+$scope.count+'" placeholder="NIK anggota keluarga"/>\
+			</div>\
+			<div class="form-group col-xs-5 cust-form">\
+				<select class="form-control" name="status_kel_'+$scope.count+'" id="status_kel_'+$scope.count+'">\
+				<option>Status dalam keluarga</option>\
+				<option>Kepala keluarga</option>\
+				<option>Istri</option>\
+				<option>Anak</option>\
+				<option>Cucu</option>\
+				</select>\
+			</div><br>');
+		$scope.count++;
+		}
 	}
 );

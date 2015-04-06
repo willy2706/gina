@@ -3,3 +3,49 @@
 	border-radius: 10px;
 	padding: 30px;
 }
+
+.navbar-profile{
+	width: 200px;
+	background: #ff0;
+}
+
+.rightheaderelement{
+	color: #354B77;
+	font-weight: bold;
+	margin-right: 10%;
+	display: inline;
+	float: none;
+}
+
+.rightheaderelement a{
+	text-decoration: none;
+	color: #354B77;
+}
+
+.rightheaderelement a:hover {
+	color: #F15F43;
+	border-bottom: 2px solid #F15F43;
+}
+
+.rightheader{
+	margin-top: 2.5%;
+	font-size: 14px;
+	float: right;
+
+}
+
+.cust-form{
+	margin-left: 10px !important;
+}
+
+@media (max-width: 768px){
+	.rightheader{
+		margin-top: 0px;
+		border-top: solid thin #354B77;
+		float: none;
+	}
+	.rightheaderelement{
+		display: block;
+		padding: 4px 8px;
+	}
+}
