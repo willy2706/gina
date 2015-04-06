@@ -1,11 +1,11 @@
-var header = angular.module('ginaApp.header', []);
+var header = angular.module('ginaApp.header', ['ginaApp.factories']);
 
 header.directive('header', function () {
 	return {
 		restrict: 'A',
 		replace: true, 
 		templateUrl: "app/partials/header.html",
-		controller: function($scope, $location, $state){
+		controller: function($scope, $location, $state, Server){
 			$scope.reset = function() {
 				$scope.isHome = false;
 				$scope.isFeatures = false;
@@ -54,6 +54,11 @@ header.directive('header', function () {
 			} else if ($location.path() == '/contact') {
 				$scope.isContact = true;
 			}
+			Server.get('auth/check').then(function(data){
+				console.log(data);
+			}, function(err) {
+				console.log(err);
+			});
 		}
 	}
 });
