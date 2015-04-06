@@ -1,0 +1,30 @@
+<div class="col-md-8" ng-controller="CreateKKCtrl">
+	<h2>Pembuatan Kartu Keluarga</h2>
+	<p>*Tambahkan seluruh anggota keluarga anda</p>
+	<form class="form form-inline">
+		<div class="form-group">
+			<input class="form-control" type="text" name="nik" id="nik"/>
+		</div>
+		<div class="form-group">
+			<select class="form-control" name="status_kel" id="status_kel">
+			<option>Kepala keluarga</option>
+			<option>Istri</option>
+			<option>Anak</option>
+			<option>Cucu</option>
+			</select>
+		</div><br>
+		<div class="form-group">
+			<input class="form-control" type="text" name="nik"/>
+		</div>
+		<div class="form-group">
+			<select class="form-control">
+				<option>Kepala keluarga</option>
+				<option>Istri</option>
+				<option>Anak</option>
+				<option>Cucu</option>
+			</select>
+		</div><br>
+		<button type="button" class="btn btn-default" ng-click="tombol()">Tambah anggota keluarga</button><br>
+		<button type="button" class="btn btn default">Submit</button>
+	</form>
+</div>

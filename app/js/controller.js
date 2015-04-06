@@ -21,3 +21,11 @@ ginaAppControllers.controller('HeaderCtrl',
 		console.log('masiuk');
 	}
 );
+
+ginaAppControllers.controller('CreateKKCtrl',
+	function($scope) {
+		$scope.tombol = function() {
+			
+		}
+	}
+);
