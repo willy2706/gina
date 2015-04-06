@@ -50,9 +50,8 @@ class AuthController extends Controller {
 		return 'login';
 	}
 
-	public function getCheck1() {
-		// return 'aaaaa';
-		return (Auth::check()) ? 'trueee' : 'falseee';
+	public function getCheck() {
+		return (Auth::check()) ? 'true' : 'false';
 	}
 
 }
