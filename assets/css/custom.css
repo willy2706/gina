@@ -38,6 +38,25 @@
 	margin-left: 10px !important;
 }
 
+.kk-approval{
+	margin-top: 30px;
+	margin-bottom: 100px;
+	margin-left: 10%; 
+	margin-right: 10%;
+	padding-bottom: 50px;
+	border-bottom: solid thin #354B77;
+}
+
+.cust-margin{
+	margin-bottom: 100px;
+	padding-bottom: 50px;
+	border-bottom: solid thin #354B77;
+}
+
+.cust-table{
+	text-align: center;
+}
+
 @media (max-width: 768px){
 	.rightheader{
 		margin-top: 0px;
