@@ -43,7 +43,7 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
       })
       .state('contact', {
         url: '/contact',
-        templateUrl: 'app/partials/create-kk.html',
+        templateUrl: 'app/partials/print-surat.html',
         controller: ''
       })
   }]);

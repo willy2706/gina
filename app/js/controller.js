@@ -33,6 +33,30 @@ ginaAppControllers.controller('HeaderCtrl',
 	}
 );
 
+ginaAppControllers.controller('PrintSuratCtrl',
+	function($scope){
+		$scope.count = 1;
+		$scope.addSurat = function(){
+			angular.element(document.getElementById('form-surat'))
+				.append('<div class="form-group col-xs-4 cust-form">\
+				<select class="form-control" name="jenis_'+$scope.count+'" id="jenis_'+$scope.count+'">\
+				<option>Jenis Surat</option>\
+				<option>Kartu Keluarga</option>\
+				<option>Surat Mutasi Penduduk</option>\
+				</select>\
+			</div>\
+			<div class="form-group col-xs-4 cust-form">\
+				<input class="form-control" type="text" name="no_surat_'+$scope.count+'" id="no_surat_'+$scope.count+'" placeholder="NIK anggota keluarga"/>\
+			</div>\
+			<div class="form-group col-xs-2 cust-form">\
+				<button type="button" name="btn_print_'+$scope.count+'" class="btn btn-default">Print</button>\
+			</div>\
+			<br>');
+		$scope.count++;
+		}
+	}
+);
+
 ginaAppControllers.controller('CreateKKCtrl',
 	function($scope) {
 		$scope.count = 1;
