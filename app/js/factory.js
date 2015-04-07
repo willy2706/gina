@@ -1,10 +1,17 @@
 var ginaAppFactory = angular.module('ginaApp.factories', []);
 
-ginaAppFactory.factory('User', function() {
-	this.id = '';
-	this.nama = '';
-	this.isLogged = false;
-	return this;
+ginaAppFactory.factory('User', function($sessionStorage) {
+	var self = this;
+	self.id = '';
+	self.nama = '';
+	self.isLogged = false;
+	if ($sessionStorage.user) {
+		self = $sessionStorage.user;
+	}
+	self.session = function() {
+        $sessionStorage.user = self;
+    }
+	return self;
 });
 
 ginaAppFactory.factory('Server', function($http, $q, ApiURL, User) {

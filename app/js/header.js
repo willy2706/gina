@@ -67,9 +67,8 @@ header.directive('header', function () {
 					$scope.user = angular.copy({});
 					User.id = data.id;
 					User.isLogged = true;
-					console.log(User.isLogged + " aaaa");
 					User.nama = data.nama;
-					console.log(data);
+					User.session();
 					$scope.user.isUserLogged = true;
 					$scope.user.nama = User.nama;
 				});
