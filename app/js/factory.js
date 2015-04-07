@@ -1,6 +1,13 @@
 var ginaAppFactory = angular.module('ginaApp.factories', []);
 
-ginaAppFactory.factory('Server', function($http, $q, ApiURL) {
+ginaAppFactory.factory('User', function() {
+	this.id = '';
+	this.nama = '';
+	this.isLogged = false;
+	return this;
+});
+
+ginaAppFactory.factory('Server', function($http, $q, ApiURL, User) {
 	this.get = function(path, params) {
 		var def = $q.defer();
 		$http.get(ApiURL + path, {params : params}).
@@ -19,12 +26,9 @@ ginaAppFactory.factory('Server', function($http, $q, ApiURL) {
 		$http.post(ApiURL + 'auth/login',params).
 		success(function(data) {
 			def.resolve(data);
-			console.log(data);
-			console.log('berhasil');
 		}).error(function(err){
 			def.reject(err);
 			console.log(err);
-			console.log('gagal');
 		})
 		return def.promise;
 	}

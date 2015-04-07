@@ -57,6 +57,33 @@ ginaAppControllers.controller('PrintSuratCtrl',
 	}
 );
 
+ginaAppControllers.controller('CreateMutasiCtrl',
+	function($scope){
+		$scope.count = 1;
+		$scope.addPengikut = function(){
+			angular.element(document.getElementById('form-mutasi'))
+				.append('<div class="form-group">\
+				<label class="col-sm-2 control-label" for="nik_pengikut_'+$scope.count+'">Pengikut</label>\
+				<div class="col-sm-10">\
+					<div class="col-xs-5">\
+						<input class="form-control" type="text" name="nik_keluarga_'+$scope.count+'" id="nik_keluarga_'+$scope.count+'" placeholder="NIK anggota keluarga"/>\
+					</div>\
+					<div class="col-xs-5">\
+						<select class="form-control" name="status_kel_'+$scope.count+'" id="status_kel_'+$scope.count+'">\
+						<option>Status dalam keluarga</option>\
+						<option>Kepala keluarga</option>\
+						<option>Istri</option>\
+						<option>Anak</option>\
+						<option>Cucu</option>\
+						</select>\
+					</div><br>\
+				</div>\
+			</div>');
+		$scope.count++;
+		}
+	}
+);
+
 ginaAppControllers.controller('CreateKKCtrl',
 	function($scope) {
 		$scope.count = 1;

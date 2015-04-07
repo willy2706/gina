@@ -24,14 +24,14 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
       })
       .state('features', {
         url: "/features",
-        templateUrl: "app/partials/features.html",
+        templateUrl: "app/partials/create-kk.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
         }
       })
       .state('blog', {
         url: '/blog',
-        templateUrl: 'app/partials/blog.html',
+        templateUrl: 'app/partials/create-mutasi.html',
         controller: function($scope) {
           // $scope.isBlog = true;
         }
@@ -43,7 +43,7 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
       })
       .state('contact', {
         url: '/contact',
-        templateUrl: 'app/partials/detailpembuatankk.html',
+        templateUrl: 'app/partials/contact.html',
         controller: ''
       })
   }]);
