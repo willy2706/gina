@@ -73,6 +73,14 @@ header.directive('header', function () {
 					$scope.user.nama = User.nama;
 				});
 			}
+			
+			$scope.logout = function() {
+				$scope.user = angular.copy({});
+				$scope.user.isUserLogged = false;
+				$scope.user.nama = '';
+				Server.logout();
+				User.reset();
+			}
 		}
 	}
 });

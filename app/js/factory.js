@@ -11,6 +11,12 @@ ginaAppFactory.factory('User', function($sessionStorage) {
 	self.session = function() {
         $sessionStorage.user = self;
     }
+    self.reset = function() {
+    	self.nama = '';
+    	self.id = '';
+    	self.isLogged = false;
+    	delete $sessionStorage.user;
+    }
 	return self;
 });
 
@@ -36,6 +42,16 @@ ginaAppFactory.factory('Server', function($http, $q, ApiURL, User) {
 		}).error(function(err){
 			def.reject(err);
 			console.log(err);
+		})
+		return def.promise;
+	}
+	this.logout = function() {
+		var def = $q.defer();
+		$http.get(ApiURL + 'auth/logout')
+		.success(function(data) {
+			def.resolve(data);
+		}).error(function(err) {
+			def.reject(err);
 		})
 		return def.promise;
 	}
