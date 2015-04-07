@@ -29,9 +29,37 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
           // $scope.isFeatures = true;
         }
       })
+      .state('featuresapp', {
+        url: "/features/app",
+        templateUrl: "app/partials/kk-approval.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('detailpembuatankk', {
+        url: "/features/detail",
+        templateUrl: "app/partials/detailpembuatankk.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
       .state('blog', {
         url: '/blog',
         templateUrl: 'app/partials/create-mutasi.html',
+        controller: function($scope) {
+          // $scope.isBlog = true;
+        }
+      })
+      .state('blogapp', {
+        url: '/blog/app',
+        templateUrl: 'app/partials/mutasi-approval.html',
+        controller: function($scope) {
+          // $scope.isBlog = true;
+        }
+      })
+      .state('detailmutasi', {
+        url: '/blog/detail',
+        templateUrl: 'app/partials/detailmutasi.html',
         controller: function($scope) {
           // $scope.isBlog = true;
         }
@@ -43,7 +71,7 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
       })
       .state('contact', {
         url: '/contact',
-        templateUrl: 'app/partials/contact.html',
+        templateUrl: 'app/partials/datakependudukan.html',
         controller: ''
       })
   }]);
