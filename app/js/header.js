@@ -7,7 +7,9 @@ header.directive('header', function () {
 		templateUrl: "app/partials/header.html",
 		controller: function($scope, $location, $state, Server, User){
 			$scope.reset = function() {
-				$scope.user.isUserLogged = false;
+				$scope.user = angular.copy({});
+				$scope.user.isUserLogged = User.isLogged;
+				$scope.user.nama = User.nama;
 				$scope.isHome = false;
 				$scope.isFeatures = false;
 				$scope.isBlog = false;
@@ -43,7 +45,10 @@ header.directive('header', function () {
 				$scope.reset();
 				$scope.isContact = true;
 			}
-
+			$scope.user = angular.copy({});
+			console.log(User.isLogged + " aaaa");
+			$scope.user.isUserLogged = User.isLogged;
+			$scope.user.nama = User.nama;
 			if ($location.path() == '/' || $location.path() == '') {
 				$scope.isHome = true;
 			} else if ($location.path() == '/features') {
@@ -62,6 +67,7 @@ header.directive('header', function () {
 					$scope.user = angular.copy({});
 					User.id = data.id;
 					User.isLogged = true;
+					console.log(User.isLogged + " aaaa");
 					User.nama = data.nama;
 					console.log(data);
 					$scope.user.isUserLogged = true;

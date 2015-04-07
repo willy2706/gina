@@ -4,5 +4,6 @@ var ginaApp = angular.module('ginaApp', [
   'ginaApp.routes',
   'ginaApp.header',
   'ginaApp.factories',
-  'ginaApp.constants'
+  'ginaApp.constants',
+  'ngStorage'
 ]);
