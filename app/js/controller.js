@@ -103,5 +103,9 @@ ginaAppControllers.controller('CreateKKCtrl',
 			</div><br>');
 		$scope.count++;
 		}
+
+		$scope.createKK = function() {
+			console.log('create kk tombol ketekan');
+		}
 	}
 );

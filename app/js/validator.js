@@ -2,6 +2,7 @@ var ginaAppValidator = angular.module('ginaApp.validators', []);
 
 ginaAppValidator.directive('nikValidator', function ($http, $q, ApiURL, $timeout) {
 	return {
+        // console.log('aa');
 		require: 'ngModel',
 		link: function(scope, element, attrs, ngModel) {
 			ngModel.$asyncValidators.nik = function(modelValue, viewValue) {
