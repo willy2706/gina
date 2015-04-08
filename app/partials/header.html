@@ -49,17 +49,26 @@
 			<div class="col-md-4" ng-hide = "user.isUserLogged">
 				<div class="contact-form">
 					<h2 style="color: #FFF">Login Penduduk</h2>
-					<form class="form box-form" role="form">
+					<form name="loginForm" class="form box-form" role="form"  ng-submit="login()">
 						
 						<div class="form-group">
 							<span><label for="NIK" class="col-sm-2" style="color:#fff">NIK: </label></span>
-							<input type="text" class="form-control" ng-model = "nik" name="NIK" id="NIK" placeholder="NIK" required/>
+							<input nik-validator type="text" class="form-control" ng-model = "nik" name="nik" id="NIK" placeholder="NIK" required/>
+		                    <div ng-if="loginForm.nik.$dirty">
+		                        <div ng-messages="loginForm.nik.$error" class="validation-error">
+		                            <div ng-message="nik">Nik tidak valid</div>
+		                            <div ng-message="required">Nik required</div>
+		                        </div>
+		                        <div ng-messages="loginForm.nik.$pending" class="validation-pending">
+		                            <div ng-message="nik">Cek Nik</div>
+		                        </div>
+		                    </div>
 						</div>
 						<div class="form-group">
 							<span><label for="password" class="col-sm-2" style="color:#fff">Password</label></span>
 							<input type="password" class="form-control" ng-model = "password" id="password" name="password" placeholder="password" required/>
 						</div>
-						<button type="submit" class="btn btn-default" ng-click="login()">Go</button>
+						<button type="submit" class="btn btn-default" ng-disabled="loginForm.$invalid || loginForm.$pending">Go</button>
 					</form>
 				</div>
 			</div>

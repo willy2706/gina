@@ -5,5 +5,7 @@ var ginaApp = angular.module('ginaApp', [
   'ginaApp.header',
   'ginaApp.factories',
   'ginaApp.constants',
+  'ginaApp.validators',
+  'ngMessages',
   'ngStorage'
 ]);

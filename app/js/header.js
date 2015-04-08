@@ -46,7 +46,7 @@ header.directive('header', function () {
 				$scope.isContact = true;
 			}
 			$scope.user = angular.copy({});
-			console.log(User.isLogged + " aaaa");
+			// console.log(User.isLogged + " aaaa");
 			$scope.user.isUserLogged = User.isLogged;
 			$scope.user.nama = User.nama;
 			if ($location.path() == '/' || $location.path() == '') {
