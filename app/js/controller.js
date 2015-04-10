@@ -13,9 +13,6 @@ ginaAppControllers.controller('PhoneListCtrl', ['$scope', '$http',
 ginaAppControllers.controller('LoginCtrl', ['$scope', 'Server',
 	function ($scope, Server) {
 		$scope.submit = function() {
-			// console.log($scope.nik);
-			// console.log($scope.password);
-			// console.log($scope.nik, $scope.password);
 			Server.login($scope.nik, $scope.password);
 		}
 	}
@@ -85,27 +82,40 @@ ginaAppControllers.controller('CreateMutasiCtrl',
 );
 
 ginaAppControllers.controller('CreateKKCtrl',
-	function($scope) {
+	function($scope, $compile) {
 		$scope.count = 1;
 		$scope.addKeluarga = function() {
-			angular.element(document.getElementById('form-keluarga'))
-				.append('<div class="form-group col-xs-5 cust-form">\
-				<input class="form-control" type="text" name="nik_keluarga_'+$scope.count+'" id="nik_keluarga_'+$scope.count+'" placeholder="NIK anggota keluarga"/>\
-			</div>\
-			<div class="form-group col-xs-5 cust-form">\
-				<select class="form-control" name="status_kel_'+$scope.count+'" id="status_kel_'+$scope.count+'">\
-				<option>Status dalam keluarga</option>\
-				<option>Kepala keluarga</option>\
-				<option>Istri</option>\
-				<option>Anak</option>\
-				<option>Cucu</option>\
-				</select>\
-			</div><br>');
+			var a = angular.element(document.getElementById('form-keluarga'))
+				.append($compile('<div class="col-xs-12">\
+					<div class="form-group col-xs-5 cust-form">\
+						<input nik-validator ng-model = nik_keluarga_'+$scope.count+' class="form-control" type="text" name="nik_keluarga_'+$scope.count+'" placeholder="NIK anggota keluarga" required/>\
+						<div ng-if="createKKForm.nik_keluarga_'+$scope.count+'.$dirty">\
+		                    <div ng-messages="createKKForm.nik_keluarga_'+$scope.count+'.$error" class="validation-error">\
+		                        <div ng-message="nik">Nik tidak valid</div>\
+		                        <div ng-message="required">Nik required</div>\
+		                    </div>\
+		                    <div ng-messages="createKKForm.nik_keluarga_'+$scope.count+'.$pending" class="validation-pending">\
+		                        <div ng-message="nik">Cek Nik</div>\
+		                    </div>\
+		                </div>\
+					</div>\
+					<div class="form-group col-xs-5 cust-form">\
+						<select class="form-control" name="status_kel_'+$scope.count+'" id="status_kel_'+$scope.count+'">\
+							<option>Status dalam keluarga</option>\
+							<option>Kepala keluarga</option>\
+							<option>Istri</option>\
+							<option>Anak</option>\
+							<option>Cucu</option>\
+						</select>\
+					</div>\
+					<br>\
+					</div>')($scope));
+$compile(a)($scope);
 		$scope.count++;
 		}
 
-		$scope.createKK = function() {
-			console.log('create kk tombol ketekan');
+		$scope.submitRequestKK = function() {
+			// console.log('create kk tombol ketekan');
 		}
 	}
 );

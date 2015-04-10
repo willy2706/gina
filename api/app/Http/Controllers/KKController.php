@@ -16,7 +16,7 @@ class KKController extends Controller {
 
 	function postRequest() {
 		$input = Input::all();
-
+		return response($input);
 		$kk = new KK();
 		$kk->no_kk = $input['no_kk'];
 		$kk->nik_kepala_kel = $input['nik_kepala_kel'];
