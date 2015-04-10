@@ -33,7 +33,7 @@ class KTP extends Model implements AuthenticatableContract, CanResetPasswordCont
 
 	//mutator password
 	public function setPasswordAttribute($value) {
-        $this->attributes['password'] = Hash::make($value);
+        $this->attributes['password'] = \Hash::make($value);
     }
 
 }
