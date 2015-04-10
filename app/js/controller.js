@@ -81,14 +81,15 @@ ginaAppControllers.controller('CreateMutasiCtrl',
 	}
 );
 
-ginaAppControllers.controller('CreateKKCtrl',
-	function($scope, $compile) {
+ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server',
+	function($scope, $compile, Server) {
 		$scope.count = 1;
+		$scope.nik_keluarga = [];
 		$scope.addKeluarga = function() {
 			var a = angular.element(document.getElementById('form-keluarga'))
 				.append($compile('<div class="col-xs-12">\
 					<div class="form-group col-xs-5 cust-form">\
-						<input nik-validator ng-model = nik_keluarga_'+$scope.count+' class="form-control" type="text" name="nik_keluarga_'+$scope.count+'" placeholder="NIK anggota keluarga" required/>\
+						<input nik-validator ng-model = nik_keluarga['+$scope.count+'] class="form-control" type="text" name="nik_keluarga_'+$scope.count+'" placeholder="NIK anggota keluarga" required/>\
 						<div ng-if="createKKForm.nik_keluarga_'+$scope.count+'.$dirty">\
 		                    <div ng-messages="createKKForm.nik_keluarga_'+$scope.count+'.$error" class="validation-error">\
 		                        <div ng-message="nik">Nik tidak valid</div>\
@@ -101,21 +102,33 @@ ginaAppControllers.controller('CreateKKCtrl',
 					</div>\
 					<div class="form-group col-xs-5 cust-form">\
 						<select class="form-control" name="status_kel_'+$scope.count+'" id="status_kel_'+$scope.count+'">\
-							<option>Status dalam keluarga</option>\
-							<option>Kepala keluarga</option>\
-							<option>Istri</option>\
-							<option>Anak</option>\
-							<option>Cucu</option>\
+							<option value = "Istri">Istri</option>\
+							<option value = "Anak">Anak</option>\
+							<option value = "Cucu">Cucu</option>\
 						</select>\
 					</div>\
 					<br>\
 					</div>')($scope));
-$compile(a)($scope);
+		$compile(a)($scope);
 		$scope.count++;
 		}
 
 		$scope.submitRequestKK = function() {
-			// console.log('create kk tombol ketekan');
+			console.log($scope.nik_keluarga);
+			var params = angular.copy({});
+			params.nik = [];
+			params.nik_kepala_kel = $scope.nik_keluarga_0;
+			params.anggota_count = $scope.count - 1;
+			for (var i = 1; i <= params.anggota_count; ++i) {
+				params.nik[i] = $scope.nik_keluarga[i-1]; 
+			}
+			Server.post('kk/request', params).then(function(data) {
+				console.log(data);
+			}, function(err) {
+				console.log(err);
+			})
+			// console.log($scope.nik_keluarga_0);
+			console.log('create kk tombol ketekan');
 		}
-	}
+	}]
 );
