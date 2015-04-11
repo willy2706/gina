@@ -7,12 +7,6 @@ use Request;
 
 class KKController extends Controller {
 
-	function getRequest() {
-		$kk = new KK();
-
-		return response($kk);
-	}
-
 	function postRequest() {
 		$input = Input::all();
 		// return response($input);
@@ -41,19 +35,11 @@ class KKController extends Controller {
 		return response('success');
 	}
 
-	function getView() {
-		$no_kk = Request::get('no_kk');
-		$kk = KK::where('no_kk', $no_kk)->get();
-
-		return response($kk);
-	}
-
-	function getUpdate() {
-		$no_kk = Request::get('no_kk');
-		$kk = KK::where('no_kk', $no_kk)->get();
+	function getView($no_kk) {
+		$kk = KK::where('no_kk', $no_kk)->first();
 		$anggota_kk = Anggota_KK::where('no_kk', $no_kk)->get();
 
-		return response($anggota_kk);
+		return response($kk . $anggota_kk);
 	}
 
 	function postUpdate() {
@@ -76,7 +62,7 @@ class KKController extends Controller {
 			$anggota_kk->save();
 		}
 		
-		return response($kk);
+		return response('success');
 	}
 
 }

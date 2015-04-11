@@ -7,12 +7,6 @@ use Request;
 
 class MPController extends Controller {
 
-	function getRequest() {
-		$mp = new MP();
-
-		return response($mp);
-	}
-
 	function postRequest() {
 		$input = Input::all();
 
@@ -21,6 +15,7 @@ class MPController extends Controller {
 		$mp->no_mp = '1234567890';
 		$mp->nik = $input['nik'];
 		$mp->alamat_tujuan = $input['alamat_tujuan'];
+		$mp->request = true;
 		$mp->save();
 
 		for ($i = 1; $i <= $input['pengikut_count']; $i++) {
@@ -35,19 +30,11 @@ class MPController extends Controller {
 		return response('success');
 	}
 
-	function getView() {
-		$no_mp = Request::get('no_mp');
-		$mp = MP::where('no_mp', $no_mp)->get();
-
-		return response($mp);
-	}
-
-	function getUpdate() {
-		$no_mp = Request::get('no_mp');
-		$mp = MP::where('no_mp', $no_mp)->get();
+	function getView($no_mp) {
+		$mp = MP::where('no_mp', $no_mp)->first();
 		$pengikut_mp = Pengikut_MP::where('no_mp', $no_mp)->get();
 
-		return response($pengikut_mp);
+		return response($mp . $pengikut_mp);
 	}
 
 	function postUpdate() {
@@ -56,6 +43,7 @@ class MPController extends Controller {
 		$mp = MP::where('no_mp', $input['no_mp'])->first();
 		$mp->nik = $input['nik'];
 		$mp->alamat_tujuan = $input['alamat_tujuan'];
+		$mp->request = true;
 		$mp->save();
 
 		Pengikut_MP::where('no_mp', $input['no_mp'])->delete();
@@ -68,7 +56,7 @@ class MPController extends Controller {
 			$pengikut_mp->save();
 		}
 		
-		return response($mp);
+		return response('success');
 	}
 
 }
