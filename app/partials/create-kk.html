@@ -17,13 +17,15 @@
 	                </div>
 				</div>
 				<div class="form-group col-xs-5 cust-form">
-					<select class="form-control" name="status_kel_0" id="status_kel_0">
-						<!-- <option>Status dalam keluarga</option> -->
-						<option value="Kepala Keluarga">Kepala keluarga</option>
-<!-- 						<option value="Istri">Istri</option>
-						<option value="Anak">Anak</option>
-						<option value="Cucu">Cucu</option> -->
+					<select class="form-control" ng-model="status_hub[0]" ng-options="s for s in status_hub_data_init">
 					</select>
+					<!-- <select ng-model = "status_hub" class="form-control" name="status_kel_0" id="status_kel_0">
+						<option>Status dalam keluarga</option>
+						<option value="Kepala Keluarga">Kepala keluarga</option>
+						<option value="Istri">Istri</option>
+						<option value="Anak">Anak</option>
+						<option value="Cucu">Cucu</option>
+					</select> -->
 				</div><br>
 			</div>
 		</div>

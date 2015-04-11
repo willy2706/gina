@@ -34,7 +34,7 @@ ginaAppFactory.factory('Server', function($http, $q, ApiURL, User) {
 	this.post = function(path, params) {
 		// console.log('asdfasdfasd');
 		var def = $q.defer();
-		$http.post(ApiURL + path, {params : params}).
+		$http.post(ApiURL + path, params).
 		success(function(data){
 			def.resolve(data);
 		}).error(function(err){
