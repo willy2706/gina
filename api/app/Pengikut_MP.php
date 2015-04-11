@@ -2,14 +2,14 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class KK extends Model {
+class Pengikut_MP extends Model {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'kk';
+	protected $table = 'pengikut_mp';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -25,8 +25,8 @@ class KK extends Model {
 	 */
 	// protected $hidden = ['password', 'remember_token'];
 
-	public function anggota_kk() {
-		return $this->hasMany('Anggota_KK');
+	public function mp() {
+		return $this->belongsTo('MP');
 	}
 
 }

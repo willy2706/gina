@@ -11,23 +11,21 @@ class KKController extends Controller {
 		$kk = new KK();
 
 		return response($kk);
-		// return view('kk/request', compact('kk'));
 	}
 
 	function postRequest() {
 		$input = Input::all();
-		return response($input);
+
 		$kk = new KK();
-		// $kk->no_kk = $input['no_kk'];
-		$kk->no_kk = '123456789';
+		// $kk->no_kk = generate string
+		$kk->no_kk = '1234567890';
 		$kk->nik_kepala_kel = $input['nik_kepala_kel'];
 		$kk->request = true;
 		$kk->save();
 
-		for($i = 1; $i <= $input['anggota_count']; $i++) {
+		for ($i = 1; $i <= $input['anggota_count']; $i++) {
 			$anggota_kk = new Anggota_KK();
-			// $anggota_kk->no_kk = $input['no_kk'];
-			$anggota_kk->no_kk = '123456789';
+			$anggota_kk->no_kk = $kk->no_kk;
 			$anggota_kk->nik = $input['nik_' . $i];
 			$anggota_kk->pendidikan = $input['pendidikan_' . $i];
 			$anggota_kk->status_hub = $input['status_hub_' . $i];
@@ -36,9 +34,7 @@ class KKController extends Controller {
 			$anggota_kk->save();
 		}
 
-
-
-		//return redirect('kk/view?no_kk=' . $kk->no_kk);
+		return response('success');
 	}
 
 	function getView() {
@@ -46,7 +42,6 @@ class KKController extends Controller {
 		$kk = KK::where('no_kk', $no_kk)->get();
 
 		return response($kk);
-		// return view('view')->with('kk', $kk);
 	}
 
 	function getUpdate() {
@@ -55,7 +50,6 @@ class KKController extends Controller {
 		$anggota_kk = Anggota_KK::where('no_kk', $no_kk)->get();
 
 		return response($anggota_kk);
-		// return view('kk/request')->with('kk', $kk)->with('anggota_kk', $anggota_kk);
 	}
 
 	function postUpdate() {
@@ -69,7 +63,7 @@ class KKController extends Controller {
 		Anggota_KK::where('no_kk', $input['no_kk'])->delete();
 		for ($i = 1; $i <= $input['anggota_count']; $i++) {
 			$anggota_kk = new Anggota_KK();
-			$anggota_kk->no_kk = $input['no_kk'];
+			$anggota_kk->no_kk = $kk->no_kk;
 			$anggota_kk->nik = $input['nik_' . $i];
 			$anggota_kk->pendidikan = $input['pendidikan_' . $i];
 			$anggota_kk->status_hub = $input['status_hub_' . $i];
