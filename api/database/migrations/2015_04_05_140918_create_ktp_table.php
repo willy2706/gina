@@ -16,7 +16,6 @@ class CreateKtpTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('nik');
-			$table->index('nik');
 			$table->string('password');
 			$table->string('nama');
 			$table->string('kota_lahir');
@@ -26,9 +25,9 @@ class CreateKtpTable extends Migration {
 			$table->string('alamat');
 			$table->integer('rt')->unsigned();
 			$table->integer('rw')->unsigned();
-			$table->string('kel_desa');
+			$table->string('kel/desa');
 			$table->string('kec');
-			$table->string('kota_kab');
+			$table->string('kota/kab');
 			$table->integer('kode_pos')->unsigned();
 			$table->string('agama');
 			$table->string('status');

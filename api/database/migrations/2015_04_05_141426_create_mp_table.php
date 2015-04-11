@@ -18,10 +18,7 @@ class CreateMpTable extends Migration {
 			$table->string('no_mp');
 			$table->index('no_mp');
 			$table->string('nik');
-			$table->foreign('nik')->references('nik')->on('ktp');
 			$table->string('alamat_tujuan');
-			$table->boolean('request');
-			$table->string('message')->nullable();
 			$table->timestamps();
 		});
 	}

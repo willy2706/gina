@@ -25,16 +25,37 @@ Route::controller('kk', 'KKController');
 
 Route::controller('mp', 'MPController');
 
+// Route::group(['prefix' => '/kk'], function() {
+
+	// Route::get('/request', 'KKController@getRequest');
+	// Route::post('/request', 'KKController@postRequest');
+	// Route::get('/view', 'KKController@getView');
+	// Route::get('/update', 'KKController@getUpdate');
+
+// });
+
 Route::group(['prefix' => 'admin'], function() {
 
-	// Route::controller('login', 'AdminController');
-	// Route::controller('logout', 'AdminController');
+	Route::controller('login', 'AdminController');
+	Route::controller('logout', 'AdminController');
+	
+	Route::group(['prefix' => 'ktp'], function() {
 
-	Route::controller('ktp', 'AdminKTPController');
+		Route::controller('create', 'AdminKTPController');
+		Route::controller('view', 'AdminKTPController');
+		Route::controller('update', 'AdminKTPController');
+		Route::controller('delete', 'AdminKTPController');
 
-	Route::controller('kk', 'AdminKKController');
+	});
 
-	Route::controller('mp', 'AdminMPController');
+	Route::group(['prefix' => 'kk'], function() {
+
+		Route::controller('view', 'AdminKKController');
+		Route::controller('delete', 'AdminKKController');
+		Route::controller('approve', 'AdminKKController');
+		Route::controller('decline', 'AdminKKController');
+
+	});
 });
 
 //testing
