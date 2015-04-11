@@ -1,41 +1,46 @@
 <div class="partial">
 	<div class="row">
 		<div class="col-md-12" ng-controller="CreateKKCtrl">
-			<h2>Pembuatan Kartu Keluarga</h2>
-			<p>*Tambahkan seluruh anggota keluarga anda</p>
-			<form name = "createKKForm" class="form form-horizontal" ng-submit="submitRequestKK()">
-				<div id="form-keluarga">
-					<div class="form-inline">
-						<div class="form-group cust-form">
-							<input nik-validator ng-model = "nik_keluarga[0]" class="form-control" type="text" name="nik_keluarga_0" id="nik_keluarga_0" placeholder="NIK anggota keluarga" required/>
-						    <div ng-if="createKKForm.nik_keluarga_0.$dirty">
-			                    <div ng-messages="createKKForm.nik_keluarga_0.$error" class="validation-error">
-			                        <div ng-message="nik">Nik tidak valid</div>
-			                        <div ng-message="required">Nik required</div>
-			                    </div>
-			                    <div ng-messages="createKKForm.nik_keluarga_0.$pending" class="validation-pending">
-			                        <div ng-message="nik">Cek Nik</div>
-			                    </div>
-			                </div>
-						</div>
-						<div class="form-group cust-form">
-							<select class="form-control" ng-model="status_hub[0]" ng-options="s for s in status_hub_data_init">
-							</select>
-						</div>
-						<div class="form-group cust-form">
-							<select class="form-control" ng-model="pend_kel[0]" ng-options="s for s in pend_kel_data">
-							</select>
+			<div ng-show="isLogged">
+				<h2>Pembuatan Kartu Keluarga</h2>
+				<p>*Tambahkan seluruh anggota keluarga anda</p>
+				<form name = "createKKForm" class="form form-horizontal" ng-submit="submitRequestKK()">
+					<div id="form-keluarga">
+						<div class="form-inline">
+							<div class="form-group cust-form">
+								<input nik-validator ng-model = "nik_keluarga[0]" class="form-control" type="text" name="nik_keluarga_0" id="nik_keluarga_0" placeholder="NIK anggota keluarga" required/>
+							    <div ng-if="createKKForm.nik_keluarga_0.$dirty">
+				                    <div ng-messages="createKKForm.nik_keluarga_0.$error" class="validation-error">
+				                        <div ng-message="nik">Nik tidak valid</div>
+				                        <div ng-message="required">Nik required</div>
+				                    </div>
+				                    <div ng-messages="createKKForm.nik_keluarga_0.$pending" class="validation-pending">
+				                        <div ng-message="nik">Cek Nik</div>
+				                    </div>
+				                </div>
+							</div>
+							<div class="form-group cust-form">
+								<select class="form-control" ng-model="status_hub[0]" ng-options="s for s in status_hub_data_init">
+								</select>
+							</div>
+							<div class="form-group cust-form">
+								<select class="form-control" ng-model="pend_kel[0]" ng-options="s for s in pend_kel_data">
+								</select>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="form-group cust-form col-xs-10">
-					<button type="button" class="btn btn-default" ng-click="addKeluarga()">Tambah anggota keluarga</button>
-				</div>
-				<br>
-				<div class="form-group cust-form col-xs-10">
-					<button ng-disabled="createKKForm.$invalid || createKKForm.$pending" type="submit" class="btn btn default" >Submit</button>
-				</div>
-			</form>
+					<div class="form-group cust-form col-xs-10">
+						<button type="button" class="btn btn-default" ng-click="addKeluarga()">Tambah anggota keluarga</button>
+					</div>
+					<br>
+					<div class="form-group cust-form col-xs-10">
+						<button ng-disabled="createKKForm.$invalid || createKKForm.$pending" type="submit" class="btn btn default" >Submit</button>
+					</div>
+				</form>
+			</div>
+			<div ng-hide="isLogged">
+				<h2>Maaf anda belum log in</h2>		
+			</div>
 		</div>
 	</div>		
 </div>

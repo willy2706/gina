@@ -81,8 +81,10 @@ ginaAppControllers.controller('CreateMutasiCtrl',
 	}
 );
 
-ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server',
-	function($scope, $compile, Server) {
+ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', 'User',
+	function($scope, $compile, Server, User) {
+		console.log(User.isLogged);
+		$scope.isLogged = User.isLogged;
 		$scope.status_hub = [];
 		$scope.status_hub[0] = "Kepala Keluarga";
 		$scope.status_hub_data = ["Istri", "Suami", "Anak", "Cucu"];
@@ -123,6 +125,12 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server',
 						</div>')($scope));
 			$scope.count++;
 		}
+
+		$scope.$on('logoutEvent', function(event, data) {
+			// console.log(data);
+			// console.log('aaaaa');
+			$scope.isLogged = User.isLogged;
+		});
 
 		$scope.submitRequestKK = function() {
 			console.log($scope.nik_keluarga);
