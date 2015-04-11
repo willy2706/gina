@@ -15,6 +15,7 @@ class KKController extends Controller {
 
 	function postRequest() {
 		$input = Input::all();
+		// return response($input);
 		// return response($input['params']);
 		$kk = new KK();
 
@@ -27,10 +28,9 @@ class KKController extends Controller {
 
 		for ($i = 1; $i <= $input['anggota_count']; $i++) {
 			$anggota_kk = new Anggota_KK();
-			// $anggota_kk->no_kk = $input['no_kk'];
 			$anggota_kk->no_kk = $kk->no_kk;
 			$anggota_kk->nik = $input['nik'][$i];
-			// $anggota_kk->pendidikan = $input['pendidikan'][$i];
+			$anggota_kk->pendidikan = $input['pendidikan'][$i];
 			$anggota_kk->status_hub = $input['status_hub'][$i];
 			//TODO
 			// $anggota_kk->nik_ayah = $input['nik_ayah_' . $i];

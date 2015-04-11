@@ -131,11 +131,13 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server',
 			var params = angular.copy({});
 			params.nik = [];
 			params.status_hub = [];
+			params.pendidikan = [];
 			params.nik_kepala_kel = $scope.nik_keluarga[0];
-			params.anggota_count = $scope.count - 1;
+			params.anggota_count = $scope.count;
 			for (var i = 1; i <= params.anggota_count + 1; ++i) {
 				params.nik[i] = $scope.nik_keluarga[i-1];
 				params.status_hub[i] = $scope.status_hub[i-1];
+				params.pendidikan[i] = $scope.status_hub[i-1];
 			}
 			Server.post('kk/request', params).then(function(data) {
 				console.log(data);
