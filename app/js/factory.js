@@ -31,6 +31,17 @@ ginaAppFactory.factory('Server', function($http, $q, ApiURL, User) {
 		});
 		return def.promise;
 	}
+	this.post = function(path, params) {
+		// console.log('asdfasdfasd');
+		var def = $q.defer();
+		$http.post(ApiURL + path, {params : params}).
+		success(function(data){
+			def.resolve(data);
+		}).error(function(err){
+			def.reject(err);
+		});
+		return def.promise;
+	}
 	this.login = function (nik, password) {
 		var def = $q.defer();
 		var params = angular.copy({});
@@ -56,5 +67,6 @@ ginaAppFactory.factory('Server', function($http, $q, ApiURL, User) {
 		})
 		return def.promise;
 	}
+
 	return this;
 });

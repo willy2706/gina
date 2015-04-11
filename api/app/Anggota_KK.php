@@ -16,7 +16,7 @@ class Anggota_KK extends Model {
 	 *
 	 * @var array
 	 */
-	// protected $fillable = ['no_kk', 'nik_kepala_kel'];
+	// protected $fillable = [];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -25,8 +25,8 @@ class Anggota_KK extends Model {
 	 */
 	// protected $hidden = ['password', 'remember_token'];
 
-    public function kk() {
-    	return $this->belongsTo('App\KK');
-    }
+	public function kk() {
+		return $this->belongsTo('KK');
+	}
 
 }

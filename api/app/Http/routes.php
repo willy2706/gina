@@ -22,6 +22,9 @@ Route::controllers([
 ]);
 
 Route::controller('kk', 'KKController');
+
+Route::controller('mp', 'MPController');
+
 // Route::group(['prefix' => '/kk'], function() {
 
 	// Route::get('/request', 'KKController@getRequest');
@@ -32,7 +35,7 @@ Route::controller('kk', 'KKController');
 // });
 
 Route::group(['prefix' => 'admin'], function() {
-	
+
 	Route::controller('login', 'AdminController');
 	Route::controller('logout', 'AdminController');
 	

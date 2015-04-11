@@ -16,6 +16,12 @@ class KtpTableSeeder extends Seeder {
 		Ktp::create([
 			'nik' => 'a', 
 			'password' => 'aaa',
+			'nama' => 'abc'
+		]);
+		Ktp::create([
+			'nik' => 'b', 
+			'password' => 'bbb',
+			'nama' => 'bcd'
 		]);
 	}
 
