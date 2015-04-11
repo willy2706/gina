@@ -5,7 +5,7 @@ header.directive('header', function () {
 		restrict: 'A',
 		replace: true, 
 		templateUrl: "app/partials/header.html",
-		controller: function($scope, $location, $state, Server, User){
+		controller: function($scope, $location, $state, Server, User, $rootScope){
 			$scope.reset = function() {
 				$scope.user = angular.copy({});
 				$scope.user.isUserLogged = User.isLogged;
@@ -68,6 +68,7 @@ header.directive('header', function () {
 					User.id = data.id;
 					User.isLogged = true;
 					User.nama = data.nama;
+					User.nik = data.nik;
 					User.session();
 					$scope.user.isUserLogged = true;
 					$scope.user.nama = User.nama;
@@ -82,6 +83,7 @@ header.directive('header', function () {
 				$scope.user.nama = '';
 				Server.logout();
 				User.reset();
+				$rootScope.$broadcast('logoutEvent',[1,2,3]);
 			}
 		}
 	}

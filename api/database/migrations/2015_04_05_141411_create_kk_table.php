@@ -18,7 +18,9 @@ class CreateKkTable extends Migration {
 			$table->string('no_kk');
 			$table->index('no_kk');
 			$table->string('nik_kepala_kel');
+			$table->foreign('nik_kepala_kel')->references('nik')->on('ktp');
 			$table->boolean('request');
+			$table->string('message')->nullable();
 			$table->timestamps();
 		});
 	}

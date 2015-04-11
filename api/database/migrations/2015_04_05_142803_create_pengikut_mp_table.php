@@ -18,6 +18,7 @@ class CreatePengikutMpTable extends Migration {
 			$table->string('no_mp');
 			$table->foreign('no_mp')->references('no_mp')->on('mp');
 			$table->string('nik_pengikut');
+			$table->foreign('nik_pengikut')->references('nik')->on('ktp');
 			$table->string('pekerjaan_pengikut');
 			$table->string('status_kel_pengikut');
 			$table->timestamps();

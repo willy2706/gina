@@ -81,8 +81,10 @@ ginaAppControllers.controller('CreateMutasiCtrl',
 	}
 );
 
-ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server',
-	function($scope, $compile, Server) {
+ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', 'User',
+	function($scope, $compile, Server, User) {
+		console.log(User.isLogged);
+		$scope.isLogged = User.isLogged;
 		$scope.status_hub = [];
 		$scope.status_hub[0] = "Kepala Keluarga";
 		$scope.status_hub_data = ["Istri", "Suami", "Anak", "Cucu"];
@@ -124,6 +126,12 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server',
 			$scope.count++;
 		}
 
+		$scope.$on('logoutEvent', function(event, data) {
+			// console.log(data);
+			// console.log('aaaaa');
+			$scope.isLogged = User.isLogged;
+		});
+
 		$scope.submitRequestKK = function() {
 			console.log($scope.nik_keluarga);
 			console.log($scope.status_hub);
@@ -131,11 +139,13 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server',
 			var params = angular.copy({});
 			params.nik = [];
 			params.status_hub = [];
+			params.pendidikan = [];
 			params.nik_kepala_kel = $scope.nik_keluarga[0];
-			params.anggota_count = $scope.count - 1;
+			params.anggota_count = $scope.count;
 			for (var i = 1; i <= params.anggota_count + 1; ++i) {
 				params.nik[i] = $scope.nik_keluarga[i-1];
 				params.status_hub[i] = $scope.status_hub[i-1];
+				params.pendidikan[i] = $scope.status_hub[i-1];
 			}
 			Server.post('kk/request', params).then(function(data) {
 				console.log(data);

@@ -5,6 +5,7 @@ ginaAppFactory.factory('User', function($sessionStorage) {
 	self.id = '';
 	self.nama = '';
 	self.isLogged = false;
+	self.nik = '';
 	if ($sessionStorage.user) {
 		self = $sessionStorage.user;
 	}
@@ -14,6 +15,7 @@ ginaAppFactory.factory('User', function($sessionStorage) {
     self.reset = function() {
     	self.nama = '';
     	self.id = '';
+    	self.nik = '';
     	self.isLogged = false;
     	delete $sessionStorage.user;
     }
