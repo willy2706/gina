@@ -22,6 +22,10 @@
 	color: #354B77;
 }
 
+.err-message{
+	color: #F81414 !important;
+}
+
 .rightheaderelement a:hover {
 	color: #F15F43;
 	border-bottom: 2px solid #F15F43;
@@ -34,9 +38,16 @@
 
 }
 
-.cust-form{
-	margin-left: 10px !important;
+.btn-default:disabled{
+	color: #727563;
+	background-color: rgba(241,241,239,0.6);
 }
+
+.cust-form{
+	margin-left: 20px !important;
+	margin-bottom: 10px !important;
+}
+
 
 .kk-approval{
 	margin-top: 30px;
@@ -55,6 +66,11 @@
 
 .cust-table{
 	text-align: center;
+}
+
+.partial{
+	margin-left: 20px;
+	min-height: 400px;
 }
 
 @media (max-width: 768px){

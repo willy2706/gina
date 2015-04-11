@@ -81,14 +81,25 @@ ginaAppControllers.controller('CreateMutasiCtrl',
 	}
 );
 
-ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server',
-	function($scope, $compile, Server) {
+ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', 'User',
+	function($scope, $compile, Server, User) {
+		console.log(User.isLogged);
+		$scope.isLogged = User.isLogged;
+		$scope.status_hub = [];
+		$scope.status_hub[0] = "Kepala Keluarga";
+		$scope.status_hub_data = ["Istri", "Suami", "Anak", "Cucu"];
+		$scope.status_hub_data_init = ["Kepala Keluarga"];
 		$scope.count = 1;
 		$scope.nik_keluarga = [];
+		$scope.pend_kel = [];
+		$scope.pend_kel = ["SD"];
+		$scope.pend_kel_data = ["SD", "SMP", "SMA", "S1", "S2", "S3"];
 		$scope.addKeluarga = function() {
+			$scope.status_hub[$scope.count] = "Istri";
+			$scope.pend_kel[$scope.count] = "SD";
 			var a = angular.element(document.getElementById('form-keluarga'))
-				.append($compile('<div class="col-xs-12">\
-					<div class="form-group col-xs-5 cust-form">\
+				.append($compile('<div class="form-inline" id="row_'+$scope.count+'">\
+					<div class="form-group cust-form">\
 						<input nik-validator ng-model = nik_keluarga['+$scope.count+'] class="form-control" type="text" name="nik_keluarga_'+$scope.count+'" placeholder="NIK anggota keluarga" required/>\
 						<div ng-if="createKKForm.nik_keluarga_'+$scope.count+'.$dirty">\
 		                    <div ng-messages="createKKForm.nik_keluarga_'+$scope.count+'.$error" class="validation-error">\
@@ -100,34 +111,47 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server',
 		                    </div>\
 		                </div>\
 					</div>\
-					<div class="form-group col-xs-5 cust-form">\
-						<select class="form-control" name="status_kel_'+$scope.count+'" id="status_kel_'+$scope.count+'">\
-							<option value = "Istri">Istri</option>\
-							<option value = "Anak">Anak</option>\
-							<option value = "Cucu">Cucu</option>\
-						</select>\
-					</div>\
-					<br>\
 					</div>')($scope));
-		$compile(a)($scope);
-		$scope.count++;
+			$compile(a)($scope);
+			var id = "row_" + $scope.count;
+			var b = angular.element(document.getElementById(id))
+						.append($compile('<div class="form-group cust-form">\
+							<select class="form-control" ng-model="status_hub['+$scope.count+']" ng-options="s for s in status_hub_data">\
+							</select>\
+						</div>\
+						<div class="form-group cust-form">\
+							<select class="form-control" ng-model="pend_kel['+$scope.count+']" ng-options="s for s in pend_kel_data">\
+							</select>\
+						</div>')($scope));
+			$scope.count++;
 		}
+
+		$scope.$on('logoutEvent', function(event, data) {
+			// console.log(data);
+			// console.log('aaaaa');
+			$scope.isLogged = User.isLogged;
+		});
 
 		$scope.submitRequestKK = function() {
 			console.log($scope.nik_keluarga);
+			console.log($scope.status_hub);
+			console.log($scope.pend_kel);
 			var params = angular.copy({});
 			params.nik = [];
-			params.nik_kepala_kel = $scope.nik_keluarga_0;
-			params.anggota_count = $scope.count - 1;
-			for (var i = 1; i <= params.anggota_count; ++i) {
-				params.nik[i] = $scope.nik_keluarga[i-1]; 
+			params.status_hub = [];
+			params.pendidikan = [];
+			params.nik_kepala_kel = $scope.nik_keluarga[0];
+			params.anggota_count = $scope.count;
+			for (var i = 1; i <= params.anggota_count + 1; ++i) {
+				params.nik[i] = $scope.nik_keluarga[i-1];
+				params.status_hub[i] = $scope.status_hub[i-1];
+				params.pendidikan[i] = $scope.status_hub[i-1];
 			}
 			Server.post('kk/request', params).then(function(data) {
 				console.log(data);
 			}, function(err) {
 				console.log(err);
 			})
-			// console.log($scope.nik_keluarga_0);
 			console.log('create kk tombol ketekan');
 		}
 	}]

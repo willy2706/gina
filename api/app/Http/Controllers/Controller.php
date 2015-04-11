@@ -9,4 +9,8 @@ abstract class Controller extends BaseController {
 
 	use DispatchesCommands, ValidatesRequests;
 
+	public function getTimestamp() {
+		$date = new \DateTime();
+		return $date->getTimestamp();
+	}
 }
