@@ -89,11 +89,15 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server',
 		$scope.status_hub_data_init = ["Kepala Keluarga"];
 		$scope.count = 1;
 		$scope.nik_keluarga = [];
+		$scope.pend_kel = [];
+		$scope.pend_kel = ["SD"];
+		$scope.pend_kel_data = ["SD", "SMP", "SMA", "S1", "S2", "S3"];
 		$scope.addKeluarga = function() {
-			$scope.status_hub[$scope.count] = "Istri";	
+			$scope.status_hub[$scope.count] = "Istri";
+			$scope.pend_kel[$scope.count] = "SD";
 			var a = angular.element(document.getElementById('form-keluarga'))
-				.append($compile('<div class="col-xs-12" id = row_'+$scope.count+'>\
-					<div class="form-group col-xs-5 cust-form">\
+				.append($compile('<div class="form-inline" id="row_'+$scope.count+'">\
+					<div class="form-group cust-form">\
 						<input nik-validator ng-model = nik_keluarga['+$scope.count+'] class="form-control" type="text" name="nik_keluarga_'+$scope.count+'" placeholder="NIK anggota keluarga" required/>\
 						<div ng-if="createKKForm.nik_keluarga_'+$scope.count+'.$dirty">\
 		                    <div ng-messages="createKKForm.nik_keluarga_'+$scope.count+'.$error" class="validation-error">\
@@ -109,15 +113,21 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server',
 			$compile(a)($scope);
 			var id = "row_" + $scope.count;
 			var b = angular.element(document.getElementById(id))
-						.append($compile('<div class="form-group col-xs-5 cust-form">\
+						.append($compile('<div class="form-group cust-form">\
 							<select class="form-control" ng-model="status_hub['+$scope.count+']" ng-options="s for s in status_hub_data">\
+							</select>\
+						</div>\
+						<div class="form-group cust-form">\
+							<select class="form-control" ng-model="pend_kel['+$scope.count+']" ng-options="s for s in pend_kel_data">\
 							</select>\
 						</div>')($scope));
 			$scope.count++;
 		}
 
 		$scope.submitRequestKK = function() {
-			// console.log($scope.status_hub);
+			console.log($scope.nik_keluarga);
+			console.log($scope.status_hub);
+			console.log($scope.pend_kel);
 			var params = angular.copy({});
 			params.nik = [];
 			params.status_hub = [];

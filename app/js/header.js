@@ -71,6 +71,8 @@ header.directive('header', function () {
 					User.session();
 					$scope.user.isUserLogged = true;
 					$scope.user.nama = User.nama;
+				}, function(err){
+					console.log(err);
 				});
 			}
 			
