@@ -89,10 +89,11 @@ ginaAppControllers.controller('CreateKKCtrl',
 		$scope.count = 1;
 		$scope.addKeluarga = function() {
 			angular.element(document.getElementById('form-keluarga'))
-				.append('<div class="form-group col-xs-5 cust-form">\
+				.append('<div class="form-inline">\
+			<div class="form-group cust-form">\
 				<input class="form-control" type="text" name="nik_keluarga_'+$scope.count+'" id="nik_keluarga_'+$scope.count+'" placeholder="NIK anggota keluarga"/>\
 			</div>\
-			<div class="form-group col-xs-5 cust-form">\
+			<div class="form-group cust-form">\
 				<select class="form-control" name="status_kel_'+$scope.count+'" id="status_kel_'+$scope.count+'">\
 				<option>Status dalam keluarga</option>\
 				<option>Kepala keluarga</option>\
@@ -100,7 +101,19 @@ ginaAppControllers.controller('CreateKKCtrl',
 				<option>Anak</option>\
 				<option>Cucu</option>\
 				</select>\
-			</div><br>');
+			</div>\
+			<div class="form-group cust-form">\
+				<select class="form-control" name="pend_kel_0" id="pend_kel_0">\
+					<option>Pendidikan</option>\
+					<option>SD</option>\
+					<option>SMP</option>\
+					<option>SMA</option>\
+					<option>S1</option>\
+					<option>S2</option>\
+					<option>S3</option>\
+				</select>\
+			</div>\
+			</div>');
 		$scope.count++;
 		}
 

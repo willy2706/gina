@@ -1,44 +1,61 @@
-<div class="col-md-8" ng-controller="CreateKKCtrl">
-	<h2>Pembuatan Kartu Keluarga</h2>
-	<p>*Tambahkan seluruh anggota keluarga anda</p>
+<div class="partial">
+	<div class="row">
+		<div class="col-md-12" ng-controller="CreateKKCtrl">
+			<h2>Pembuatan Kartu Keluarga</h2>
+			<p>*Tambahkan seluruh anggota keluarga anda</p>
 
-	<form name = "createKKForm" class="form form-horizontal" ng-submit="createKK()">
-		<div id="form-keluarga">
-			<div class="form-group col-xs-5 cust-form">
-				<input nik-validator ng-model = "nik_keluarga_0" class="form-control" type="text" name="nik_keluarga_0" id="nik_keluarga_0" placeholder="NIK anggota keluarga" required/>
-			    <div ng-if="createKKForm.nik_keluarga_0.$dirty">
-                    <div ng-messages="createKKForm.nik_keluarga_0.$error" class="validation-error">
-                        <div ng-message="nik">Nik tidak valid</div>
-                        <div ng-message="required">Nik required</div>
-                    </div>
-                    <div ng-messages="createKKForm.nik_keluarga_0.$pending" class="validation-pending">
-                        <div ng-message="nik">Cek Nik</div>
-                    </div>
-                </div>
-			</div>
-			<div class="form-group col-xs-5 cust-form">
-				<select class="form-control" name="status_kel_0" id="status_kel_0">
-				<option>Status dalam keluarga</option>
-				<option>Kepala keluarga</option>
-				<option>Istri</option>
-				<option>Anak</option>
-				<option>Cucu</option>
-				</select>
-			</div><br>
+			<form name = "createKKForm" class="form form-horizontal" ng-submit="createKK()">
+				<div id="form-keluarga">
+					<div class="form-inline">
+						<div class="form-group cust-form">
+							<input nik-validator ng-model = "nik_keluarga_0" class="form-control" type="text" name="nik_keluarga_0" id="nik_keluarga_0" placeholder="NIK anggota keluarga" required/>
+						    <div ng-if="createKKForm.nik_keluarga_0.$dirty">
+			                    <div ng-messages="createKKForm.nik_keluarga_0.$error" class="validation-error">
+			                        <div ng-message="nik" class="err-message">Nik tidak valid</div>
+			                        <div ng-message="required" class="err-message">Nik required</div>
+			                    </div>
+			                    <div ng-messages="createKKForm.nik_keluarga_0.$pending" class="validation-pending">
+			                        <div ng-message="nik">Cek Nik</div>
+			                    </div>
+			                </div>
+						</div>
+						<div class="form-group cust-form">
+							<select class="form-control" name="status_kel_0" id="status_kel_0">
+							<option>Status dalam keluarga</option>
+							<option>Kepala keluarga</option>
+							<option>Istri</option>
+							<option>Anak</option>
+							<option>Cucu</option>
+							</select>
+						</div>
+						<div class="form-group cust-form">
+							<select class="form-control" name="pend_kel_0" id="pend_kel_0">
+								<option>Pendidikan</option>
+								<option>SD</option>
+								<option>SMP</option>
+								<option>SMA</option>
+								<option>S1</option>
+								<option>S2</option>
+								<option>S3</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="form-group col-xs-5 cust-form">
+					<input class="form-control" type="text" name="nik" placeholder="NIK anggota keluarga"/>
+				</div>
+				<div class="form-group col-xs-5 cust-form">
+					<select class="form-control">
+						<option>Status dalam keluarga</option>
+						<option>Kepala keluarga</option>
+						<option>Istri</option>
+						<option>Anak</option>
+						<option>Cucu</option>
+					</select>
+				</div><br> -->
+				<div class="form-group cust-form"><button type="button" class="btn btn-default" ng-click="addKeluarga()">Tambah anggota keluarga</button></div>
+				<div class="form-group cust-form"><button type="button" class="btn btn default">Submit</button></div>
+			</form>
 		</div>
-		<!-- <div class="form-group col-xs-5 cust-form">
-			<input class="form-control" type="text" name="nik" placeholder="NIK anggota keluarga"/>
-		</div>
-		<div class="form-group col-xs-5 cust-form">
-			<select class="form-control">
-				<option>Status dalam keluarga</option>
-				<option>Kepala keluarga</option>
-				<option>Istri</option>
-				<option>Anak</option>
-				<option>Cucu</option>
-			</select>
-		</div><br> -->
-		<div class="form-group cust-form col-xs-10"><button type="button" class="btn btn-default" ng-click="addKeluarga()">Tambah anggota keluarga</button></div><br>
-		<div class="form-group cust-form col-xs-10"><button type="button" class="btn btn default">Submit</button></div>
-	</form>
+	</div>
 </div>

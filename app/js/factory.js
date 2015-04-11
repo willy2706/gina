@@ -35,7 +35,8 @@ ginaAppFactory.factory('Server', function($http, $q, ApiURL, User) {
 		var def = $q.defer();
 		var params = angular.copy({});
 		params.nik = nik;
-		params.password = password
+		params.password = password;
+		console.log(ApiURL);
 		$http.post(ApiURL + 'auth/login',params).
 		success(function(data) {
 			def.resolve(data);
