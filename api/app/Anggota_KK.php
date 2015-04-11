@@ -1,7 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\KK;
 class Anggota_KK extends Model {
 
 	/**
@@ -26,7 +26,7 @@ class Anggota_KK extends Model {
 	// protected $hidden = ['password', 'remember_token'];
 
 	public function kk() {
-		return $this->belongsTo('KK');
+		return $this->belongsTo('App\KK', 'no_kk', 'no_kk');
 	}
 
 }

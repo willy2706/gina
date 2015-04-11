@@ -27,6 +27,8 @@ class KKController extends Controller {
 			$anggota_kk->pendidikan = $input['pendidikan'][$i];
 			$anggota_kk->status_hub = $input['status_hub'][$i];
 			//TODO
+			$anggota_kk->nik_ayah = $kk->nik_kepala_kel;
+			$anggota_kk->nik_ibu = $kk->nik_kepala_kel;
 			// $anggota_kk->nik_ayah = $input['nik_ayah_' . $i];
 			// $anggota_kk->nik_ibu = $input['nik_ibu_' . $i];
 			$anggota_kk->save();
