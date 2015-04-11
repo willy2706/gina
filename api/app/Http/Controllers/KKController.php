@@ -9,7 +9,7 @@ class KKController extends Controller {
 
 	function postRequest() {
 		$input = Input::all();
-		// return response($input);
+		//return response($input);
 		// return response($input['params']);
 		$kk = new KK();
 
