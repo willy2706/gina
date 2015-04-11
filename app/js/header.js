@@ -10,6 +10,7 @@ header.directive('header', function () {
 				$scope.user = angular.copy({});
 				$scope.user.isUserLogged = User.isLogged;
 				$scope.user.nama = User.nama;
+				$scope.user.nik = User.nik;
 				$scope.isHome = false;
 				$scope.isFeatures = false;
 				$scope.isBlog = false;
@@ -49,6 +50,7 @@ header.directive('header', function () {
 			// console.log(User.isLogged + " aaaa");
 			$scope.user.isUserLogged = User.isLogged;
 			$scope.user.nama = User.nama;
+			$scope.user.nik = User.nik;
 			if ($location.path() == '/' || $location.path() == '') {
 				$scope.isHome = true;
 			} else if ($location.path() == '/features') {
@@ -72,6 +74,7 @@ header.directive('header', function () {
 					User.session();
 					$scope.user.isUserLogged = true;
 					$scope.user.nama = User.nama;
+					$scope.user.nik = User.nik;
 				}, function(err){
 					console.log(err);
 				});
@@ -81,6 +84,7 @@ header.directive('header', function () {
 				$scope.user = angular.copy({});
 				$scope.user.isUserLogged = false;
 				$scope.user.nama = '';
+				$scope.user.nik = '';
 				Server.logout();
 				User.reset();
 				$rootScope.$broadcast('logoutEvent',[1,2,3]);
