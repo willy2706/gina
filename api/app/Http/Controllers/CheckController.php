@@ -16,4 +16,6 @@ class CheckController extends Controller {
 			else return response('approved/rejected');
 		}
 	}
+
+	// public function getC
 }
