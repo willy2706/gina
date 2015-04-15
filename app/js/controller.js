@@ -208,3 +208,14 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', '
 		}
 	}]
 );
+
+ginaAppControllers.controller('AppKKCtrl', ['$scope', '$compile', 'Server', 'User',
+	function ($scope, $compile, Server, User) {
+		Server.get('admin/kk/all').then(function(data) {
+			console.log(data);
+			$scope.datas = data;
+		}, function(err) {
+			console.log(err);
+		});
+	}]
+);

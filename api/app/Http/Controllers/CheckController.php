@@ -13,7 +13,13 @@ class CheckController extends Controller {
 			return response ('not yet'); 
 		else {
 			if ($k->kk->request) return response('requested');
-			else return response('approved/rejected');
+			else {
+				if ($k->kk->message == NULL) {
+					return response('approved');
+				} else {
+					return response('rejected');
+				}
+			}
 		}
 	}
 

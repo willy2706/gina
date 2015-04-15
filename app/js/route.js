@@ -29,15 +29,15 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
           // $scope.isFeatures = true;
         }
       })
-      .state('features.app', {
+      .state('features-app', {
         url: "/features/app",
         templateUrl: "app/partials/kk-approval.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
         }
       })
-      .state('detailpembuatankk', {
-        url: "/features/detail",
+      .state('features-detail', {
+        url: "/features/detail/:id",
         templateUrl: "app/partials/detailpembuatankk.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
