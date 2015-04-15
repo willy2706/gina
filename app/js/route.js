@@ -29,7 +29,7 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
           // $scope.isFeatures = true;
         }
       })
-      .state('featuresapp', {
+      .state('features.app', {
         url: "/features/app",
         templateUrl: "app/partials/kk-approval.html",
         controller: function($scope) {

@@ -200,6 +200,7 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', '
 			}
 			Server.post('kk/request', params).then(function(data) {
 				console.log(data);
+				$scope.isRequested = true;
 			}, function(err) {
 				console.log(err);
 			})

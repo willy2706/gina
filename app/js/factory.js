@@ -52,7 +52,13 @@ ginaAppFactory.factory('Server', function($http, $q, ApiURL, User) {
 		console.log(ApiURL);
 		$http.post(ApiURL + 'auth/login',params).
 		success(function(data) {
-			def.resolve(data);
+			if (data == 'false') {
+				def.reject('invalid username and password');
+			} else {
+				def.resolve(data);
+			}
+
+			// console.log('aaaa');
 		}).error(function(err){
 			def.reject(err);
 			console.log(err);

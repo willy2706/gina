@@ -76,7 +76,7 @@ header.directive('header', function () {
 					$scope.user.nama = User.nama;
 					$scope.user.nik = User.nik;
 				}, function(err){
-					console.log(err);
+					alert(err);
 				});
 			}
 			
