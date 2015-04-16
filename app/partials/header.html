@@ -36,7 +36,7 @@
 								<li><a href="#">Akta Pengakuan dan Pengesahan Anak</a></li>
 							</ul>
 						</li>
-						<li ng-class="{active : isContact}" class = "dropdown" >
+						<li ng-show="User.isAdmin" ng-class="{active : isContact}" class = "dropdown ng-hide" >
 							<a ui-sref="contact" ng-click = "contact()" class="dropdown-toggle" data-toggle="dropdown" href="#">
 							Manajemen<span class="caret"></span></a>
 							<ul class="dropdown-menu">
