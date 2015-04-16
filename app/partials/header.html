@@ -16,16 +16,16 @@
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="menu nav navbar-nav ">
-						<li ng-class="{active : isHome}"><a ui-sref = "home" ng-click = "home()">home</a></li>
-						<li ng-class="{active : isFeatures}" class="dropdown">
-							<a ui-sref="features" ng-click = "features()" class="dropdown-toggle" data-toggle="dropdown" href="#">Kependudukan<span class="caret"></span></a>
+						<li ><a ui-sref = "home" ng-click = "home()">home</a></li>
+						<li class="dropdown">
+							<a ng-href="#" class="dropdown-toggle" data-toggle="dropdown" href="#">Kependudukan<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="#">KTP</a></li>
-								<li><a href="#">KK</a></li>
-								<li><a href="#">Mutasi Penduduk</a></li>
+								<li><a ui-sref="kk" ng-click = "kk()">KK</a></li>
+								<li><a ui-sref="mp" ng-click = "mp()">Mutasi Penduduk</a></li>
 							</ul>
 						</li>
-						<li ng-class="{active : isBlog}" class="dropdown">
+						<li class="dropdown">
 							<a ui-sref="blog" ng-click = "blog()" class="dropdown-toggle" data-toggle="dropdown" href="#">
 							Pencatatan Sipil<span class="caret"></span></a>
 							<ul class="dropdown-menu">
@@ -36,7 +36,7 @@
 								<li><a href="#">Akta Pengakuan dan Pengesahan Anak</a></li>
 							</ul>
 						</li>
-						<li ng-show="User.isAdmin" ng-class="{active : isContact}" class = "dropdown ng-hide" >
+						<li ng-show="User.isAdmin" class = "dropdown ng-hide" >
 							<a ui-sref="contact" ng-click = "contact()" class="dropdown-toggle" data-toggle="dropdown" href="#">
 							Manajemen<span class="caret"></span></a>
 							<ul class="dropdown-menu">
