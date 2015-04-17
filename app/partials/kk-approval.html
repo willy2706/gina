@@ -8,24 +8,34 @@
 			<input type="search" size = "19.5" ng-model="q" placeholder="filter kk..." />	
 		</div>
 	</h2>
-	<table class="table table-bordered cust-table">
-		<tr class="active" >
-			<td>
-				<input type="checkbox" name="check_all"/>
-			</td>
-			<td class="col-xs-6">Nomor Permintaan</td>
-			<td class="col-xs-6">NIK Peminta</td>
-		</tr>
-		<tr class="active" ng-repeat="data in datas | filter:q as results">
-			<td>
-				<input type="checkbox"/>
-			</td>
-			<td class="col-xs-6">{{data.id}}</td>
-			<td class="col-xs-6"><a ng-href="#/features/detail/{{data.no_kk}}">{{data.no_kk}}</a></td>
-		</tr>
+	<table id = "KKTable" class="table">
+		<thead>
+			<tr>
+				<td>
+					<input type="checkbox" name="check_all"/>
+				</td>
+				<td>Nomor Permintaan</td>
+				<td>NIK Peminta</td>
+		    </tr>
+		</thead>
+		<tbody>		
+			<tr class="active" ng-repeat="data in datas | filter:q as results">
+				<td>
+					<input type="checkbox"/>
+				</td>
+				<td>{{data.id}}</td>
+				<td>
+					<a ng-href="#/kk-admin/approve/{{data.no_kk}}">{{data.no_kk}}</a>
+				</td>
+				<td>
+					<button type="button" ng-click = "approve(data.no_kk)" class="btn btn-default">Approve</button>
+					<button type="button" ng-click = "reject(data.no_kk)" class="btn btn-default">Reject</button>
+				</td>
+			</tr>
+		</tbody>
 	</table>
 </div>
-<button type="button" name="approve_all" class="btn btn-default btn-sm">Approve All</button>
+<!-- <button type="button" name="approve_all" class="btn btn-default btn-sm">Approve All</button>
 <button name="decline_all" class="btn btn-default btn-sm">Decline All</button>
-<button name="remove_all" class="btn btn-default btn-sm">Remove All</button>
+<button name="remove_all" class="btn btn-default btn-sm">Remove All</button> -->
 </div>

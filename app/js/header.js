@@ -6,45 +6,45 @@ header.directive('header', function () {
 		replace: true, 
 		templateUrl: "app/partials/header.html",
 		controller: function($scope, $location, $state, Server, User, $rootScope){
-			// $scope.reset = function() {
-			// 	$scope.user = angular.copy({});
-			// 	$scope.user.isUserLogged = User.isLogged;
-			// 	$scope.user.nama = User.nama;
-			// 	$scope.user.nik = User.nik;
-			// 	$scope.user.isAdmin = User.isAdmin;
-			// 	$scope.isHome = false;
-			// 	$scope.isKependudukan = false;
-			// 	$scope.isBlog = false;
-			// 	$scope.isAbout = false;
-			// 	$scope.isContact = false;
-			// };
+			$scope.reset = function() {
+				$scope.user = angular.copy({});
+				$scope.user.isUserLogged = User.isLogged;
+				$scope.user.nama = User.nama;
+				$scope.user.nik = User.nik;
+				$scope.user.isAdmin = User.isAdmin;
+				$scope.isHome = false;
+				// $scope.isKependudukan = false;
+				// $scope.isBlog = false;
+				// $scope.isAbout = false;
+				// $scope.isContact = false;
+			};
 
 			$scope.kk = function() {
-				// $scope.reset();
+				$scope.reset();
 				// $scope.isKependudukan = true;
 				$state.go('kk');
 			};
 
 			$scope.home = function() {
-				// $scope.reset();
-				// $scope.isHome = true;
+				$scope.reset();
+				$scope.isHome = true;
 				$state.go('home');
 			};
 
 			$scope.mp = function() {
-				// $scope.reset();
+				$scope.reset();
 				// $scope.isBlog = true;
 				$state.go('mp');
 			}
 
 			$scope.about = function() {
-				// $scope.reset();
+				$scope.reset();
 				// $scope.isAbout = true;
 				$state.go('about');
 			}
 
 			$scope.contact = function() {
-				// $scope.reset();
+				$scope.reset();
 				// $scope.isContact = true;
 			}
 			$scope.user = angular.copy({});
@@ -52,17 +52,18 @@ header.directive('header', function () {
 			$scope.user.nama = User.nama;
 			$scope.user.nik = User.nik;
 			$scope.user.isAdmin = User.isAdmin;
-			// if ($location.path() == '/' || $location.path() == '') {
-			// 	$scope.isHome = true;
-			// } else if ($location.path() == '/kk') {
-			// 	$scope.isKependudukan = true;
-			// } else if ($location.path() == '/mp') {
-			// 	$scope.isBlog = true;
-			// } else if ($location.path() == '/about') {
-			// 	$scope.isAbout = true;
-			// } else if ($location.path() == '/contact') {
-			// 	$scope.isContact = true;
-			// }
+			console.log(User.isLogged);
+			if ($location.path() == '/' || $location.path() == '') {
+				$scope.isHome = true;
+			} else if ($location.path() == '/kk') {
+				// $scope.isKependudukan = true;
+			} else if ($location.path() == '/mp') {
+				// $scope.isBlog = true;
+			} else if ($location.path() == '/about') {
+				// $scope.isAbout = true;
+			} else if ($location.path() == '/contact') {
+				// $scope.isContact = true;
+			}
 
 			$scope.login = function () {
 				Server.login($scope.nik, $scope.password)
@@ -78,7 +79,6 @@ header.directive('header', function () {
 					$scope.user.nama = User.nama;
 					$scope.user.nik = User.nik;
 					$scope.user.isAdmin = User.isAdmin == 1 ? true : false;
-					// console.log($scope.user.isAdmin);
 				}, function(err){
 					alert(err);
 				});

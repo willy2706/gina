@@ -29,15 +29,22 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
           // $scope.isFeatures = true;
         }
       })
-      .state('features-app', {
-        url: "/features/app",
+      .state('kk-admin', {
+        url: "/kk-admin",
         templateUrl: "app/partials/kk-approval.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
         }
       })
-      .state('features-detail', {
-        url: "/features/detail/:id",
+      // .state('features-app', {
+      //   url: "/features/app",
+      //   templateUrl: "app/partials/kk-approval.html",
+      //   controller: function($scope) {
+      //     // $scope.isFeatures = true;
+      //   }
+      // })
+      .state('kk-admin-approve', {
+        url: "/kk-admin/approve/:id",
         templateUrl: "app/partials/detailpembuatankk.html",
         controller: function($scope) {
           // $scope.isFeatures = true;

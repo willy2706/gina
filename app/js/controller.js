@@ -209,6 +209,12 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', '
 	}]
 );
 
+ginaAppControllers.controller('AdminKKCtrl', ['$scope', 
+	function($scope) {
+
+	}]
+);
+
 ginaAppControllers.controller('AppKKCtrl', ['$scope', '$compile', 'Server', 'User',
 	function ($scope, $compile, Server, User) {
 		Server.get('admin/kk/all').then(function(data) {
@@ -217,5 +223,18 @@ ginaAppControllers.controller('AppKKCtrl', ['$scope', '$compile', 'Server', 'Use
 		}, function(err) {
 			console.log(err);
 		});
+
+		$scope.approve = function($no_kk)  {
+			// console.log($no_kk);
+			Server.get('admin/kk/approve/' + $no_kk).then(function(data) {
+				console.log(data);
+			}, function(err){
+				console.log(err);
+			});
+		}
+
+		$scope.reject = function($no_kk) {
+			
+		}
 	}]
 );
