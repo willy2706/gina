@@ -9,7 +9,7 @@ class MPController extends Controller {
 
 	function postRequest() {
 		$input = Input::all();
-
+return response($input);
 		$mp = new MP();
 		// $mp->no_mp = genereate string
 		$mp->no_mp = '1234567890';
