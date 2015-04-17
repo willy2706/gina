@@ -36,12 +36,12 @@
 								<li><a href="#">Akta Pengakuan dan Pengesahan Anak</a></li>
 							</ul>
 						</li>
-						<li ng-show="User.isAdmin" class = "dropdown ng-hide" >
-							<a ui-sref="contact" ng-click = "contact()" class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<li ng-show="user.isAdmin" class = "dropdown" ng-show = "" >
+							<a ng-href = "#" class="dropdown-toggle" data-toggle="dropdown">
 							Manajemen<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="#">KTP</a></li>
-								<li><a href="#">KK</a></li>
+								<li><a ui-sref="kk-admin">KK</a></li>
 								<li><a href="#">Mutasi Penduduk</a></li>
 								<li><a href="#">Akta Kelahiran</a></li>
 								<li><a href="#">Akta Kematian</a></li>
