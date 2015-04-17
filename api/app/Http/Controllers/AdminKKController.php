@@ -15,7 +15,7 @@ class AdminKKController extends Controller {
 
 	function getView($no_kk) {
 		$kk = KK::where('no_kk', $no_kk)->first();
-
+		// return response($kk->anggota_kk);
 		return response($kk);
 	}
 
