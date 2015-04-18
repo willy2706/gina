@@ -25,7 +25,7 @@ class KK extends Model {
 	* The attributes that use to appends
 	* @var array
 	*/
-	protected $appends = ['anggota_keluarga'];
+	protected $appends = ['anggota_keluarga', 'status'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -40,6 +40,11 @@ class KK extends Model {
 
 	public function getAnggotaKeluargaAttribute($value) {
 		return $this->anggota_kk;
+	}
+
+	public function getStatusAttribute ($value) {
+		$stat = ($this->request ? 'requested' : ($this->message == NULL ? 'approved' :  'rejected'));
+		return $stat;
 	}
 
 }

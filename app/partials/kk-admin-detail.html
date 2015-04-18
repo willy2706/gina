@@ -11,41 +11,29 @@ function showText(obj) {
 }
 </script>
 
- <div class="col-md-12">
+ <div class="col-md-12" ng-controller = "KKAdminDetailCtrl">
  <br><br>
  	<table class="table table-bordered">
-		<tr>
-			<td style="font-size:14px">Nama</td>
-			<td style="font-size:14px">NIK</td>
-			<td style="font-size:14px">Jenis Kelamin</td>
-			<td style="font-size:14px">Tempat Lahir</td>
-			<td style="font-size:14px">Tanggal Lahir</td>
-			<td style="font-size:14px">Agama</td>
-		</tr>
-		<tr>
-			<td style="font-size:14px">Budi Susanto</td>
-			<td style="font-size:14px">123798123981937</td>
-			<td style="font-size:14px">Laki-laki</td>
-			<td style="font-size:14px">Bandung</td>
-			<td style="font-size:14px">4 Mei 1965</td>
-			<td style="font-size:14px">Islam</td>
-		</tr>
-	  	<tr>
-	  		<td style="font-size:14px">Annisa Christine</td>
-	  		<td style="font-size:14px">18738912738398</td>
-	  		<td style="font-size:14px">Perempuan</td>
-	  		<td style="font-size:14px">Bandung</td>
-	  		<td style="font-size:14px">5 Mei 1965</td>
-	  		<td style="font-size:14px"></td>
-	  	</tr>
-	  	<tr>
-	  		<td style="font-size:14px">Budi Junior</td>
-	  		<td style="font-size:14px">47584789531413</td>
-	  		<td style="font-size:14px">Laki-laki</td>
-	  		<td style="font-size:14px">Bandung</td>
-	  		<td style="font-size:14px">7 Juli 1995</td>
-	  		<td style="font-size:14px">Islam</td>
-	  	</tr>
+	 	<thead>
+			<tr>
+				<td style="font-size:14px">Nama</td>
+				<td style="font-size:14px">NIK</td>
+				<td style="font-size:14px">Jenis Kelamin</td>
+				<td style="font-size:14px">Tempat Lahir</td>
+				<td style="font-size:14px">Tanggal Lahir</td>
+				<td style="font-size:14px">Agama</td>
+			</tr>
+	 	</thead>
+	 	<tbody>
+			<tr ng-repeat = "data in datas.anggota_keluarga">
+				<td style="font-size:14px">{{data.ktp.nama}}</td>
+				<td style="font-size:14px">{{data.ktp.nik}}</td>
+				<td style="font-size:14px">{{data.ktp.jenis_kelamin}}</td>
+				<td style="font-size:14px">{{data.ktp.kota_lahir}}</td>
+				<td style="font-size:14px">{{data.ktp.tanggal_lahir}}</td>
+				<td style="font-size:14px">{{data.ktp.agama}}</td>
+			</tr>
+	 	</tbody>
 	</table>
 	<div class="row"></div>  
 </div>

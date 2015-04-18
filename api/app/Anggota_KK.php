@@ -17,7 +17,13 @@ class Anggota_KK extends Model {
 	 * @var array
 	 */
 	// protected $fillable = [];
-
+	/**
+	*
+	*
+	* The attributes that use to appends
+	* @var array
+	*/
+	protected $appends = ['nama'];
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
@@ -27,6 +33,15 @@ class Anggota_KK extends Model {
 
 	public function kk() {
 		return $this->belongsTo('App\KK', 'no_kk', 'no_kk');
+	}
+
+	public function ktp() {
+		return $this->belongsTo('App\Ktp', 'nik', 'nik');
+	}
+
+	public function getNamaAttribute($value) {
+		$x = $this->ktp->nama;
+		return $x;
 	}
 
 }
