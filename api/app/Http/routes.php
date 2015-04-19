@@ -22,8 +22,9 @@ Route::controllers([
 ]);
 
 Route::controller('kk', 'KKController');
-
 Route::controller('mp', 'MPController');
+Route::controller('aktalahir', 'AktaLahirController');
+Route::controller('aktamati', 'AktaMatiController');
 
 Route::group(['prefix' => 'admin'], function() {
 
@@ -31,10 +32,10 @@ Route::group(['prefix' => 'admin'], function() {
 	// Route::controller('logout', 'AdminController');
 
 	Route::controller('ktp', 'AdminKTPController');
-
 	Route::controller('kk', 'AdminKKController');
-
 	Route::controller('mp', 'AdminMPController');
+	Route::controller('aktalahir', 'AdminAktaLahirController');
+	Route::controller('aktamati', 'AdminAktaMatiController');
 });
 
 //testing

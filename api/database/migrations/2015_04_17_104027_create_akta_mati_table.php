@@ -15,6 +15,15 @@ class CreateAktaMatiTable extends Migration {
 		Schema::create('akta_mati', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('no_akta');
+			$table->string('nik');
+			$table->string('kota_meninggal');
+			$table->dateTime('waktu_meninggal');
+			$table->string('kota_dikeluarkan');
+			$table->date('tgl_dikeluarkan');
+			$table->string('nip_kepala_dinas');
+			$table->boolean('request');
+			$table->string('message')->nullable();
 			$table->timestamps();
 		});
 	}

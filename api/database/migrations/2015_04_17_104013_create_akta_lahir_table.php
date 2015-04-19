@@ -15,15 +15,21 @@ class CreateAktaLahirTable extends Migration {
 		Schema::create('akta_lahir', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('no_akta');
 			$table->string('nik');
 			$table->string('nama');
-			$table->string('kewarganegaraan');
 			$table->string('tempat_lahir');
 			$table->date('tgl_lahir');
 			$table->integer('anak_ke');
 			$table->string('jenis_kelamin');
 			$table->string('nik_ayah');
 			$table->string('nik_ibu');
+			$table->string('kewarganegaraan');
+			$table->string('kota_dikeluarkan');
+			$table->date('tgl_dikeluarkan');
+			$table->string('nip_kepala_dinas');
+			$table->boolean('request');
+			$table->string('message')->nullable();
 			$table->timestamps();
 		});
 	}
