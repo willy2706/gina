@@ -54,6 +54,7 @@ header.directive('header', function () {
 			$scope.user.nama = User.nama;
 			$scope.user.nik = User.nik;
 			$scope.user.isAdmin = User.isAdmin;
+			$scope.isAccountError = false;
 			console.log(User.isLogged);
 			if ($location.path() == '/' || $location.path() == '') {
 				$scope.isHome = true;
@@ -82,7 +83,9 @@ header.directive('header', function () {
 					$scope.user.nik = User.nik;
 					$scope.user.isAdmin = User.isAdmin == 1 ? true : false;
 				}, function(err){
-					alert(err);
+					$scope.isAccountError = true;
+					$scope.nik = "";
+					$scope.password = "";
 				});
 			}
 			

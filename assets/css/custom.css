@@ -88,3 +88,11 @@
 .dropdown:hover .dropdown-menu{
 	display: block;
 }
+
+.password-error{
+	color: #E31D07;
+	background-color: #FFF;
+	border-radius: 10px;
+	padding: 5px;
+	font-weight: bold;
+}
