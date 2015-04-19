@@ -23,6 +23,8 @@ class CreateAktaKawinTable extends Migration {
 			$table->foreign('nik_istri')->references('nik')->on('ktp');
 			$table->date('tanggal_nikah');
 			$table->string('tempat_nikah');
+			$table->boolean('request');
+			$table->string('message')->nullable();
 			$table->timestamps();
 		});
 	}

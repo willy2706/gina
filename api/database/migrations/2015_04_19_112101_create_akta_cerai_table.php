@@ -19,6 +19,8 @@ class CreateAktaCeraiTable extends Migration {
 			$table->string('akta_kawin');
 			$table->foreign('akta_kawin')->references('no_akta')->on('akta_kawin');
 			$table->date('tanggal_cerai');
+			$table->boolean('request');
+			$table->string('message')->nullable();
 			$table->timestamps();
 		});
 	}

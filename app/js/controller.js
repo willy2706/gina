@@ -140,6 +140,7 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', '
 		$scope.pend_kel = [];
 		$scope.pend_kel = ["SD"];
 		$scope.pend_kel_data = ["SD", "SMP", "SMA", "S1", "S2", "S3"];
+
 		$scope.addKeluarga = function() {
 			$scope.status_hub[$scope.count] = "Istri";
 			$scope.pend_kel[$scope.count] = "SD";
@@ -158,6 +159,7 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', '
 			                </div>\
 						</div>\
 					</div>')($scope));
+			a = $compile(a)($scope);
 			$compile(a)($scope);
 			var id = "row_" + $scope.count;
 			var b = angular.element(document.getElementById(id))
@@ -304,8 +306,6 @@ ginaAppControllers.controller('KKAdminDetailCtrl', ['$scope', 'Server', '$stateP
 
 		});
 		$scope.$on('logoutEvent', function(event, data) {
-			// console.log(data);
-			// console.log('aaaaa');
 			$scope.isLogged = User.isLogged;
 		});
 	}]
