@@ -29,16 +29,16 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
           // $scope.isFeatures = true;
         }
       })
-      .state('features-app', {
-        url: "/features/app",
-        templateUrl: "app/partials/kk-approval.html",
+      .state('kk-admin', {
+        url: "/kk-admin",
+        templateUrl: "app/partials/kk-admin-index.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
         }
       })
-      .state('features-detail', {
-        url: "/features/detail/:id",
-        templateUrl: "app/partials/detailpembuatankk.html",
+      .state('kk-admin-detail', {
+        url: "/kk-admin/detail/:id",
+        templateUrl: "app/partials/kk-admin-detail.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
         }

@@ -12,6 +12,7 @@ class KtpTableSeeder extends Seeder {
 	 */
 	public function run()
 	{
+		DB::table('ktp')->delete();
 		Model::unguard();
 		Ktp::create([
 			'nik' => 'a', 
@@ -22,6 +23,12 @@ class KtpTableSeeder extends Seeder {
 			'nik' => 'b', 
 			'password' => 'bbb',
 			'nama' => 'bcd'
+		]);
+		Ktp::create([
+			'nik' => 'admin', 
+			'password' => 'admin',
+			'nama' => 'admin',
+			'is_admin' => true
 		]);
 	}
 

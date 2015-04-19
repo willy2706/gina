@@ -15,7 +15,6 @@ class AdminKKController extends Controller {
 
 	function getView($no_kk) {
 		$kk = KK::where('no_kk', $no_kk)->first();
-
 		return response($kk);
 	}
 
@@ -38,11 +37,12 @@ class AdminKKController extends Controller {
 		return response('success');
 	}
 
-	function postDecline() {
+	function postReject($no_kk) {
 		$input = Input::all();
 
-		$kk = KK::where('no_kk', $input['no_kk'])->first();
+		$kk = KK::whereno_kk($no_kk)->first();
 		$kk->message = $input['message'];
+		$kk->request = false;
 		$kk->save();
 
 		return response('success');
