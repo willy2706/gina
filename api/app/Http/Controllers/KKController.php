@@ -23,6 +23,7 @@ class KKController extends Controller {
 
 		$kk->nik_kepala_kel = $input['nik_kepala_kel'];
 		$kk->request = true;
+		$kk->alamat = $input['alamat'];
 		$kk->save();
 
 		for ($i = 1; $i <= $input['anggota_count']; $i++) {

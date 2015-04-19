@@ -96,12 +96,6 @@ ginaAppControllers.controller('CreateMutasiCtrl', ['$scope', '$compile', 'Server
 		});
 
 		$scope.submitRequestMutasi = function() {
-			// console.log($scope.alasan);
-			// console.log($scope.alamat_tujuan);
-			// console.log("submit mutasi");
-			// console.log($scope.count);
-			// console.log($scope.nik_pengikut[0]);
-			//console.log(User.nik);
 			var params = angular.copy({});
 			params.nik = User.nik;
 			params.nik_pengikut = [];
@@ -194,6 +188,7 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', '
 			params.pendidikan = [];
 			params.nik_kepala_kel = $scope.nik_keluarga[0];
 			params.anggota_count = $scope.count;
+			params.alamat = $scope.alamat;
 			for (var i = 1; i <= params.anggota_count + 1; ++i) {
 				params.nik[i] = $scope.nik_keluarga[i-1];
 				params.status_hub[i] = $scope.status_hub[i-1];
@@ -205,7 +200,6 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', '
 			}, function(err) {
 				console.log(err);
 			})
-			console.log('create kk tombol ketekan');
 		}
 	}]
 );
@@ -214,7 +208,6 @@ ginaAppControllers.controller('KKIndexCtrl', ['$scope', '$compile', 'Server', 'U
 	function ($scope, $compile, Server, User, $state) {
 		$scope.init = function() {
 			Server.get('kk/status/' + User.nik).then(function(data) {
-				console.log(data);
 				$scope.datas = data;
 				$scope.canRequest = true;
 				for (var i = 0; i < data.length; ++i) {
