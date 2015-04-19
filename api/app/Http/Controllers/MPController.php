@@ -9,7 +9,7 @@ class MPController extends Controller {
 
 	function postRequest() {
 		$input = Input::all();
-return response($input);
+		//return response($input);
 		$mp = new MP();
 		// $mp->no_mp = genereate string
 		$mp->no_mp = '1234567890';
@@ -21,9 +21,9 @@ return response($input);
 		for ($i = 1; $i <= $input['pengikut_count']; $i++) {
 			$pengikut_mp = new Pengikut_MP();
 			$pengikut_mp->no_mp = $mp->no_mp;
-			$pengikut_mp->nik_pengikut = $input['nik_' . $i];
-			$pengikut_mp->pekerjaan_pengikut = $input['pekerjaan_' . $i];
-			$pengikut_mp->status_kel_pengikut = $input['status_kel_' . $i];
+			$pengikut_mp->nik_pengikut = $input['nik_pengikut'][$i];
+			$pengikut_mp->pekerjaan_pengikut = $input['pekerjaan'][$i];
+			$pengikut_mp->status_kel_pengikut = $input['status_kel'][$i];
 			$pengikut_mp->save();
 		}
 

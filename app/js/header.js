@@ -6,60 +6,63 @@ header.directive('header', function () {
 		replace: true, 
 		templateUrl: "app/partials/header.html",
 		controller: function($scope, $location, $state, Server, User, $rootScope){
-			$scope.reset = function() {
-				$scope.user = angular.copy({});
-				$scope.user.isUserLogged = User.isLogged;
-				$scope.user.nama = User.nama;
-				$scope.isHome = false;
-				$scope.isFeatures = false;
-				$scope.isBlog = false;
-				$scope.isAbout = false;
-				$scope.isContact = false;
-			};
+			// $scope.reset = function() {
+			// 	$scope.user = angular.copy({});
+			// 	$scope.user.isUserLogged = User.isLogged;
+			// 	$scope.user.nama = User.nama;
+			// 	$scope.user.nik = User.nik;
+			// 	$scope.user.isAdmin = User.isAdmin;
+			// 	$scope.isHome = false;
+			// 	$scope.isKependudukan = false;
+			// 	$scope.isBlog = false;
+			// 	$scope.isAbout = false;
+			// 	$scope.isContact = false;
+			// };
 
-			$scope.features = function() {
-				$scope.reset();
-				$scope.isFeatures = true;
-				$state.go('features');
+			$scope.kk = function() {
+				// $scope.reset();
+				// $scope.isKependudukan = true;
+				$state.go('kk');
 			};
 
 			$scope.home = function() {
-				$scope.reset();
-				$scope.isHome = true;
+				// $scope.reset();
+				// $scope.isHome = true;
 				$state.go('home');
 			};
 
-			$scope.blog = function() {
-				$scope.reset();
-				$scope.isBlog = true;
-				$state.go('blog');
+			$scope.mp = function() {
+				// $scope.reset();
+				// $scope.isBlog = true;
+				$state.go('mp');
 			}
 
 			$scope.about = function() {
-				$scope.reset();
-				$scope.isAbout = true;
+				// $scope.reset();
+				// $scope.isAbout = true;
 				$state.go('about');
 			}
 
 			$scope.contact = function() {
-				$scope.reset();
-				$scope.isContact = true;
+				// $scope.reset();
+				// $scope.isContact = true;
 			}
 			$scope.user = angular.copy({});
-			// console.log(User.isLogged + " aaaa");
 			$scope.user.isUserLogged = User.isLogged;
 			$scope.user.nama = User.nama;
-			if ($location.path() == '/' || $location.path() == '') {
-				$scope.isHome = true;
-			} else if ($location.path() == '/features') {
-				$scope.isFeatures = true;
-			} else if ($location.path() == '/blog') {
-				$scope.isBlog = true;
-			} else if ($location.path() == '/about') {
-				$scope.isAbout = true;
-			} else if ($location.path() == '/contact') {
-				$scope.isContact = true;
-			}
+			$scope.user.nik = User.nik;
+			$scope.user.isAdmin = User.isAdmin;
+			// if ($location.path() == '/' || $location.path() == '') {
+			// 	$scope.isHome = true;
+			// } else if ($location.path() == '/kk') {
+			// 	$scope.isKependudukan = true;
+			// } else if ($location.path() == '/mp') {
+			// 	$scope.isBlog = true;
+			// } else if ($location.path() == '/about') {
+			// 	$scope.isAbout = true;
+			// } else if ($location.path() == '/contact') {
+			// 	$scope.isContact = true;
+			// }
 
 			$scope.login = function () {
 				Server.login($scope.nik, $scope.password)
@@ -68,11 +71,16 @@ header.directive('header', function () {
 					User.id = data.id;
 					User.isLogged = true;
 					User.nama = data.nama;
+					User.nik = data.nik;
+					User.isAdmin = data.is_admin;
 					User.session();
 					$scope.user.isUserLogged = true;
 					$scope.user.nama = User.nama;
+					$scope.user.nik = User.nik;
+					$scope.user.isAdmin = User.isAdmin == 1 ? true : false;
+					// console.log($scope.user.isAdmin);
 				}, function(err){
-					console.log(err);
+					alert(err);
 				});
 			}
 			
@@ -80,6 +88,8 @@ header.directive('header', function () {
 				$scope.user = angular.copy({});
 				$scope.user.isUserLogged = false;
 				$scope.user.nama = '';
+				$scope.user.nik = '';
+				$scope.user.isAdmin = false;
 				Server.logout();
 				User.reset();
 				$rootScope.$broadcast('logoutEvent',[1,2,3]);

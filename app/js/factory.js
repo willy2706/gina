@@ -5,6 +5,8 @@ ginaAppFactory.factory('User', function($sessionStorage) {
 	self.id = '';
 	self.nama = '';
 	self.isLogged = false;
+	self.nik = '';
+	self.isAdmin = false;
 	if ($sessionStorage.user) {
 		self = $sessionStorage.user;
 	}
@@ -14,7 +16,9 @@ ginaAppFactory.factory('User', function($sessionStorage) {
     self.reset = function() {
     	self.nama = '';
     	self.id = '';
+    	self.nik = '';
     	self.isLogged = false;
+    	self.isAdmin = false;
     	delete $sessionStorage.user;
     }
 	return self;
@@ -50,7 +54,13 @@ ginaAppFactory.factory('Server', function($http, $q, ApiURL, User) {
 		console.log(ApiURL);
 		$http.post(ApiURL + 'auth/login',params).
 		success(function(data) {
-			def.resolve(data);
+			if (data == 'false') {
+				def.reject('invalid username and password');
+			} else {
+				def.resolve(data);
+			}
+
+			// console.log('aaaa');
 		}).error(function(err){
 			def.reject(err);
 			console.log(err);

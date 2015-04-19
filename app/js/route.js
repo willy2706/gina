@@ -22,36 +22,36 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
           // $scope.isHome = true;
         }
       })
-      .state('features', {
-        url: "/features",
+      .state('kk', {
+        url: "/kk",
         templateUrl: "app/partials/create-kk.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
         }
       })
-      .state('featuresapp', {
+      .state('features-app', {
         url: "/features/app",
         templateUrl: "app/partials/kk-approval.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
         }
       })
-      .state('detailpembuatankk', {
-        url: "/features/detail",
+      .state('features-detail', {
+        url: "/features/detail/:id",
         templateUrl: "app/partials/detailpembuatankk.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
         }
       })
-      .state('blog', {
-        url: '/blog',
+      .state('mp', {
+        url: '/mp',
         templateUrl: 'app/partials/create-mutasi.html',
         controller: function($scope) {
           // $scope.isBlog = true;
         }
       })
-      .state('blogapp', {
-        url: '/blog/app',
+      .state('mp-app', {
+        url: '/mp/app',
         templateUrl: 'app/partials/mutasi-approval.html',
         controller: function($scope) {
           // $scope.isBlog = true;
