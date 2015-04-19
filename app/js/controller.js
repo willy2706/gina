@@ -142,6 +142,7 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', '
 		$scope.status_hub_data_init = ["Kepala Keluarga"];
 		$scope.count = 1;
 		$scope.nik_keluarga = [];
+		$scope.nik_keluarga[0] = User.nik;
 		$scope.pend_kel = [];
 		$scope.pend_kel = ["SD"];
 		$scope.pend_kel_data = ["SD", "SMP", "SMA", "S1", "S2", "S3"];
@@ -209,9 +210,31 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', '
 	}]
 );
 
-ginaAppControllers.controller('AdminKKCtrl', ['$scope', 
-	function($scope) {
+ginaAppControllers.controller('KKIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
+		$scope.init = function() {
+			Server.get('kk/status/' + User.nik).then(function(data) {
+				console.log(data);
+				$scope.datas = data;
+				$scope.canRequest = true;
+				for (var i = 0; i < data.length; ++i) {
+					if (data[i].status == 'approved' || data[i].status == 'requested') {
+						$scope.canRequest = false;
+					}
+				}
+			}, function(err) {
+				console.log(err);
+			});
+		}
+		$scope.isLogged = User.isLogged;
 
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+
+		$scope.request = function () {
+			$state.go('kk-request');
+		}
 	}]
 );
 

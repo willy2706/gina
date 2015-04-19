@@ -7,6 +7,11 @@ use Request;
 
 class KKController extends Controller {
 
+	public function getStatus($nik) {
+		$k = KK::wherenik_kepala_kel($nik)->get();
+		return response($k);
+	}
+
 	function postRequest() {
 		$input = Input::all();
 		//return response($input);

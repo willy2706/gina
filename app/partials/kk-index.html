@@ -1,0 +1,33 @@
+<div class="col-md-10 kk-approval" ng-controller="KKIndexCtrl">
+	<div ng-show="isLogged" class="table-responsive" ng-init= "init()">
+		<h2>
+			<div class="col-xs-4">
+				Kartu Keluarga		
+			</div>
+			<div class="col-xs-4">
+			</div>
+			<div class="col-xs-4" ng-show = "canRequest">
+				<button type="button" ng-click = "request()" class="btn btn-default">Ajukan KK</button>
+			</div>
+		</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<td>No KK</td>
+					<td>Status</td>
+			    </tr>
+			</thead>
+			<tbody>
+				<tr class="active" ng-repeat="data in datas | filter : statusFilter as result ">
+					<td>
+						<a ng-href="#/kk-admin/detail/{{data.no_kk}}">{{data.no_kk}}</a>
+					</td>
+					<td>{{data.status}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div ng-hide = "isLogged">
+		Maaf anda belum log in
+	</div>
+</div>
