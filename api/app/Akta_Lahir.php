@@ -3,6 +3,8 @@
 use Illuminate\Database\Eloquent\Model;
 
 class Akta_Lahir extends Model {
+	
+	protected $appends = ['anggota_keluarga', 'status'];
 
 	protected $table = 'akta_lahir';
 

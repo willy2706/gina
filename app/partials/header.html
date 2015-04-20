@@ -82,13 +82,26 @@
 						
 						<div class="form-group">
 							<span><label for="NIK" class="col-sm-2" style="color:#fff">NIK: </label></span>
-							<input type="text" class="form-control" ng-model = "nik" name="nik" id="NIK" placeholder="NIK" required/>
+							<input type="text" class="form-control" ng-model = "nik" ng-focus="isAccountError = false" name="nik" id="NIK" placeholder="NIK" required/>
 						</div>
 						<div class="form-group">
 							<span><label for="password" class="col-sm-2" style="color:#fff">Password</label></span>
-							<input type="password" class="form-control" ng-model = "password" id="password" name="password" placeholder="password" required/>
+							<input type="password" class="form-control" ng-model = "password" ng-focus="isAccountError = false" id="password" name="password" placeholder="password" required/>
 						</div>
-						<button type="submit" class="btn btn-default" ng-disabled="loginForm.$invalid || loginForm.$pending">Go</button>
+						<div class="form-group" ng-show="isAccountError">
+						<span><div class="password-error">
+							Username / password salah
+							</div>
+						</span>
+						</div>
+						<button type="submit" class="btn btn-default" ng-disabled="loginForm.$invalid || loginForm.$pending" id="btn-login">
+							<div ng-show="!isLoading">Go</div>
+							<div ng-show="isLoading" class="loader">
+							  <div class="inner one"></div>
+							  <div class="inner two"></div>
+							  <div class="inner three"></div>
+							</div>
+						</button>
 					</form>
 				</div>
 			</div>

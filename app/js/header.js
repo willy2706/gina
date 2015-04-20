@@ -54,6 +54,8 @@ header.directive('header', function () {
 			$scope.user.nama = User.nama;
 			$scope.user.nik = User.nik;
 			$scope.user.isAdmin = User.isAdmin;
+			$scope.isAccountError = false;
+			$scope.isLoading = false;
 			console.log(User.isLogged);
 			if ($location.path() == '/' || $location.path() == '') {
 				$scope.isHome = true;
@@ -68,6 +70,7 @@ header.directive('header', function () {
 			}
 
 			$scope.login = function () {
+				$scope.isLoading = true;
 				Server.login($scope.nik, $scope.password)
 				.then(function(data) {
 					$scope.user = angular.copy({});
@@ -81,8 +84,12 @@ header.directive('header', function () {
 					$scope.user.nama = User.nama;
 					$scope.user.nik = User.nik;
 					$scope.user.isAdmin = User.isAdmin == 1 ? true : false;
+					$scope.isLoading = false;
 				}, function(err){
-					alert(err);
+					$scope.isAccountError = true;
+					$scope.nik = "";
+					$scope.password = "";
+					$scope.isLoading = false;
 				});
 			}
 			

@@ -2,20 +2,16 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Akta_Mati extends Model {
+class Akta_Kawin extends Model {
 
 	protected $appends = ['anggota_keluarga', 'status'];
+
+	protected $table = 'akta_kawin';
+
+	protected $fillable = ['no_akta', 'nik_suami', 'nik_istri', 'tanggal_nikah', 'tempat_nikah', 'request', 'message'];
 	
-	protected $table = 'akta_mati';
-
-	protected $fillable = ['nik', 'kota_meninggal', 'waktu_meninggal'];
-
-	protected $appends = ['status'];
-
-	public function getStatusAttribute($value) {
+	public function getStatusAttribute ($value) {
 		$stat = ($this->request ? 'requested' : ($this->message == NULL ? 'approved' :  'rejected'));
-
 		return $stat;
 	}
-	
 }
