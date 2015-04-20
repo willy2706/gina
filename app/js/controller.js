@@ -96,12 +96,6 @@ ginaAppControllers.controller('CreateMutasiCtrl', ['$scope', '$compile', 'Server
 		});
 
 		$scope.submitRequestMutasi = function() {
-			// console.log($scope.alasan);
-			// console.log($scope.alamat_tujuan);
-			// console.log("submit mutasi");
-			// console.log($scope.count);
-			// console.log($scope.nik_pengikut[0]);
-			//console.log(User.nik);
 			var params = angular.copy({});
 			params.nik = User.nik;
 			params.nik_pengikut = [];
@@ -142,9 +136,11 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', '
 		$scope.status_hub_data_init = ["Kepala Keluarga"];
 		$scope.count = 1;
 		$scope.nik_keluarga = [];
+		$scope.nik_keluarga[0] = User.nik;
 		$scope.pend_kel = [];
 		$scope.pend_kel = ["SD"];
 		$scope.pend_kel_data = ["SD", "SMP", "SMA", "S1", "S2", "S3"];
+
 		$scope.addKeluarga = function() {
 			$scope.status_hub[$scope.count] = "Istri";
 			$scope.pend_kel[$scope.count] = "SD";
@@ -163,6 +159,7 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', '
 			                </div>\
 						</div>\
 					</div>')($scope));
+			a = $compile(a)($scope);
 			$compile(a)($scope);
 			var id = "row_" + $scope.count;
 			var b = angular.element(document.getElementById(id))
@@ -193,6 +190,7 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', '
 			params.pendidikan = [];
 			params.nik_kepala_kel = $scope.nik_keluarga[0];
 			params.anggota_count = $scope.count;
+			params.alamat = $scope.alamat;
 			for (var i = 1; i <= params.anggota_count + 1; ++i) {
 				params.nik[i] = $scope.nik_keluarga[i-1];
 				params.status_hub[i] = $scope.status_hub[i-1];
@@ -204,14 +202,34 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', '
 			}, function(err) {
 				console.log(err);
 			})
-			console.log('create kk tombol ketekan');
 		}
 	}]
 );
 
-ginaAppControllers.controller('AdminKKCtrl', ['$scope', 
-	function($scope) {
+ginaAppControllers.controller('KKIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
+		$scope.init = function() {
+			Server.get('kk/status/' + User.nik).then(function(data) {
+				$scope.datas = data;
+				$scope.canRequest = true;
+				for (var i = 0; i < data.length; ++i) {
+					if (data[i].status == 'approved' || data[i].status == 'requested') {
+						$scope.canRequest = false;
+					}
+				}
+			}, function(err) {
+				console.log(err);
+			});
+		}
+		$scope.isLogged = User.isLogged;
 
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+
+		$scope.request = function () {
+			$state.go('kk-request');
+		}
 	}]
 );
 
@@ -288,8 +306,6 @@ ginaAppControllers.controller('KKAdminDetailCtrl', ['$scope', 'Server', '$stateP
 
 		});
 		$scope.$on('logoutEvent', function(event, data) {
-			// console.log(data);
-			// console.log('aaaaa');
 			$scope.isLogged = User.isLogged;
 		});
 	}]

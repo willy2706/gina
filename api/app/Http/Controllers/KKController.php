@@ -7,6 +7,11 @@ use Request;
 
 class KKController extends Controller {
 
+	public function getStatus($nik) {
+		$k = KK::wherenik_kepala_kel($nik)->get();
+		return response($k);
+	}
+
 	function postRequest() {
 		$input = Input::all();
 		//return response($input);
@@ -18,6 +23,7 @@ class KKController extends Controller {
 
 		$kk->nik_kepala_kel = $input['nik_kepala_kel'];
 		$kk->request = true;
+		$kk->alamat = $input['alamat'];
 		$kk->save();
 
 		for ($i = 1; $i <= $input['anggota_count']; $i++) {
