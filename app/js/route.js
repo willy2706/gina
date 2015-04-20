@@ -69,6 +69,48 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
         templateUrl: 'app/partials/about.html',
         controller: ''
       })
+      .state('akta-lahir', {
+        url: "/akta-lahir",
+        templateUrl: "app/partials/create-akta-lahir.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-lahir-admin', {
+        url: "/akta-lahir-admin",
+        templateUrl: "app/partials/akta-lahir-admin-index.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-lahir-admin-detail', {
+        url: "/akta-lahir-admin/detail/:id",
+        templateUrl: "app/partials/akta-lahir-admin-detail.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-mati', {
+        url: "/akta-mati",
+        templateUrl: "app/partials/create-akta-mati.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-mati-admin', {
+        url: "/akta-mati-admin",
+        templateUrl: "app/partials/akta-mati-admin-index.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-mati-admin-detail', {
+        url: "/akta-mati-admin/detail/:id",
+        templateUrl: "app/partials/akta-mati-admin-detail.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
       .state('contact', {
         url: '/contact',
         templateUrl: 'app/partials/datakependudukan.html',

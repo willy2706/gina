@@ -8,4 +8,12 @@ class Akta_Mati extends Model {
 
 	protected $fillable = ['nik', 'kota_meninggal', 'waktu_meninggal'];
 
+	protected $appends = ['status'];
+
+	public function getStatusAttribute($value) {
+		$stat = ($this->request ? 'requested' : ($this->message == NULL ? 'approved' :  'rejected'));
+
+		return $stat;
+	}
+	
 }

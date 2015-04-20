@@ -294,3 +294,236 @@ ginaAppControllers.controller('KKAdminDetailCtrl', ['$scope', 'Server', '$stateP
 		});
 	}]
 );
+
+ginaAppControllers.controller('CreateAktaLahirCtrl', ['$scope', '$compile', 'Server', 'User',
+	function($scope, $compile, Server, User) {
+		$scope.isFetchingData = false;
+		$scope.isLogged = User.isLogged;
+		if ($scope.isLogged) {
+			$scope.isFetchingData = true;
+			Server.get('check/aktalahirstatus/' + User.nik).then(function(data) {
+				console.log(data);
+				if (data == 'requested') {
+					$scope.isRequested = true;
+				} else {
+					$scope.isRequested = false;
+				}
+				$scope.isFetchingData = false;
+			});
+		}
+
+		// TODO gunanya init buat apa
+		$scope.jenis_kelamin = [];
+		$scope.jenis_kelamin_data = ["Laki-Laki", "Perempuan"];
+		$scope.jenis_kelamin_init = "Laki-Laki";
+
+		// TODO gunanya init buat apa
+		$scope.kewarganegaraan = "Warga Negara Indonesia";
+		$scope.kewarganegaraan_data = ["Warga Negara Indonesia", "Warga Negara Asing"];
+		$scope.kewarganegaraan_init = ["Warga Negara Indonesia"];
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+
+		$scope.submitRequestAktaLahir = function() {
+			var params = angular.copy({});
+
+			params.nama = $scope.nama;
+			params.tempat_lahir = $scope.tempat_lahir;
+			params.tgl_lahir = $scope.tgl_lahir;
+			params.anak_ke = $scope.anak_ke;
+			params.jenis_kelamin = $scope.jenis_kelamin;
+			params.nik_ayah = $scope.nik_ayah;
+			params.nik_ibu = $scope.nik_ibu;
+			params.kewarganegaraan = $scope.kewarganegaraan;
+
+			Server.post('aktalahir/request', params).then(function(data) {
+				$scope.isRequested = true;
+			}, function(err) {
+				console.log(err);
+			})
+		}
+	}]
+);
+
+ginaAppControllers.controller('AktaLahirAdminIndexCtrl', ['$scope', '$compile', 'Server', 'User',
+	function ($scope, $compile, Server, User) {
+		$scope.init = function() {
+			Server.get('admin/aktalahir/all').then(function(data) {
+				$scope.datas = data;
+			}, function(err) {
+				console.log(err);
+			});
+		}
+		$scope.isLogged = User.isLogged;
+		$scope.statusIncludes = [];
+
+		$scope.approve = function($no_akta)  {
+			Server.get('admin/aktalahir/approve/' + $no_akta).then(function(data) {
+				$scope.init();
+			}, function(err){
+				console.log(err);
+			});
+		}
+
+		$scope.reject = function($no_akta) {
+			var params = angular.copy({});
+			params.message = 'lala';
+			Server.post('admin/aktalahir/reject/' + $no_akta, params).then(function(data) {
+				$scope.init();
+				console.log(data);
+			}, function(err) {
+				console.log(err);
+			});
+		}
+
+		$scope.includeStatus = function($status) {
+			var i = $.inArray($status, $scope.statusIncludes);
+			if (i > -1) { //berarti uda ada
+				$scope.statusIncludes.splice(i, 1); //jadi dibuang
+			} else {
+				$scope.statusIncludes.push($status);
+			}
+			console.log($scope.statusIncludes);
+		}
+
+		$scope.statusFilter = function (data) {
+			if ($scope.statusIncludes.length > 0) {
+				if ($.inArray(data.status, $scope.statusIncludes) < 0)
+					return;
+			}
+			return data;
+		}
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+	}]
+);
+
+ginaAppControllers.controller('AktaLahirAdminDetailCtrl', ['$scope', 'Server', '$stateParams',
+	function ($scope, Server, $stateParams) {
+		Server.get('admin/aktalahir/view/' + $stateParams.id)
+		.then(function(data) {
+			console.log($stateParams.id);
+			console.log(data);
+			$scope.datas = data;
+		}, function(err) {
+			console.log(err);
+		});
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+	}]
+);
+
+ginaAppControllers.controller('CreateAktaMatiCtrl', ['$scope', '$compile', 'Server', 'User',
+	function($scope, $compile, Server, User) {
+		$scope.isFetchingData = false;
+		$scope.isLogged = User.isLogged;
+		if ($scope.isLogged) {
+			$scope.isFetchingData = true;
+			Server.get('check/aktamatistatus/' + User.nik).then(function(data) {
+				console.log(data);
+				if (data == 'requested') {
+					$scope.isRequested = true;
+				} else {
+					$scope.isRequested = false;
+				}
+				$scope.isFetchingData = false;
+			});
+		}
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+
+		$scope.submitRequestAktaMati = function() {
+			var params = angular.copy({});
+
+			params.nik = $scope.nik;
+			params.kota_meninggal = $scope.kota_meninggal;
+			params.waktu_meninggal = $scope.waktu_meninggal;
+
+			Server.post('aktamati/request', params).then(function(data) {
+				$scope.isRequested = true;
+			}, function(err) {
+				console.log(err);
+			})
+		}
+	}]
+);
+
+ginaAppControllers.controller('AktaMatiAdminIndexCtrl', ['$scope', '$compile', 'Server', 'User',
+	function ($scope, $compile, Server, User) {
+		$scope.init = function() {
+			Server.get('admin/aktamati/all').then(function(data) {
+				$scope.datas = data;
+			}, function(err) {
+				console.log(err);
+			});
+		}
+		$scope.isLogged = User.isLogged;
+		$scope.statusIncludes = [];
+
+		$scope.approve = function($no_akta)  {
+			Server.get('admin/aktamati/approve/' + $no_akta).then(function(data) {
+				$scope.init();
+			}, function(err){
+				console.log(err);
+			});
+		}
+
+		$scope.reject = function($no_akta) {
+			var params = angular.copy({});
+			params.message = 'lala';
+			Server.post('admin/aktamati/reject/' + $no_akta, params).then(function(data) {
+				$scope.init();
+				console.log(data);
+			}, function(err) {
+				console.log(err);
+			});
+		}
+
+		$scope.includeStatus = function($status) {
+			var i = $.inArray($status, $scope.statusIncludes);
+			if (i > -1) { //berarti uda ada
+				$scope.statusIncludes.splice(i, 1); //jadi dibuang
+			} else {
+				$scope.statusIncludes.push($status);
+			}
+			console.log($scope.statusIncludes);
+		}
+
+		$scope.statusFilter = function (data) {
+			if ($scope.statusIncludes.length > 0) {
+				if ($.inArray(data.status, $scope.statusIncludes) < 0)
+					return;
+			}
+			return data;
+		}
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+	}]
+);
+
+ginaAppControllers.controller('AktaMatiAdminDetailCtrl', ['$scope', 'Server', '$stateParams',
+	function ($scope, Server, $stateParams) {
+		Server.get('admin/aktamati/view/' + $stateParams.id)
+		.then(function(data) {
+			console.log($stateParams.id);
+			console.log(data);
+			$scope.datas = data;
+		}, function(err) {
+			console.log(err);
+		});
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+	}]
+);

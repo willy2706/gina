@@ -1,0 +1,48 @@
+<div class="partial">
+	<div class="row">
+		<div class="col-xs-12" ng-controller="CreateAktaMatiCtrl">
+			<div ng-show="isLogged && !isFetchingData">
+				<div ng-show="!isRequested">
+					<h2>Pembuatan Akta Kematian</h2>
+					<form name="createAktaMatiForm" class="form form-horizontal" ng-submit="submitRequestAktaMati()">
+						<div class="form-group">
+							<div class="col-xs-12">
+								<input nik-validator ng-model="nik" class="form-control" type="text" name="nik" placeholder="NIK" required/>
+								<div ng-if="createAktaMatiForm.nik.$dirty">
+				                    <div ng-messages="createAktaMatiForm.nik.$error" class="validation-error">
+				                        <div ng-message="nik">NIK salah</div>
+				                        <div ng-message="required">NIK  dibutuhkan</div>
+				                    </div>
+				                    <div ng-messages="createAktaMatiForm.nik.$pending" class="validation-pending">
+				                        <div ng-message="nik">Sedang Mengecek NIK</div>
+				                    </div>
+				                </div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<input ng-model="kota_meninggal" type="text" class="form-control" name="kota_meninggal" id="kota_meninggal" placeholder="Kota Meninggal" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<input ng-model="waktu_meninggal" type="text" class="form-control" name="waktu_meninggal" id="waktu_meninggal" placeholder="Waku Meninggal" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<button ng-disabled="createAktaMatiForm.$invalid || createAktaMatiForm.$pending" type="submit" class="btn btn default">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div ng-show="isRequested">
+					<h2>Anda telah mengajukan akta kematian</h2>
+				</div>
+			</div>
+			<div ng-hide="isLogged">
+				<h2>Maaf anda belum log in</h2>		
+			</div>
+		</div>
+	</div>
+</div>

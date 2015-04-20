@@ -1,0 +1,43 @@
+<script type="text/javascript">
+	function showText(obj) {
+		if(obj.value=='Show') {
+			document.getElementById('mytext').style.display='block';
+			obj.value='Hide';
+		} else {
+			document.getElementById('mytext').style.display='none';
+			obj.value='Show';
+		}
+	}
+</script>
+
+<div class="col-xs-12" ng-controller = "AktaLahirAdminDetailCtrl">
+	<h2>{{datas.no_akta}}</h2>
+	<div class="form-group">
+		<label class="col-xs-2 control-label">Nama</label>
+		{{ datas.nama }}
+	</div>
+	<div class="form-group">
+		<label class="col-xs-2 control-label">Tempat Lahir</label>
+		{{ datas.tempat_lahir }}
+	</div>
+	<div class="form-group">
+		<label class="col-xs-2 control-label">Tanggal Lahir</label>
+		{{ datas.tgl_lahir }}
+	</div>
+	<div class="form-group">
+		<label class="col-xs-2 control-label">Anak Ke</label>
+		{{ datas.anak_ke }}
+	</div>
+	<div class="form-group">
+		<label class="col-xs-2 control-label">Jenis Kelamin</label>
+		{{ datas.jenis_kelamin }}
+	</div>
+	<div class="form-group">
+		<label class="col-xs-2 control-label">NIK Ayah</label>
+		{{ datas.nik_ayah }}
+	</div>
+	<div class="form-group">
+		<label class="col-xs-2 control-label">NIK Ibu</label>
+		{{ datas.nik_ibu }}
+	</div>
+</div>
