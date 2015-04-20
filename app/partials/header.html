@@ -94,7 +94,14 @@
 							</div>
 						</span>
 						</div>
-						<button type="submit" class="btn btn-default" ng-disabled="loginForm.$invalid || loginForm.$pending">Go</button>
+						<button type="submit" class="btn btn-default" ng-disabled="loginForm.$invalid || loginForm.$pending" id="btn-login">
+							<div ng-show="!isLoading">Go</div>
+							<div ng-show="isLoading" class="loader">
+							  <div class="inner one"></div>
+							  <div class="inner two"></div>
+							  <div class="inner three"></div>
+							</div>
+						</button>
 					</form>
 				</div>
 			</div>
