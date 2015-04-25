@@ -116,6 +116,27 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
           // $scope.isFeatures = true;
         }
       })
+      .state('akta-kawin', {
+        url: "/akta-kawin",
+        templateUrl: "app/partials/create-akta-kawin.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-kawin-admin', {
+        url: "/akta-kawin-admin",
+        templateUrl: "app/partials/akta-kawin-admin-index.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-kawin-admin-detail', {
+        url: "/akta-kawin-admin/detail/:id",
+        templateUrl: "app/partials/akta-kawin-admin-detail.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
       .state('contact', {
         url: '/contact',
         templateUrl: 'app/partials/datakependudukan.html',

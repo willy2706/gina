@@ -18,9 +18,9 @@ class CreateAktaKawinTable extends Migration {
 			$table->string('no_akta');
 			$table->index('no_akta');
 			$table->string('nik_suami');
-			$table->foreign('nik_suami')->references('nik')->on('ktp');
+			// $table->foreign('nik_suami')->references('nik')->on('ktp');
 			$table->string('nik_istri');
-			$table->foreign('nik_istri')->references('nik')->on('ktp');
+			// $table->foreign('nik_istri')->references('nik')->on('ktp');
 			$table->date('tanggal_nikah');
 			$table->string('tempat_nikah');
 			$table->boolean('request');

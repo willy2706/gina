@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Akta_Kawin extends Model {
 
-	protected $appends = ['anggota_keluarga', 'status'];
+	protected $appends = ['status'];
 
 	protected $table = 'akta_kawin';
 

@@ -3,6 +3,8 @@
 use App\Ktp;
 use App\Anggota_KK;
 use App\Akta_Lahir;
+use App\Akta_Mati;
+use App\Akta_Kawin;
 
 class CheckController extends Controller {
 	public function getNik($nik) {
@@ -47,7 +49,7 @@ class CheckController extends Controller {
 
 	public function getAktamatistatus($nik) {
 		//return response($nik);
-		$akta_mati = Akta_Mati::wherenik($nik)->get();
+		$akta_mati = Akta_Mati::wherenik($nik)->first();
 		//return response($akta_mati);
 
 		if (empty($akta_mati)) {
@@ -57,6 +59,27 @@ class CheckController extends Controller {
 				return response('requested');
 			} else {
 				if ($akta_mati->message == NULL) {
+					return response('approved');
+				} else {
+					return response('rejected');
+				}
+			}
+		}
+	}
+
+	public function getAktakawinstatus($nik) {
+		//return response($nik);
+		$akta_kawin_suami = Akta_Kawin::wherenik_suami($nik)->first();
+		//return response($akta_kawin_suami);
+		$akta_kawin_istri = Akta_Kawin::wherenik_istri($nik)->first();
+		//return response($akta_kawin_istri);
+		if (empty($akta_kawin_suami) && empty($akta_kawin_istri)) {
+			return response ('not yet');
+		} else {
+			if ($akta_kawin_suami->request || $akta_kawin_istri->request) {
+				return response('requested');
+			} else {
+				if ($akta_kawin_suami->message == NULL && $akta_kawin_istri->message == NULL) {
 					return response('approved');
 				} else {
 					return response('rejected');

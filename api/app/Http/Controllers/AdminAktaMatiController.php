@@ -22,6 +22,7 @@ class AdminAktaMatiController extends Controller {
 	
 	function getApprove($no_akta) {
 		$akta_mati = Akta_Mati::whereno_akta($no_akta)->first();
+		$akta_mati->message = "";
 		$akta_mati->request = false;
 		// TODO generate kota dikeluarkan
 		// TODO generate tgl dikeluarkan

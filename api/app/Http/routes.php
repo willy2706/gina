@@ -25,7 +25,7 @@ Route::controller('kk', 'KKController');
 Route::controller('mp', 'MPController');
 Route::controller('aktalahir', 'AktaLahirController');
 Route::controller('aktamati', 'AktaMatiController');
-// Route::controller('aktakawin', 'AktaKawinController');
+Route::controller('aktakawin', 'AktaKawinController');
 Route::controller('aktacerai', 'AktaCeraiController');
 Route::group(['prefix' => 'admin'], function() {
 
@@ -37,7 +37,7 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::controller('mp', 'AdminMPController');
 	Route::controller('aktalahir', 'AdminAktaLahirController');
 	Route::controller('aktamati', 'AdminAktaMatiController');
-	// Route::controller('aktakawin', 'AktaKawinController');
+	Route::controller('aktakawin', 'AdminAktaKawinController');
 	Route::controller('aktacerai', 'AktaCeraiController');
 });
 
