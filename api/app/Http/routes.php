@@ -38,7 +38,7 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::controller('aktalahir', 'AdminAktaLahirController');
 	Route::controller('aktamati', 'AdminAktaMatiController');
 	Route::controller('aktakawin', 'AdminAktaKawinController');
-	Route::controller('aktacerai', 'AktaCeraiController');
+	Route::controller('aktacerai', 'AdminAktaCeraiController');
 });
 
 //testing

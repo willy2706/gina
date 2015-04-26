@@ -687,7 +687,7 @@ ginaAppControllers.controller('CreateAktaCeraiCtrl', ['$scope', '$compile', 'Ser
 		$scope.submitRequestAktaCerai = function() {
 			var params = angular.copy({});
 
-			params.akta_cerai = $scope.akta_cerai;
+			params.akta_kawin = $scope.akta_kawin;
 			params.tanggal_cerai = $scope.tanggal_cerai;
 			params.tempat_cerai = $scope.tempat_cerai;
 
@@ -703,7 +703,7 @@ ginaAppControllers.controller('CreateAktaCeraiCtrl', ['$scope', '$compile', 'Ser
 ginaAppControllers.controller('AktaCeraiAdminIndexCtrl', ['$scope', '$compile', 'Server', 'User',
 	function ($scope, $compile, Server, User) {
 		$scope.init = function() {
-			Server.get('admin/aktakawin/all').then(function(data) {
+			Server.get('admin/aktacerai/all').then(function(data) {
 				$scope.datas = data;
 			}, function(err) {
 				console.log(err);
@@ -713,7 +713,7 @@ ginaAppControllers.controller('AktaCeraiAdminIndexCtrl', ['$scope', '$compile', 
 		$scope.statusIncludes = [];
 
 		$scope.approve = function($no_akta)  {
-			Server.get('admin/aktakawin/approve/' + $no_akta).then(function(data) {
+			Server.get('admin/aktacerai/approve/' + $no_akta).then(function(data) {
 				$scope.init();
 				console.log(data);
 			}, function(err){
@@ -724,7 +724,7 @@ ginaAppControllers.controller('AktaCeraiAdminIndexCtrl', ['$scope', '$compile', 
 		$scope.reject = function($no_akta) {
 			var params = angular.copy({});
 			params.message = 'lala';
-			Server.post('admin/aktakawin/reject/' + $no_akta, params).then(function(data) {
+			Server.post('admin/aktacerai/reject/' + $no_akta, params).then(function(data) {
 				$scope.init();
 				console.log(data);
 			}, function(err) {
@@ -758,7 +758,7 @@ ginaAppControllers.controller('AktaCeraiAdminIndexCtrl', ['$scope', '$compile', 
 
 ginaAppControllers.controller('AktaCeraiAdminDetailCtrl', ['$scope', 'Server', '$stateParams',
 	function ($scope, Server, $stateParams) {
-		Server.get('admin/aktakawin/view/' + $stateParams.id)
+		Server.get('admin/aktacerai/view/' + $stateParams.id)
 		.then(function(data) {
 			console.log($stateParams.id);
 			console.log(data);

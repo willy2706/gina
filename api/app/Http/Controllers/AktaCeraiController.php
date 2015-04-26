@@ -16,7 +16,7 @@ class AktaCeraiController extends Controller {
 		$akta_cerai->fill($input);
 		$akta_cerai->request = true;
 		// TODO generate no_akta
-		$akta_cerai->no_akta = "1234567890";
+		$akta_cerai->no_akta = "0987654321";
 		$akta_cerai->save();
 		return response('success');
 	}
