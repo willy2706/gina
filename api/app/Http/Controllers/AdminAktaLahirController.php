@@ -22,6 +22,7 @@ class AdminAktaLahirController extends Controller {
 	
 	function getApprove($no_akta) {
 		$akta_lahir = Akta_Lahir::whereno_akta($no_akta)->first();
+		$akta_lahir->message = "";
 		$akta_lahir->request = false;
 		// TODO generate nik
 		// TODO generate kota dikeluarkan

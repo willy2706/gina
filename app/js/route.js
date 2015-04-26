@@ -121,6 +121,41 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
           // $scope.isFeatures = true;
         }
       })
+      .state('akta-kawin', {
+        url: "/akta-kawin",
+        templateUrl: "app/partials/create-akta-kawin.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-kawin-admin', {
+        url: "/akta-kawin-admin",
+        templateUrl: "app/partials/akta-kawin-admin-index.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-cerai', {
+        url: "/akta-cerai",
+        templateUrl: "app/partials/create-akta-cerai.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-cerai-admin', {
+        url: "/akta-cerai-admin",
+        templateUrl: "app/partials/akta-cerai-admin-index.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-cerai-admin-detail', {
+        url: "/akta-cerai-admin/detail/:id",
+        templateUrl: "app/partials/akta-cerai-admin-detail.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
       .state('contact', {
         url: '/contact',
         templateUrl: 'app/partials/datakependudukan.html',

@@ -20,7 +20,6 @@ ginaAppValidator.directive('nikValidator', function ($http, $q, ApiURL, $timeout
 	}
 });
 
-
 ginaAppValidator.directive('nikKkValidator', function ($http, $q, ApiURL, $timeout) {
 	return {
 		require: 'ngModel',
@@ -31,6 +30,26 @@ ginaAppValidator.directive('nikKkValidator', function ($http, $q, ApiURL, $timeo
 						console.log(response);
 						var deferred = $q.defer();
 						if (response.data == "requested" || response.data == "approved")  deferred.reject();
+						else deferred.resolve();
+						return deferred.promise;
+					}
+				);
+			};
+		}
+	}
+});
+
+ginaAppValidator.directive('noaktakawinValidator', function ($http, $q, ApiURL, $timeout) {
+	return {
+		require: 'ngModel',
+		// replace: true,
+		// templateUrl: "app/partials/a.html",
+		link: function(scope, element, attrs, ngModel) {
+			ngModel.$asyncValidators.noaktakawin = function(modelValue, viewValue) {
+				return $http.get(ApiURL + 'check/noaktakawin/' + viewValue).then(
+					function(response) {
+						var deferred = $q.defer();
+						if (response.data == "false")  deferred.reject();
 						else deferred.resolve();
 						return deferred.promise;
 					}

@@ -4,8 +4,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Akta_Mati extends Model {
 
-	protected $appends = ['anggota_keluarga', 'status'];
-	
 	protected $table = 'akta_mati';
 
 	protected $fillable = ['nik', 'kota_meninggal', 'waktu_meninggal'];

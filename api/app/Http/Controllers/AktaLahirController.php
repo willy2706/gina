@@ -11,7 +11,7 @@ class AktaLahirController extends Controller {
 		$akta_lahir->fill($input);
 		$akta_lahir->request = true;
 		// TODO generate no_akta
-		$akta_lahir->no_akta = "1234567890";
+		$akta_lahir->no_akta = time();
 		$akta_lahir->save();
 		return response('success');
 	}

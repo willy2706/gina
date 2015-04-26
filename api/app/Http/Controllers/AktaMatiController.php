@@ -11,7 +11,7 @@ class AktaMatiController extends Controller {
 		$akta_mati->fill($input);
 		$akta_mati->request = true;
 		// TODO generate no_akta
-		$akta_mati->no_akta = "1234567890";
+		$akta_mati->no_akta = time();
 		$akta_mati->save();
 		return response('success');
 	}

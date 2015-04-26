@@ -16,6 +16,7 @@ class CreateAktaLahirTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('no_akta');
+			$table->index('no_akta');
 			$table->string('nik');
 			$table->string('nama');
 			$table->string('tempat_lahir');
@@ -23,7 +24,9 @@ class CreateAktaLahirTable extends Migration {
 			$table->integer('anak_ke');
 			$table->string('jenis_kelamin');
 			$table->string('nik_ayah');
+			// $table->foreign('nik_ayah')->references('nik')->on('ktp');
 			$table->string('nik_ibu');
+			// $table->foreign('nik_ibu')->references('nik')->on('ktp');
 			$table->string('kewarganegaraan');
 			$table->string('kota_dikeluarkan');
 			$table->date('tgl_dikeluarkan');

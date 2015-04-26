@@ -16,7 +16,9 @@ class CreateAktaMatiTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('no_akta');
+			$table->index('no_akta');
 			$table->string('nik');
+			// $table->foreign('nik')->references('nik')->on('ktp');
 			$table->string('kota_meninggal');
 			$table->dateTime('waktu_meninggal');
 			$table->string('kota_dikeluarkan');
