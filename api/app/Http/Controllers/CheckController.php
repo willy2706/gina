@@ -65,4 +65,8 @@ class CheckController extends Controller {
 		}
 	}
 
+	public function getKkByNik($nik) {
+		
+	}
+
 }

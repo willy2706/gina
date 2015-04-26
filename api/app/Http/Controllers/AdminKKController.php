@@ -48,4 +48,32 @@ class AdminKKController extends Controller {
 		return response('success');
 	}
 
+	function postCreate() {
+		$input = Input::all();
+		$kk = new KK();
+
+		$kk->no_kk = $this->getTimestamp();
+
+		$kk->nik_kepala_kel = $input['nik_kepala_kel'];
+		$kk->request = false;
+		$kk->alamat = $input['alamat'];
+		$kk->save();
+
+		for ($i = 1; $i <= $input['anggota_count']; $i++) {
+			$anggota_kk = new Anggota_KK();
+			$anggota_kk->no_kk = $kk->no_kk;
+			$anggota_kk->nik = $input['nik'][$i];
+			$anggota_kk->pendidikan = $input['pendidikan'][$i];
+			$anggota_kk->status_hub = $input['status_hub'][$i];
+			//TODO
+			$anggota_kk->nik_ayah = $kk->nik_kepala_kel;
+			$anggota_kk->nik_ibu = $kk->nik_kepala_kel;
+			// $anggota_kk->nik_ayah = $input['nik_ayah_' . $i];
+			// $anggota_kk->nik_ibu = $input['nik_ibu_' . $i];
+			$anggota_kk->save();
+		}
+
+		return response('success');
+	}
+
 }

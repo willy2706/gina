@@ -45,7 +45,12 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
         url: "/kk-admin/detail/:id",
         templateUrl: "app/partials/kk-admin-detail.html",
         controller: function($scope) {
-          // $scope.isFeatures = true;
+        }
+      })
+      .state('kk-admin-create', {
+        url: "/kk-admin/create",
+        templateUrl: "app/partials/kk-admin-create.html",
+        controller: function($scope) {
         }
       })
       .state('mp', {

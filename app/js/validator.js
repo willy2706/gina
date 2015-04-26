@@ -19,3 +19,23 @@ ginaAppValidator.directive('nikValidator', function ($http, $q, ApiURL, $timeout
 		}
 	}
 });
+
+
+ginaAppValidator.directive('nikKkValidator', function ($http, $q, ApiURL, $timeout) {
+	return {
+		require: 'ngModel',
+		link: function(scope, element, attrs, ngModel) {
+			ngModel.$asyncValidators.kk = function(modelValue, viewValue) {
+				return $http.get(ApiURL + 'check/kkstatus/' + viewValue).then(
+					function(response) {
+						console.log(response);
+						var deferred = $q.defer();
+						if (response.data == "requested" || response.data == "approved")  deferred.reject();
+						else deferred.resolve();
+						return deferred.promise;
+					}
+				);
+			};
+		}
+	}
+});
