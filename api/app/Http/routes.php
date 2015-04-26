@@ -21,6 +21,7 @@ Route::controllers([
 	'check' => 'CheckController'
 ]);
 
+Route::controller('ktp', 'KTPController');
 Route::controller('kk', 'KKController');
 Route::controller('mp', 'MPController');
 Route::controller('aktalahir', 'AktaLahirController');

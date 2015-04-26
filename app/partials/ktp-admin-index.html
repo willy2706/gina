@@ -1,0 +1,44 @@
+<div class="col-md-10 kk-approval" ng-controller="KtpAdminIndexCtrl">
+	<div ng-show="isLogged" class="table-responsive" ng-init= "init()">
+		<button type="button" ng-href = "create" ng-click="create()" class="btn btn-default">Create</button>
+		<div class="col-xs-12">
+			<h2>
+				<div class="col-xs-4">
+					Kartu Tanda Penduduk
+				</div>
+				<div class="col-xs-4">
+				</div>
+				<div class="col-xs-4">
+					<input type="search" size = "19.5" ng-model="q" placeholder="filter ktp..." />	
+				</div>
+			</h2>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<td>Id</td>
+					<td>NIK</td>
+					<td>Nama</td>
+			    </tr>
+			</thead>
+			<tbody>
+				<tr class="active" ng-repeat="data in datas | filter:q ">
+					<td>{{data.id}}</td>
+					<td>
+						{{data.nik}}
+					</td>
+					<td>{{data.nama}}</td>
+					<td>
+						<div>
+							<button type="button" ng-click = "detail(data.nik)" class="btn btn-default">Detail</button>
+							<button type="button" ng-click = "edit(data.nik)" class="btn btn-default">Edit</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div ng-hide = "isLogged">
+		Maaf anda belum log in
+	</div>
+</div>

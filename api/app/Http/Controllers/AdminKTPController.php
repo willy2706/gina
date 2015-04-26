@@ -15,7 +15,7 @@ class AdminKTPController extends Controller {
 		// return respone($input);
 		$ktp = new KTP();
 		// $kk->nik = generate string
-		$ktp->nik = '1234567890';
+		$ktp->nik = $this->getTimestamp();
 		$ktp->password = $input['password'];
 		$ktp->nama = $input['nama'];
 		$ktp->kota_lahir = $input['kota_lahir'];

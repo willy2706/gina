@@ -233,6 +233,22 @@ ginaAppControllers.controller('KKIndexCtrl', ['$scope', '$compile', 'Server', 'U
 	}]
 );
 
+ginaAppControllers.controller('KtpIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
+		$scope.isLogged = User.isLogged;
+		Server.get('ktp/index/'+User.nik).then(function(data) {
+			$scope.data = data;
+			console.log(data);
+		}, function(err){
+			console.log(err)
+		})
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+	}]
+);
+
 ginaAppControllers.controller('KKAdminIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
 	function ($scope, $compile, Server, User, $state) {
 		$scope.init = function() {
@@ -292,15 +308,44 @@ ginaAppControllers.controller('KKAdminIndexCtrl', ['$scope', '$compile', 'Server
 		}
 
 		$scope.$on('logoutEvent', function(event, data) {
-			// console.log(data);
-			// console.log('aaaaa');
 			$scope.isLogged = User.isLogged;
 		});
 	}]
 );
 
-ginaAppControllers.controller('KKAdminDetailCtrl', ['$scope', 'Server', '$stateParams',
-	function ($scope, Server, $stateParams) {
+ginaAppControllers.controller('KtpAdminIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
+		$scope.init = function() {
+			Server.get('admin/ktp/all').then(function(data) {
+				$scope.datas = data;
+			}, function(err) {
+				console.log(err);
+			});
+		}
+		$scope.isLogged = User.isLogged;	
+		console.log($scope.isLogged);
+
+		$scope.create = function() {
+			$state.go('ktp-admin-create')
+		}
+
+		$scope.detail = function($nik)  {
+			$state.go('ktp-admin-detail', {'id' : $nik})
+		}
+
+		$scope.edit = function($nik) {
+			// $state.go('ktp-admin-detail', {'id' : $nik})
+		}
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+	}]
+);
+
+ginaAppControllers.controller('KKAdminDetailCtrl', ['$scope', 'Server', '$stateParams', 'User',
+	function ($scope, Server, $stateParams, User) {
+		$scope.isLogged = User.isLogged;
 		Server.get('admin/kk/view/' + $stateParams.id)
 		.then(function(data) {
 			console.log($stateParams.id);
@@ -315,9 +360,43 @@ ginaAppControllers.controller('KKAdminDetailCtrl', ['$scope', 'Server', '$stateP
 	}]
 );
 
+ginaAppControllers.controller('KtpAdminDetailCtrl', ['$scope', 'Server', '$stateParams', 'User',
+	function ($scope, Server, $stateParams, User) {
+		$scope.isLogged = User.isLogged
+		Server.get('ktp/index/' + $stateParams.id)
+		.then(function(data) {
+			console.log(data);
+			$scope.data = data;
+		}, function(err) {
+
+		});
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+	}]
+);
+
+
+ginaAppControllers.controller('KtpAdminCreateCtrl', ['$scope', 'User',
+	function ($scope, User) {
+		$scope.nama = null
+		$scope.isLogged = User.isLogged
+		$scope.jenis_kelamin = 'Laki-Laki'
+		$scope.jenis_kelamin_list = ['Laki-Laki', 'Perempuan']
+		$scope.gol_darah = 'O'
+		$scope.gol_darah_list = ['O', 'A', 'B', 'AB']
+		$scope.agama = ""
+		$scope.agama_list = ['','Islam', 'Kristen Protestan', 'Kristen Katolik', 'Budha', 'Hindu']
+		$scope.rt = 0;
+		$scope.rw = 0;
+		$scope.create = function() {
+			console.log($scope.nama)
+		}
+	}]
+)
 
 ginaAppControllers.controller('KKAdminCreateCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
-	function($scope, $compile, Server, User, $state) {
+	function ($scope, $compile, Server, User, $state) {
 		$scope.isLogged = User.isLogged;
 		$scope.status_hub = [];
 		$scope.status_hub[0] = "Kepala Keluarga";
@@ -395,7 +474,7 @@ ginaAppControllers.controller('KKAdminCreateCtrl', ['$scope', '$compile', 'Serve
 );
 
 ginaAppControllers.controller('CreateAktaLahirCtrl', ['$scope', '$compile', 'Server', 'User',
-	function($scope, $compile, Server, User) {
+	function ($scope, $compile, Server, User) {
 		$scope.isFetchingData = false;
 		$scope.isLogged = User.isLogged;
 		if ($scope.isLogged) {
@@ -519,7 +598,7 @@ ginaAppControllers.controller('AktaLahirAdminDetailCtrl', ['$scope', 'Server', '
 );
 
 ginaAppControllers.controller('CreateAktaMatiCtrl', ['$scope', '$compile', 'Server', 'User',
-	function($scope, $compile, Server, User) {
+	function ($scope, $compile, Server, User) {
 		$scope.isFetchingData = false;
 		$scope.isLogged = User.isLogged;
 		if ($scope.isLogged) {
@@ -632,7 +711,7 @@ ginaAppControllers.controller('AktaMatiAdminDetailCtrl', ['$scope', 'Server', '$
   */
 
 ginaAppControllers.controller('CreateAktaKawinCtrl', ['$scope', '$compile', 'Server', 'User',
-	function($scope, $compile, Server, User) {
+	function ($scope, $compile, Server, User) {
 		$scope.isFetchingData = false;
 		$scope.isLogged = User.isLogged;
 		if ($scope.isLogged) {
@@ -747,7 +826,7 @@ ginaAppControllers.controller('AktaKawinAdminDetailCtrl', ['$scope', 'Server', '
   */
 
 ginaAppControllers.controller('CreateAktaCeraiCtrl', ['$scope', '$compile', 'Server', 'User',
-	function($scope, $compile, Server, User) {
+	function ($scope, $compile, Server, User) {
 		$scope.isFetchingData = false;
 		$scope.isLogged = User.isLogged;
 		if ($scope.isLogged) {

@@ -22,6 +22,30 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
           // $scope.isHome = true;
         }
       })
+      .state('ktp', {
+        url: "/ktp",
+        templateUrl: "app/partials/ktp-index.html",
+        controller: function($scope) {
+        }
+      })
+      .state('ktp-admin', {
+        url: "/ktp-admin",
+        templateUrl: "app/partials/ktp-admin-index.html",
+        controller: function($scope) {
+        }
+      })
+      .state('ktp-admin-create', {
+        url: "/ktp-admin-create",
+        templateUrl: "app/partials/ktp-admin-create.html",
+        controller: function($scope) {
+        }
+      })
+      .state('ktp-admin-detail', {
+        url: "/ktp-admin/detail/:id",
+        templateUrl: "app/partials/ktp-admin-detail.html",
+        controller: function($scope) {
+        }
+      })
       .state('kk', {
         url: "/kk",
         templateUrl: "app/partials/kk-index.html",

@@ -1,0 +1,99 @@
+<div class="col-md-12" ng-controller = "KtpAdminCreateCtrl">
+ <br><br>
+ 	<div ng-show="isLogged">
+		<form class="form-horizontal" name="ktpAdminCreateForm" role="form">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Nama</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" ng-model= "nama" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Tempat Lahir</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" ng-model= "kota_lahir" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Tanggal Lahir</label>
+				<div class="col-sm-10">
+					<input type="date" ng-model = "tanggal_lahir" required>
+				</div>
+			</div>
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">Jenis Kelamin</label>
+	            <div class="col-sm-10">
+					<select class="form-control" ng-model="jenis_kelamin" ng-options="s for s in jenis_kelamin_list">
+					</select>
+	            </div>
+	        </div>
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">Golongan Darah</label>
+	            <div class="col-sm-10">
+	            	<select class="form-control" ng-model="gol_darah" ng-options="s for s in gol_darah_list">
+					</select>
+	            </div>
+	        </div>
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">Alamat</label>
+	            <div class="col-sm-10">
+	           		<input type="text" class="form-control" ng-model= "alamat" required>
+	            </div>
+	        </div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">RT / RW</label>
+				<div class="col-sm-10">
+					<input type="number" min="0" ng-model ="rt"/> / <input type="number" min = "0" ng-model = "rw">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Kelurahan/Desa</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" ng-model= "kel_desa" required>
+				</div>
+			</div>
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">Agama</label>
+	            <div class="col-sm-10">
+	            <select class="form-control" ng-model="agama" ng-options="s for s in agama_list"></select>
+	            </div>
+	        </div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Status Perkawinan</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" ng-model= "status" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Kecamatan</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" ng-model= "kecamatan" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Kewarganegaraan</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" ng-model= "kewarganegaraan" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Berlaku hingga</label>
+				<div class="col-sm-10">
+					<input type="date" ng-model = "tgl_kadaluarsa" required>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label"></label>
+				<div class="col-sm-10">
+					<button class="btn btn-default" ng-click = "create()" ng-disabled="ktpAdminCreateForm.$invalid || ktpAdminCreateForm.$pending">
+						Submit
+					</button>
+				</div>
+			</div>
+	    </form>
+ 	</div>
+  	<div ng-show="!isLogged">
+	  	Maaf anda belum Login
+ 	</div>
+</div>
