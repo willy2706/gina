@@ -11,7 +11,7 @@ class AktaKawinController extends Controller {
 		$akta_kawin->fill($input);
 		$akta_kawin->request = true;
 		// TODO generate no_akta
-		$akta_kawin->no_akta = "1234567890";
+		$akta_kawin->no_akta = time();
 		$akta_kawin->save();
 		return response('success');
 	}
