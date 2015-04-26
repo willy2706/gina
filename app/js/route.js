@@ -130,9 +130,23 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
           // $scope.isFeatures = true;
         }
       })
-      .state('akta-kawin-admin-detail', {
-        url: "/akta-kawin-admin/detail/:id",
-        templateUrl: "app/partials/akta-kawin-admin-detail.html",
+      .state('akta-cerai', {
+        url: "/akta-cerai",
+        templateUrl: "app/partials/create-akta-cerai.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-cerai-admin', {
+        url: "/akta-cerai-admin",
+        templateUrl: "app/partials/akta-cerai-admin-index.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-cerai-admin-detail', {
+        url: "/akta-cerai-admin/detail/:id",
+        templateUrl: "app/partials/akta-cerai-admin-detail.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
         }

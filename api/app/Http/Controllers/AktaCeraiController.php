@@ -12,26 +12,26 @@ class AktaCeraiController extends Controller {
 
 	function postRequest() {
 		$input = Input::all();
-		$akta_lahir = new Akta_Cerai;
-		$akta_lahir->fill($input);
-		$akta_lahir->request = true;
+		$akta_cerai = new Akta_Cerai;
+		$akta_cerai->fill($input);
+		$akta_cerai->request = true;
 		// TODO generate no_akta
-		$akta_lahir->no_akta = "1234567890";
-		$akta_lahir->save();
+		$akta_cerai->no_akta = "1234567890";
+		$akta_cerai->save();
 		return response('success');
 	}
 
 	function getView($no_akta) {
-		$akta_lahir = Akta_Cerai::whereno_akta($no_akta)->first();
-		return response($akta_lahir);
+		$akta_cerai = Akta_Cerai::whereno_akta($no_akta)->first();
+		return response($akta_cerai);
 	}
 
 	function postUpdate() {
 		$input = Input::all();
-		$akta_lahir = Akta_Cerai::whereno_akta($input['no_akta'])->first();
-		$akta_lahir->fill($input);
-		$akta_lahir->request = true;
-		$akta_lahir->save();
+		$akta_cerai = Akta_Cerai::whereno_akta($input['no_akta'])->first();
+		$akta_cerai->fill($input);
+		$akta_cerai->request = true;
+		$akta_cerai->save();
 		return response('success');
 	}
 

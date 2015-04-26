@@ -12,6 +12,11 @@ class CheckController extends Controller {
 		return (count($k) > 0) ? 'true' : 'false';
 	}
 
+	public function getNoaktakawin($no) {
+		$k = Akta_Kawin::whereno_akta($no)->get();
+		return (count($k) > 0) ? 'true' : 'false';
+	}
+
 	public function getKkstatus($nik) {
 		$k = Anggota_KK::wherenik($nik)->first();
 		if (empty($k)) 
@@ -85,6 +90,18 @@ class CheckController extends Controller {
 					return response('rejected');
 				}
 			}
+		}
+	}
+
+
+	public function getAktakawinexiststatus($no_akta) {
+		//return response($nik);
+		$akta_kawin = Akta_Kawin::whereno_akta($no_akta)->first();
+		//return response($akta_kawin_istri);
+		if (empty($akta_kawin)) {
+			return response ('not exist');
+		} else {
+			return response ('exist');
 		}
 	}
 
