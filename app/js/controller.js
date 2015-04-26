@@ -335,11 +335,12 @@ ginaAppControllers.controller('KKAdminCreateCtrl', ['$scope', '$compile', 'Serve
 			var a = angular.element(document.getElementById('form-keluarga'))
 				.append($compile('<div class="form-inline" id="row_'+$scope.count+'">\
 						<div class="form-group cust-form">\
-							<input nik-validator ng-model = nik_keluarga['+$scope.count+'] class="form-control" type="text" name="nik_keluarga_'+$scope.count+'" placeholder="NIK anggota keluarga" required/>\
+							<input nik-validator nik-kk-validator ng-model = nik_keluarga['+$scope.count+'] class="form-control" type="text" name="nik_keluarga_'+$scope.count+'" placeholder="NIK anggota keluarga" required/>\
 							<div ng-if="createKKForm.nik_keluarga_'+$scope.count+'.$dirty">\
 			                    <div ng-messages="createKKForm.nik_keluarga_'+$scope.count+'.$error" class="validation-error">\
 			                        <div ng-message="nik">Nik tidak valid</div>\
 			                        <div ng-message="required">Nik required</div>\
+			                        <div ng-message="kk">Telah terdaftar sebagai di kk lain</div>\
 			                    </div>\
 			                    <div ng-messages="createKKForm.nik_keluarga_'+$scope.count+'.$pending" class="validation-pending">\
 			                        <div ng-message="nik">Cek Nik</div>\
@@ -347,6 +348,7 @@ ginaAppControllers.controller('KKAdminCreateCtrl', ['$scope', '$compile', 'Serve
 			                </div>\
 						</div>\
 					</div>')($scope));
+			a = $compile(a)($scope);
 			a = $compile(a)($scope);
 			$compile(a)($scope);
 			var id = "row_" + $scope.count;
