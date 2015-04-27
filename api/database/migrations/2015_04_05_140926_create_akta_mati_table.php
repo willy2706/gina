@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAktaKawinTable extends Migration {
+class CreateAktaMatiTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,17 +12,18 @@ class CreateAktaKawinTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('akta_kawin', function(Blueprint $table)
+		Schema::create('ppl_dukcapil_akta_mati', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('no_akta');
 			$table->index('no_akta');
-			$table->string('nik_suami');
-			// $table->foreign('nik_suami')->references('nik')->on('ktp');
-			$table->string('nik_istri');
-			// $table->foreign('nik_istri')->references('nik')->on('ktp');
-			$table->date('tanggal_nikah');
-			$table->string('tempat_nikah');
+			$table->string('nik');
+			// $table->foreign('nik')->references('nik')->on('ktp');
+			$table->string('kota_meninggal');
+			$table->dateTime('waktu_meninggal');
+			$table->string('kota_dikeluarkan');
+			$table->date('tgl_dikeluarkan');
+			$table->string('nip_kepala_dinas');
 			$table->boolean('request');
 			$table->string('message')->nullable();
 			$table->timestamps();
@@ -36,7 +37,7 @@ class CreateAktaKawinTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('akta_kawin');
+		Schema::drop('ppl_dukcapil_akta_mati');
 	}
 
 }

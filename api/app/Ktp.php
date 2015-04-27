@@ -15,7 +15,7 @@ class KTP extends Model implements AuthenticatableContract, CanResetPasswordCont
 	 *
 	 * @var string
 	 */
-	protected $table = 'ktp';
+	protected $table = 'ppl_dukcapil_ktp';
 
 	/**
 	 * The attributes that are mass assignable.

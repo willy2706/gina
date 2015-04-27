@@ -12,7 +12,7 @@ class CreatePengikutMpTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('pengikut_mp', function(Blueprint $table)
+		Schema::create('ppl_dukcapil_pengikut_mp', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('no_mp');
@@ -32,7 +32,7 @@ class CreatePengikutMpTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('pengikut_mp');
+		Schema::drop('ppl_dukcapil_pengikut_mp');
 	}
 
 }

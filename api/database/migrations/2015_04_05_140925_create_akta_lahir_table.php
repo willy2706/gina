@@ -12,7 +12,7 @@ class CreateAktaLahirTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('akta_lahir', function(Blueprint $table)
+		Schema::create('ppl_dukcapil_akta_lahir', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('no_akta');
@@ -44,7 +44,7 @@ class CreateAktaLahirTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('akta_lahir');
+		Schema::drop('ppl_dukcapil_akta_lahir');
 	}
 
 }

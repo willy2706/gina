@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration {
+class CreatePhotoTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,17 +12,16 @@ class CreateUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('users', function(Blueprint $table)
+		Schema::create('ppl_dukcapil_photo', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name');
-			$table->string('email')->unique();
-			$table->string('password', 60);
-			$table->rememberToken();
+			$table->string('filename');
+			$table->string('mime');
+			$table->string('original_filename');
 			$table->timestamps();
 		});
 	}
-
+	
 	/**
 	 * Reverse the migrations.
 	 *
@@ -30,7 +29,7 @@ class CreateUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('users');
+		Schema::drop('ppl_dukcapil_photo');
 	}
-
+	
 }

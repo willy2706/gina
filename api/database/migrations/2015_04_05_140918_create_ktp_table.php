@@ -12,7 +12,7 @@ class CreateKtpTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('ktp', function(Blueprint $table)
+		Schema::create('ppl_dukcapil_ktp', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('nik');
@@ -51,7 +51,7 @@ class CreateKtpTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('ktp');
+		Schema::drop('ppl_dukcapil_ktp');
 	}
 
 }

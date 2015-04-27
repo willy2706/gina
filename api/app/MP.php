@@ -9,7 +9,7 @@ class MP extends Model {
 	 *
 	 * @var string
 	 */
-	protected $table = 'mp';
+	protected $table = 'ppl_dukcapil_mp';
 
 	/**
 	 * The attributes that are mass assignable.

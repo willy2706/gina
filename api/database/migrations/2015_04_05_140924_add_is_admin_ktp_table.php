@@ -12,7 +12,7 @@ class AddIsAdminKtpTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('ktp', function($table){
+		Schema::table('ppl_dukcapil_ktp', function($table){
 			// $allow = array('Male', 'Female');
 			$table->boolean('is_admin')->after('tgl_dikeluarkan');
 		});
@@ -25,7 +25,7 @@ class AddIsAdminKtpTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('ktp', function($table) {
+		Schema::table('ppl_dukcapil_ktp', function($table) {
 			$table->dropColumn('is_admin');
 		});
 	}

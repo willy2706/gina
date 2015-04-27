@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAktaCeraiTable extends Migration {
+class CreateKkTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,13 @@ class CreateAktaCeraiTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('akta_cerai', function(Blueprint $table)
+		Schema::create('ppl_dukcapil_kk', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('no_akta');
-			$table->string('akta_kawin');
-			//$table->foreign('akta_kawin')->references('no_akta')->on('akta_kawin');
-			$table->date('tanggal_cerai');
-			$table->string('tempat_cerai');
+			$table->string('no_kk');
+			$table->index('no_kk');
+			$table->string('nik_kepala_kel');
+			//$table->foreign('nik_kepala_kel')->references('nik')->on('ktp');
 			$table->boolean('request');
 			$table->string('message')->nullable();
 			$table->timestamps();
@@ -33,7 +32,7 @@ class CreateAktaCeraiTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('akta_cerai');
+		Schema::drop('ppl_dukcapil_kk');
 	}
 
 }

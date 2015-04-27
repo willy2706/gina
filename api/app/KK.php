@@ -9,7 +9,7 @@ class KK extends Model {
 	 *
 	 * @var string
 	 */
-	protected $table = 'kk';
+	protected $table = 'ppl_dukcapil_kk';
 
 	/**
 	 * The attributes that are mass assignable.

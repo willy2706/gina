@@ -6,7 +6,7 @@ class Akta_Cerai extends Model {
 
 	protected $appends = ['status'];
 
-	protected $table = 'akta_cerai';
+	protected $table = 'ppl_dukcapil_akta_cerai';
 
 	protected $fillable = ['no_akta', 'akta_kawin', 'tanggal_cerai', 'tempat_cerai', 'request', 'message'];
 	

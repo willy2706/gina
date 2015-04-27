@@ -9,7 +9,7 @@ class Anggota_KK extends Model {
 	 *
 	 * @var string
 	 */
-	protected $table = 'anggota_kk';
+	protected $table = 'ppl_dukcapil_anggota_kk';
 
 	/**
 	 * The attributes that are mass assignable.

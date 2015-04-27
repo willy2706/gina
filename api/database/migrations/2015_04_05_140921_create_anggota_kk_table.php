@@ -12,7 +12,7 @@ class CreateAnggotaKkTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('anggota_kk', function(Blueprint $table)
+		Schema::create('ppl_dukcapil_anggota_kk', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('no_kk');
@@ -36,7 +36,7 @@ class CreateAnggotaKkTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('anggota_kk');
+		Schema::drop('ppl_dukcapil_anggota_kk');
 	}
 
 }

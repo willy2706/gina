@@ -12,7 +12,7 @@ class CreateMpTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('mp', function(Blueprint $table)
+		Schema::create('ppl_dukcapil_mp', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('no_mp');
@@ -33,7 +33,7 @@ class CreateMpTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('mp');
+		Schema::drop('ppl_dukcapil_mp');
 	}
 
 }
