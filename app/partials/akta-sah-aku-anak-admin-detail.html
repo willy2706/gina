@@ -1,0 +1,27 @@
+<script type="text/javascript">
+	function showText(obj) {
+		if(obj.value=='Show') {
+			document.getElementById('mytext').style.display='block';
+			obj.value='Hide';
+		} else {
+			document.getElementById('mytext').style.display='none';
+			obj.value='Show';
+		}
+	}
+</script>
+
+<div class="col-xs-12" ng-controller = "AktaSahAkuAnakAdminDetailCtrl">
+	<h2>{{datas.no_akta}}</h2>
+	<div class="form-group">
+		<label class="col-xs-2 control-label">NIK</label>
+		{{ datas.nik }}
+	</div>
+	<div class="form-group">
+		<label class="col-xs-2 control-label">No Akta Perkawinan</label>
+		{{ datas.no_akta_kawin }}
+	</div>
+	<div class="form-group">
+		<label class="col-xs-2 control-label">No Akta Kelahiran Anak</label>
+		{{ datas.no_akta_lahir }}
+	</div>
+</div>

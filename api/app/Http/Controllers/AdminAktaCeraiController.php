@@ -35,7 +35,7 @@ class AdminAktaCeraiController extends Controller {
 		$input = Input::all();
 		$akta_cerai = Akta_Cerai::whereno_akta($no_akta)->first();
 		$akta_cerai->message = $input['message'];
-		$akta_cerai->request = true;
+		$akta_cerai->request = false;
 		$akta_cerai->save();
 		return response('success');
 	}

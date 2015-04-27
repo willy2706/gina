@@ -5,10 +5,16 @@ use App\Anggota_KK;
 use App\Akta_Lahir;
 use App\Akta_Mati;
 use App\Akta_Kawin;
+use App\Akta_Sah_Aku_Anak;
 
 class CheckController extends Controller {
 	public function getNik($nik) {
 		$k = Ktp::wherenik($nik)->get();
+		return (count($k) > 0) ? 'true' : 'false';
+	}
+
+	public function getNoaktalahir($no) {
+		$k = Akta_Lahir::whereno_akta($no)->get();
 		return (count($k) > 0) ? 'true' : 'false';
 	}
 
@@ -93,7 +99,6 @@ class CheckController extends Controller {
 		}
 	}
 
-
 	public function getAktakawinexiststatus($no_akta) {
 		//return response($nik);
 		$akta_kawin = Akta_Kawin::whereno_akta($no_akta)->first();
@@ -102,6 +107,24 @@ class CheckController extends Controller {
 			return response ('not exist');
 		} else {
 			return response ('exist');
+		}
+	}
+
+	public function getAktasahakuanakstatus($nik) {
+		$akta_sah_aku_anak = Akta_Sah_Aku_Anak::wherenik($nik)->first();
+		
+		if (empty($akta_sah_aku_anak)) {
+			return response ('not yet');
+		} else {
+			if ($akta_sah_aku_anak->request) {
+				return response('requested');
+			} else {
+				if ($akta_sah_aku_anak->message == NULL) {
+					return response('approved');
+				} else {
+					return response('rejected');
+				}
+			}
 		}
 	}
 

@@ -35,7 +35,7 @@ class AdminAktaMatiController extends Controller {
 		$input = Input::all();
 		$akta_mati = Akta_Mati::whereno_akta($no_akta)->first();
 		$akta_mati->message = $input['message'];
-		$akta_mati->request = true;
+		$akta_mati->request = false;
 		$akta_mati->save();
 		return response('success');
 	}
