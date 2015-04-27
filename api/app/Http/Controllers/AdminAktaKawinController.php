@@ -32,7 +32,7 @@ class AdminAktaKawinController extends Controller {
 		$input = Input::all();
 		$akta_kawin = Akta_Kawin::whereno_akta($no_akta)->first();
 		$akta_kawin->message = $input['message'];
-		$akta_kawin->request = true;
+		$akta_kawin->request = false;
 		$akta_kawin->save();
 		return response('success');
 	}

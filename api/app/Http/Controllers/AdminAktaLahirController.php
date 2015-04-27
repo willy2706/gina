@@ -36,7 +36,7 @@ class AdminAktaLahirController extends Controller {
 		$input = Input::all();
 		$akta_lahir = Akta_Lahir::whereno_akta($no_akta)->first();
 		$akta_lahir->message = $input['message'];
-		$akta_lahir->request = true;
+		$akta_lahir->request = false;
 		$akta_lahir->save();
 		return response('success');
 	}
