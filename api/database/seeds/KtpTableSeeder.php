@@ -12,7 +12,7 @@ class KtpTableSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		DB::table('ktp')->delete();
+		// DB::table('ppl_dukcapil_ktp')->delete();
 		Model::unguard();
 		Ktp::create([
 			'nik' => 'a', 
