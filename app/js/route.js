@@ -40,6 +40,12 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
         controller: function($scope) {
         }
       })
+      .state('ktp-admin-edit', {
+        url: "/ktp-admin-edit/:id",
+        templateUrl: "app/partials/ktp-admin-edit.html",
+        controller: function($scope) {
+        }
+      })
       .state('ktp-admin-detail', {
         url: "/ktp-admin/detail/:id",
         templateUrl: "app/partials/ktp-admin-detail.html",

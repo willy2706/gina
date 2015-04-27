@@ -334,7 +334,78 @@ ginaAppControllers.controller('KtpAdminIndexCtrl', ['$scope', '$compile', 'Serve
 		}
 
 		$scope.edit = function($nik) {
-			// $state.go('ktp-admin-detail', {'id' : $nik})
+			$state.go('ktp-admin-edit', {'id' : $nik})
+		}
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+	}]
+);
+
+ginaAppControllers.controller('KtpAdminEditCtrl', ['$scope', '$compile', 'Server', 'User', '$state', '$stateParams',
+	function ($scope, $compile, Server, User, $state, $stateParams) {
+		$scope.init = function() {
+			$scope.jenis_kelamin_list = ['Laki-Laki', 'Perempuan']
+			$scope.gol_darah_list = ['O', 'A', 'B', 'AB']
+			$scope.agama_list = ['','Islam', 'Kristen Protestan', 'Kristen Katolik', 'Budha', 'Hindu']
+			Server.get('ktp/index/'+$stateParams.id).then(function(data) {
+				// $scope.datas = data;
+				$scope.nik = data.nik
+				$scope.nama = data.nama
+				$scope.password = data.password
+				$scope.kota_lahir = data.kota_lahir
+				$scope.tanggal_lahir = new Date(moment(data.tanggal_lahir, 'YYYY-MM-DD hh:mm A').valueOf())
+				$scope.jenis_kelamin = data.jenis_kelamin
+				$scope.gol_darah = data.gol_darah
+				$scope.alamat = data.alamat
+				$scope.rt = data.rt
+				$scope.rw = data.rw
+				$scope.kel_desa = data.kel_desa
+				$scope.agama = data.agama
+				$scope.status = data.status
+				$scope.kec = data.kec
+				$scope.kewarganegaraan = data.kewarganegaraan
+				$scope.tgl_kadaluarsa = new Date(moment(data.tgl_kadaluarsa, 'YYYY-MM-DD hh:mm A').valueOf())
+				$scope.kota_kab = data.kota_kab
+				$scope.kode_pos = data.kode_pos
+				// params.kota_dikeluarkan = 'Bandung' 
+				// params.prov_dikeluarkan = 'Jawa Barat'
+				$scope.tgl_dikeluarkan = new Date(moment(data.tgl_dikeluarkan, 'YYYY-MM-DD hh:mm A').valueOf())
+			}, function(err) {
+				console.log(err);
+			});
+		}
+		$scope.isLogged = User.isLogged;
+
+		$scope.update = function() {
+			var params = {}
+			params.nama = $scope.nama
+			params.password = $scope.password
+			params.kota_lahir = $scope.kota_lahir
+			params.tanggal_lahir = $scope.tanggal_lahir
+			params.jenis_kelamin = $scope.jenis_kelamin
+			params.gol_darah = $scope.gol_darah
+			params.alamat = $scope.alamat
+			params.rt = $scope.rt
+			params.rw = $scope.rw
+			params.kel_desa = $scope.kel_desa
+			params.agama = $scope.agama
+			params.status = $scope.status
+			params.kec = $scope.kec
+			params.kewarganegaraan = $scope.kewarganegaraan
+			params.tgl_kadaluarsa = $scope.tgl_kadaluarsa
+			params.kota_kab = $scope.kota_kab
+			params.kode_pos = $scope.kode_pos
+			params.kota_dikeluarkan = 'Bandung'
+			params.prov_dikeluarkan = 'Jawa Barat'
+			params.tgl_dikeluarkan = $scope.tgl_dikeluarkan
+			Server.post('admin/ktp/update/' + $scope.nik, params).then(function (data) {
+				alert('berhasil diubah')
+				$state.go('ktp-admin')
+			}, function (err) {
+				alert('error ' + err)
+			})
 		}
 
 		$scope.$on('logoutEvent', function(event, data) {

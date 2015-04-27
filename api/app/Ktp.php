@@ -22,7 +22,10 @@ class KTP extends Model implements AuthenticatableContract, CanResetPasswordCont
 	 *
 	 * @var array
 	 */
-	// protected $fillable = ['name', 'email', 'password'];
+	protected $fillable = ['password', 'nama', 'kota_lahir', 'tanggal_lahir', 'jenis_kelamin', 'gol_darah',
+							'alamat', 'rt', 'rw', 'kel_desa', 'kec', 'kota_kab', 'kode_pos', 'agama', 'status',
+							'kewarganegaraan', 'tgl_kadaluarsa', 'kota_dikeluarkan', 'prov_dikeluarkan', 'tgl_dikeluarkan'
+							];
 
 	/**
 	 * The attributes excluded from the model's JSON form.

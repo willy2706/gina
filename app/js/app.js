@@ -7,5 +7,12 @@ var ginaApp = angular.module('ginaApp', [
   'ginaApp.constants',
   'ginaApp.validators',
   'ngMessages',
-  'ngStorage'
+  'ngStorage',
+  'angularMoment'
 ]);
+
+ginaApp.filter('moment', function() {
+    return function(input) {
+        return moment(input);
+    };
+});
