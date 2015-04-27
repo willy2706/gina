@@ -9,6 +9,12 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="col-sm-2 control-label">Password</label>
+				<div class="col-sm-10">
+					<input type="password" class="form-control" ng-model= "password" required>
+				</div>
+			</div>
+			<div class="form-group">
 				<label class="col-sm-2 control-label">Tempat Lahir</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" ng-model= "kota_lahir" required>
@@ -23,14 +29,14 @@
 	        <div class="form-group">
 	            <label class="col-sm-2 control-label">Jenis Kelamin</label>
 	            <div class="col-sm-10">
-					<select class="form-control" ng-model="jenis_kelamin" ng-options="s for s in jenis_kelamin_list">
+					<select ng-model="jenis_kelamin" ng-options="s for s in jenis_kelamin_list">
 					</select>
 	            </div>
 	        </div>
 	        <div class="form-group">
 	            <label class="col-sm-2 control-label">Golongan Darah</label>
 	            <div class="col-sm-10">
-	            	<select class="form-control" ng-model="gol_darah" ng-options="s for s in gol_darah_list">
+	            	<select ng-model="gol_darah" ng-options="s for s in gol_darah_list">
 					</select>
 	            </div>
 	        </div>
@@ -40,10 +46,22 @@
 	           		<input type="text" class="form-control" ng-model= "alamat" required>
 	            </div>
 	        </div>
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">Kode Pos</label>
+	            <div class="col-sm-10">
+	           		<input type="number" min="0" ng-model= "kode_pos" required>
+	            </div>
+	        </div>
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">Kota/Kabupaten</label>
+	            <div class="col-sm-10">
+	           		<input type="text" class="form-control" ng-model= "kota_kab" required>
+	            </div>
+	        </div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">RT / RW</label>
+				<label class="col-sm-2 control-label">Kecamatan</label>
 				<div class="col-sm-10">
-					<input type="number" min="0" ng-model ="rt"/> / <input type="number" min = "0" ng-model = "rw">
+					<input type="text" class="form-control" ng-model= "kecamatan" required>
 				</div>
 			</div>
 			<div class="form-group">
@@ -52,22 +70,22 @@
 					<input type="text" class="form-control" ng-model= "kel_desa" required>
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">RT / RW</label>
+				<div class="col-sm-10">
+					<input type="number" min="0" ng-model ="rt"/> / <input type="number" min = "0" ng-model = "rw">
+				</div>
+			</div>
 	        <div class="form-group">
 	            <label class="col-sm-2 control-label">Agama</label>
 	            <div class="col-sm-10">
-	            <select class="form-control" ng-model="agama" ng-options="s for s in agama_list"></select>
+	            <select ng-model="agama" ng-options="s for s in agama_list"></select>
 	            </div>
 	        </div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Status Perkawinan</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" ng-model= "status" required>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Kecamatan</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" ng-model= "kecamatan" required>
 				</div>
 			</div>
 			<div class="form-group">
@@ -80,6 +98,12 @@
 				<label class="col-sm-2 control-label">Berlaku hingga</label>
 				<div class="col-sm-10">
 					<input type="date" ng-model = "tgl_kadaluarsa" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Tanggal dikeluarkan</label>
+				<div class="col-sm-10">
+					<input type="date" ng-model= "tgl_dikeluarkan" required>
 				</div>
 			</div>
 

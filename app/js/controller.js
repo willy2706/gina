@@ -377,8 +377,8 @@ ginaAppControllers.controller('KtpAdminDetailCtrl', ['$scope', 'Server', '$state
 );
 
 
-ginaAppControllers.controller('KtpAdminCreateCtrl', ['$scope', 'User',
-	function ($scope, User) {
+ginaAppControllers.controller('KtpAdminCreateCtrl', ['$scope', 'User', 'Server', '$state', 
+	function ($scope, User, Server, $state) {
 		$scope.nama = null
 		$scope.isLogged = User.isLogged
 		$scope.jenis_kelamin = 'Laki-Laki'
@@ -390,7 +390,33 @@ ginaAppControllers.controller('KtpAdminCreateCtrl', ['$scope', 'User',
 		$scope.rt = 0;
 		$scope.rw = 0;
 		$scope.create = function() {
-			console.log($scope.nama)
+			var params = {}
+			params.nama = $scope.nama
+			params.password = $scope.password
+			params.kota_lahir = $scope.kota_lahir
+			params.tanggal_lahir = $scope.tanggal_lahir
+			params.jenis_kelamin = $scope.jenis_kelamin
+			params.gol_darah = $scope.gol_darah
+			params.alamat = $scope.alamat
+			params.rt = $scope.rt
+			params.rw = $scope.rw
+			params.kel_desa = $scope.kel_desa
+			params.agama = $scope.agama
+			params.status = $scope.status
+			params.kec = $scope.kecamatan
+			params.kewarganegaraan = $scope.kewarganegaraan
+			params.tgl_kadaluarsa = $scope.tgl_kadaluarsa
+			params.kota_kab = $scope.kota_kab
+			params.kode_pos = $scope.kode_pos
+			params.kota_dikeluarkan = 'Bandung'
+			params.prov_dikeluarkan = 'Jawa Barat'
+			params.tgl_dikeluarkan = $scope.tgl_dikeluarkan
+			Server.post('admin/ktp/create', params).then(function (data) {
+				alert('berhasil ditambahkan')
+				$state.go('ktp-admin')
+			}, function (err) {
+				alert('error ' + err)
+			})
 		}
 	}]
 )
