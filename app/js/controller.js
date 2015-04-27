@@ -934,3 +934,112 @@ ginaAppControllers.controller('AktaCeraiAdminDetailCtrl', ['$scope', 'Server', '
 		});
 	}]
 );
+
+ginaAppControllers.controller('CreateAktaSahAkuAnakCtrl', ['$scope', '$compile', 'Server', 'User',
+	function ($scope, $compile, Server, User) {
+		$scope.isFetchingData = false;
+		$scope.isLogged = User.isLogged;
+		if ($scope.isLogged) {
+			$scope.isFetchingData = true;
+			Server.get('check/aktasahakuanakstatus/' + User.nik).then(function(data) {
+				console.log(data);
+				if (data == 'requested') {
+					$scope.isRequested = true;
+				} else {
+					$scope.isRequested = false;
+				}
+				$scope.isFetchingData = false;
+			});
+		}
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+
+		$scope.submitRequestAktaSahAkuAnak = function() {
+			var params = angular.copy({});
+
+			params.nik = $scope.nik;
+			params.no_akta_kawin = $scope.no_akta_kawin;
+			params.no_akta_lahir = $scope.no_akta_lahir;
+
+			Server.post('aktasahakuanak/request', params).then(function(data) {
+				$scope.isRequested = true;
+			}, function(err) {
+				console.log(err);
+			})
+		}
+	}]
+);
+
+ginaAppControllers.controller('AktaSahAkuAnakAdminIndexCtrl', ['$scope', '$compile', 'Server', 'User',
+	function ($scope, $compile, Server, User) {
+		$scope.init = function() {
+			Server.get('admin/aktasahakuanak/all').then(function(data) {
+				$scope.datas = data;
+			}, function(err) {
+				console.log(err);
+			});
+		}
+		$scope.isLogged = User.isLogged;
+		$scope.statusIncludes = [];
+
+		$scope.approve = function($no_akta)  {
+			Server.get('admin/aktasahakuanak/approve/' + $no_akta).then(function(data) {
+				$scope.init();
+			}, function(err){
+				console.log(err);
+			});
+		}
+
+		$scope.reject = function($no_akta) {
+			var params = angular.copy({});
+			params.message = 'lala';
+			Server.post('admin/aktasahakuanak/reject/' + $no_akta, params).then(function(data) {
+				$scope.init();
+				console.log(data);
+			}, function(err) {
+				console.log(err);
+			});
+		}
+
+		$scope.includeStatus = function($status) {
+			var i = $.inArray($status, $scope.statusIncludes);
+			if (i > -1) { //berarti uda ada
+				$scope.statusIncludes.splice(i, 1); //jadi dibuang
+			} else {
+				$scope.statusIncludes.push($status);
+			}
+			console.log($scope.statusIncludes);
+		}
+
+		$scope.statusFilter = function (data) {
+			if ($scope.statusIncludes.length > 0) {
+				if ($.inArray(data.status, $scope.statusIncludes) < 0)
+					return;
+			}
+			return data;
+		}
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+	}]
+);
+
+ginaAppControllers.controller('AktaSahAkuAnakAdminDetailCtrl', ['$scope', 'Server', '$stateParams',
+	function ($scope, Server, $stateParams) {
+		Server.get('admin/aktasahakuanak/view/' + $stateParams.id)
+		.then(function(data) {
+			console.log($stateParams.id);
+			console.log(data);
+			$scope.datas = data;
+		}, function(err) {
+			console.log(err);
+		});
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+	}]
+);

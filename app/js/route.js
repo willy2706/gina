@@ -180,6 +180,27 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
           // $scope.isFeatures = true;
         }
       })
+      .state('akta-sah-aku-anak', {
+        url: "/akta-sah-aku-anak",
+        templateUrl: "app/partials/create-akta-sah-aku-anak.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-sah-aku-anak-admin', {
+        url: "/akta-sah-aku-anak-admin",
+        templateUrl: "app/partials/akta-sah-aku-anak-admin-index.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-sah-aku-anak-admin-detail', {
+        url: "/akta-sah-aku-anak-admin/detail/:id",
+        templateUrl: "app/partials/akta-sah-aku-anak-admin-detail.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
       .state('contact', {
         url: '/contact',
         templateUrl: 'app/partials/datakependudukan.html',
