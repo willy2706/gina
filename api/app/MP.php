@@ -29,4 +29,9 @@ class MP extends Model {
     	return $this->hasMany('Pengikut_MP');
     }
 
+    public function getStatusAttribute ($value) {
+		$stat = ($this->request ? 'requested' : ($this->message == NULL ? 'approved' :  'rejected'));
+		return $stat;
+	}
+
 }
