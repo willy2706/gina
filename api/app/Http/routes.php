@@ -10,8 +10,11 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use Illuminate\Http\Request;
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', function (Request $req) {
+	return response('it works!');
+});
 
 Route::get('home', 'HomeController@index');
 

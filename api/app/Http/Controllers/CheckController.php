@@ -6,8 +6,11 @@ use App\Akta_Lahir;
 use App\Akta_Mati;
 use App\Akta_Kawin;
 use App\Akta_Sah_Aku_Anak;
-
+use Auth;
 class CheckController extends Controller {
+	public function getAuthenticated() {
+		return Auth::check() ? Auth::user() : 'false';
+	}
 	public function getNik($nik) {
 		$k = Ktp::wherenik($nik)->get();
 		return (count($k) > 0) ? 'true' : 'false';
