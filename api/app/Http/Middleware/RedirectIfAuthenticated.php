@@ -37,8 +37,19 @@ class RedirectIfAuthenticated {
 		{
 			// return new RedirectResponse(url('/home'));
 		}
+		 $headers = [
+            'Access-Control-Allow-Origin' => '*',
+            'Access-Control-Allow-Headers' => 'Origin, Content-Type'
+        ];
+		
+		$response = $next($request);
 
-		return $next($request);
+        foreach ($headers as $key => $value) {
+            $response->header($key, $value);
+        }
+
+        return $response;
+		// return $next($request);
 	}
 
 }
