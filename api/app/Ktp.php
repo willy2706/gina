@@ -34,9 +34,15 @@ class KTP extends Model implements AuthenticatableContract, CanResetPasswordCont
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+	protected $appends = ['is_admin'];
+
 	//mutator password
 	public function setPasswordAttribute($value) {
         $this->attributes['password'] = \Hash::make($value);
+    }
+
+    public function getIsAdminAttribute() {
+    	return $this->role == 'admin';
     }
 
 }

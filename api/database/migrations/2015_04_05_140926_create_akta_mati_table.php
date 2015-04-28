@@ -26,6 +26,8 @@ class CreateAktaMatiTable extends Migration {
 			$table->string('nip_kepala_dinas');
 			$table->boolean('request');
 			$table->string('message')->nullable();
+			$table->string("nik_request");
+			$table->foreign('nik_request')->references('nik')->on('ppl_dukcapil_ktp');
 			$table->timestamps();
 		});
 	}

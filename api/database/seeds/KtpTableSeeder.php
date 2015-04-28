@@ -15,20 +15,59 @@ class KtpTableSeeder extends Seeder {
 		// DB::table('ppl_dukcapil_ktp')->delete();
 		Model::unguard();
 		Ktp::create([
-			'nik' => 'a', 
-			'password' => 'aaa',
-			'nama' => 'abc'
+			'nik' => 'budi', 
+			'password' => 'budi',
+			'nama' => 'budi',
+			'kota_lahir' => 'Bandung',
+			'tanggal_lahir' => '1995-07-07',
+			'jenis_kelamin' => 'laki-laki',
+			'gol_darah' => 'AB',
+			'alamat' => 'Jalan Ganesha 10',
+			'rt' => 10,
+			'rw' => 20,
+			'kel_desa' => '-',
+			'kec' => 'Bandung Kota',
+			'kota_kab' => 'Bandung',
+			'kode_pos' => 40141,
+			'agama' => 'Islam',
+			'status' => 'Belum menikah'
 		]);
 		Ktp::create([
-			'nik' => 'b', 
-			'password' => 'bbb',
-			'nama' => 'bcd'
+			'nik' => 'andi', 
+			'password' => 'andi',
+			'nama' => 'andi',
+			'kota_lahir' => 'Jakarta',
+			'tanggal_lahir' => '1994-07-07',
+			'jenis_kelamin' => 'laki-laki',
+			'gol_darah' => 'A',
+			'alamat' => 'Jalan Gelap Nyawang 10',
+			'rt' => 13,
+			'rw' => 12,
+			'kel_desa' => '-',
+			'kec' => 'Bandung Pusat',
+			'kota_kab' => 'Bandung',
+			'kode_pos' => 40141,
+			'agama' => 'Islam',
+			'status' => 'Sudah menikah'
 		]);
 		Ktp::create([
 			'nik' => 'admin', 
 			'password' => 'admin',
 			'nama' => 'admin',
-			'is_admin' => true
+			'kota_lahir' => 'Bandung',
+			'tanggal_lahir' => '1995-07-07',
+			'jenis_kelamin' => 'laki-laki',
+			'gol_darah' => 'O',
+			'alamat' => 'Jalan Asia Afrika',
+			'rt' => 65,
+			'rw' => 13,
+			'kel_desa' => '-',
+			'kec' => 'Cibadak',
+			'kota_kab' => 'Bandung',
+			'kode_pos' => 40141,
+			'agama' => 'Islam',
+			'status' => 'Belum menikah',
+			'role' => 'admin'
 		]);
 	}
 

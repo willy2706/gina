@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAlamatKkTable extends Migration {
+class CreateTableDukcapilDummy extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,8 +12,10 @@ class AddAlamatKkTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('ppl_dukcapil_kk', function(Blueprint $table) {
-			$table->string('alamat')->after('nik_kepala_kel');
+		Schema::create('ppl_ukmin_dukcapil', function(Blueprint $table)
+		{
+			$table->string('nik', 20)->unique();
+			$table->string('password', 20)->unique();
 		});
 	}
 
@@ -24,9 +26,7 @@ class AddAlamatKkTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('ppl_dukcapil_kk', function(Blueprint $table) {
-			$table->dropColumn('alamat');
-		});
+		Schema::drop('ppl_ukmin_dukcapil');
 	}
 
 }

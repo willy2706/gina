@@ -39,6 +39,7 @@ class CreateKtpTable extends Migration {
 			$table->string('kota_dikeluarkan');
 			$table->string('prov_dikeluarkan');
 			$table->date('tgl_dikeluarkan');
+			$table->string('role')->default('masyarakat');
 			$table->timestamps();
 			$table->rememberToken();
 		});
