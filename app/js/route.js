@@ -84,10 +84,29 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('mp', {
-        url: '/mp',
-        templateUrl: 'app/partials/create-mutasi.html',
+        url: "/mp",
+        templateUrl: "app/partials/mp-index.html",
+        controller: function($scope) {
+        }
+      })
+      .state('mp-request', {
+        url: '/mp/request',
+        templateUrl: 'app/partials/mp-request.html',
         controller: function($scope) {
           // $scope.isBlog = true;
+        }
+      })
+      .state('mp-admin', {
+        url: "/mp-admin",
+        templateUrl: "app/partials/mp-admin-index.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('mp-admin-detail', {
+        url: "/mp-admin/detail/:id",
+        templateUrl: "app/partials/mp-admin-detail.html",
+        controller: function($scope) {
         }
       })
       .state('mp-app', {

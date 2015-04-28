@@ -7,12 +7,17 @@ use Request;
 
 class MPController extends Controller {
 
+	public function getStatus($nik) {
+		$k = MP::wherenik($nik)->get();
+		return response($k);
+	}
+
 	function postRequest() {
 		$input = Input::all();
 		//return response($input);
 		$mp = new MP();
 		// $mp->no_mp = genereate string
-		$mp->no_mp = '1234567890';
+		$mp->no_mp = $this->getTimestamp();
 		$mp->nik = $input['nik'];
 		$mp->alamat_tujuan = $input['alamat_tujuan'];
 		$mp->request = true;

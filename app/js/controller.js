@@ -233,6 +233,33 @@ ginaAppControllers.controller('KKIndexCtrl', ['$scope', '$compile', 'Server', 'U
 	}]
 );
 
+ginaAppControllers.controller('MPIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
+		$scope.init = function() {
+			Server.get('mp/status/' + User.nik).then(function(data) {
+				$scope.datas = data;
+				$scope.canRequest = true;
+				/*for (var i = 0; i < data.length; ++i) {
+					if (data[i].status == 'approved' || data[i].status == 'requested') {
+						$scope.canRequest = false;
+					}
+				}*/
+			}, function(err) {
+				console.log(err);
+			});
+		}
+		$scope.isLogged = User.isLogged;
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+
+		$scope.request = function () {
+			$state.go('mp-request');
+		}
+	}]
+);
+
 ginaAppControllers.controller('KtpIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
 	function ($scope, $compile, Server, User, $state) {
 		$scope.isLogged = User.isLogged;
@@ -281,6 +308,70 @@ ginaAppControllers.controller('KKAdminIndexCtrl', ['$scope', '$compile', 'Server
 			var params = angular.copy({});
 			params.message = 'ga ada alasan';
 			Server.post('admin/kk/reject/' + $no_kk, params).then(function(data) {
+				alert('berhasil di reject');
+				$scope.init();
+				console.log(data);
+			}, function(err) {
+				console.log(err);
+			});
+		}
+
+		$scope.includeStatus = function($status) {
+			var i = $.inArray($status, $scope.statusIncludes);
+			if (i > -1) { //berarti uda ada
+				$scope.statusIncludes.splice(i, 1); //jadi dibuang
+			} else {
+				$scope.statusIncludes.push($status);
+			}
+			console.log($scope.statusIncludes);
+		}
+
+		$scope.statusFilter = function (data) {
+			if ($scope.statusIncludes.length > 0) {
+				if ($.inArray(data.status, $scope.statusIncludes) < 0)
+					return;
+			}
+			return data;
+		}
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+	}]
+);
+
+ginaAppControllers.controller('MPAdminIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
+		$scope.init = function() {
+			Server.get('admin/mp/all').then(function(data) {
+				console.log(data);
+				$scope.datas = data;
+			}, function(err) {
+				console.log(err);
+			});
+		}
+		$scope.isLogged = User.isLogged;	
+		console.log($scope.isLogged);
+		$scope.statusIncludes = [];
+
+		$scope.create = function() {
+			$state.go('mp-admin-create')
+		}
+
+		$scope.approve = function($no_mp)  {
+			Server.get('admin/mp/approve/' + $no_mp).then(function(data) {
+				// console.log(data);
+				alert('berhasil di approve');
+				$scope.init();
+			}, function(err){
+				console.log(err);
+			});
+		}
+
+		$scope.reject = function($no_mp) {
+			var params = angular.copy({});
+			params.message = 'ga ada alasan';
+			Server.post('admin/kk/reject/' + $no_mp, params).then(function(data) {
 				alert('berhasil di reject');
 				$scope.init();
 				console.log(data);
@@ -418,6 +509,23 @@ ginaAppControllers.controller('KKAdminDetailCtrl', ['$scope', 'Server', '$stateP
 	function ($scope, Server, $stateParams, User) {
 		$scope.isLogged = User.isLogged;
 		Server.get('admin/kk/view/' + $stateParams.id)
+		.then(function(data) {
+			console.log($stateParams.id);
+			console.log(data);
+			$scope.datas = data;
+		}, function(err) {
+
+		});
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+	}]
+);
+
+ginaAppControllers.controller('MPAdminDetailCtrl', ['$scope', 'Server', '$stateParams', 'User',
+	function ($scope, Server, $stateParams, User) {
+		$scope.isLogged = User.isLogged;
+		Server.get('admin/mp/view/' + $stateParams.id)
 		.then(function(data) {
 			console.log($stateParams.id);
 			console.log(data);
