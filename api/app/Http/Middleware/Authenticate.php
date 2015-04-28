@@ -36,19 +36,19 @@ class Authenticate {
 		{
 				return redirect()->guest('auth/login');
 		}
-		 $headers = [
-            'Access-Control-Allow-Origin' => '*',
-            'Access-Control-Allow-Headers' => 'Origin, Content-Type'
-        ];
+		//  $headers = [
+  //           'Access-Control-Allow-Origin' => '*',
+  //           'Access-Control-Allow-Headers' => 'Origin, Content-Type'
+  //       ];
 		
-		$response = $next($request);
+		// $response = $next($request);
 
-        foreach ($headers as $key => $value) {
-            $response->header($key, $value);
-        }
+  //       foreach ($headers as $key => $value) {
+  //           $response->header($key, $value);
+  //       }
 
-        return $response;
-		// return $next($request);
+        // return $response;
+		return $next($request);
 	}
 
 }

@@ -9,7 +9,8 @@ use App\Akta_Sah_Aku_Anak;
 use Auth;
 class CheckController extends Controller {
 	public function getAuthenticated() {
-		return Auth::check() ? Auth::user() : 'false';
+		$v = Auth::check() ? Auth::user() : 'false';
+		return $v->header('Access-Control-Allow-Origin' , '*');
 	}
 	public function getNik($nik) {
 		$k = Ktp::wherenik($nik)->get();
