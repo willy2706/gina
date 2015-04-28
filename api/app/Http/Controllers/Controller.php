@@ -8,11 +8,6 @@ use Illuminate\Http\Request;
 abstract class Controller extends BaseController {
 
 	use DispatchesCommands, ValidatesRequests;
-   public function __construct()
-    {
-        $this->middleware('cors');
-    }
-
 	public function getTimestamp() {
 		$date = new \DateTime();
 		return $date->getTimestamp();

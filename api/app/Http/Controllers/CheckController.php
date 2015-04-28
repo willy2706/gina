@@ -10,7 +10,7 @@ use Auth;
 class CheckController extends Controller {
 	public function getAuthenticated() {
 		$v = Auth::check() ? Auth::user() : 'false';
-		return $v->header('Access-Control-Allow-Origin' , '*');
+		return $v;
 	}
 	public function getNik($nik) {
 		$k = Ktp::wherenik($nik)->get();
