@@ -34,17 +34,21 @@ class Authenticate {
 	{
 		if ($this->auth->guest())
 		{
-			if ($request->ajax())
-			{
-				return response('Unauthorized.', 401);
-			}
-			else
-			{
 				return redirect()->guest('auth/login');
-			}
 		}
+		 $headers = [
+            'Access-Control-Allow-Origin' => '*',
+            'Access-Control-Allow-Headers' => 'Origin, Content-Type'
+        ];
+		
+		$response = $next($request);
 
-		return $next($request);
+        foreach ($headers as $key => $value) {
+            $response->header($key, $value);
+        }
+
+        return $response;
+		// return $next($request);
 	}
 
 }
