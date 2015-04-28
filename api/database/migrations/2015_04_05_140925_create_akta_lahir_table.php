@@ -24,9 +24,9 @@ class CreateAktaLahirTable extends Migration {
 			$table->integer('anak_ke');
 			$table->string('jenis_kelamin');
 			$table->string('nik_ayah');
-			// $table->foreign('nik_ayah')->references('nik')->on('ktp');
+			$table->foreign('nik_ayah')->references('nik')->on('ppl_dukcapil_ktp');
 			$table->string('nik_ibu');
-			// $table->foreign('nik_ibu')->references('nik')->on('ktp');
+			$table->foreign('nik_ibu')->references('nik')->on('ppl_dukcapil_ktp');
 			$table->string('kewarganegaraan');
 			$table->string('kota_dikeluarkan');
 			$table->date('tgl_dikeluarkan');

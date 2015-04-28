@@ -17,11 +17,11 @@ class CreateAktaPengesahanDanPengakuanAnakTable extends Migration {
 			$table->increments('id');
 			$table->string('no_akta');
 			$table->string('nik');
-			//$table->foreign('nik')->references('nik')->on('ppl_dukcapil_ktp');
+			$table->foreign('nik')->references('nik')->on('ppl_dukcapil_ktp');
 			$table->string('no_akta_kawin');
-			//$table->foreign('no_akta_kawin')->references('no_akta')->on('ppl_dukcapil_akta_kawin');
+			$table->foreign('no_akta_kawin')->references('no_akta')->on('ppl_dukcapil_akta_kawin');
 			$table->string('no_akta_lahir');
-			//$table->foreign('no_akta_lahir')->references('no_akta')->on('ppl_dukcapil_akta_lahir');
+			$table->foreign('no_akta_lahir')->references('no_akta')->on('ppl_dukcapil_akta_lahir');
 			$table->boolean('request');
 			$table->string('message')->nullable();
 			$table->timestamps();
