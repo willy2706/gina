@@ -47,6 +47,7 @@ header.directive('header', function () {
 				$scope.reset();
 				// $scope.isContact = true;
 			}
+			$scope.doneLoading = false;
 			User.check().then(function(data) {
 				console.log(User);
 				$scope.user = angular.copy({});
@@ -57,6 +58,7 @@ header.directive('header', function () {
 				$scope.isAccountError = false;
 				$scope.isLoading = false;
 				console.log(User.isLogged);
+				$scope.doneLoading = true;
 			});
 			if ($location.path() == '/' || $location.path() == '') {
 				$scope.isHome = true;
