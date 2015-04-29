@@ -16,7 +16,7 @@ class Cors implements Middleware {
  public function handle($request, Closure $next)
  {
  	// return $next($request);
-  return $next($request)->header('Access-Control-Allow-Origin' , '*')
+  return $next($request)->header('Access-Control-Allow-Origin' , 'http://www.e-gov-bandung.tk')
           ->header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE')
           ->header('Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization, X-Requested-With');
  }
