@@ -1,7 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\MP;
 class Pengikut_MP extends Model {
 
 	/**
@@ -18,6 +18,8 @@ class Pengikut_MP extends Model {
 	 */
 	// protected $fillable = [];
 
+	protected $appends = ['nama'];
+
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
@@ -26,7 +28,16 @@ class Pengikut_MP extends Model {
 	// protected $hidden = ['password', 'remember_token'];
 
 	public function mp() {
-		return $this->belongsTo('MP');
+		return $this->belongsTo('App\MP', 'no_mp', 'no_mp');
+	}
+
+	public function ktp() {
+		return $this->belongsTo('App\Ktp', 'nik_pengikut', 'nik');
+	}
+
+	public function getNamaAttribute($value) {
+		$x = $this->ktp->nama;
+		return $x;
 	}
 
 }
