@@ -9,8 +9,8 @@ use App\Akta_Sah_Aku_Anak;
 use Auth;
 class CheckController extends Controller {
 	public function getAuthenticated() {
-		$v = Auth::check() ? Auth::user() : 'false';
-		return $v;
+		$v = \Cookie::get('pplbandung');
+		return $v == false ? 'false' : $v;
 	}
 	public function getNik($nik) {
 		$k = Ktp::wherenik($nik)->get();

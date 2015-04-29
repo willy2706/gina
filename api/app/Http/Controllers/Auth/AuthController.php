@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use Auth;
+use Symfony\Component\HttpFoundation\Cookie;
 
 class AuthController extends Controller {
 
@@ -39,7 +40,7 @@ class AuthController extends Controller {
 	public function postLogin(Request $request) {
 		$r = $request->all();	
 		if (Auth::attempt(['nik' => $r['nik'], 'password' => $r['password']])) {
-			return Auth::user();
+			return response(Auth::user())->withCookie(cookie('pplbandung', Auth::user()->id, 20));
 		}
 		return 'false';
 	}
@@ -48,8 +49,17 @@ class AuthController extends Controller {
 		return 'login';
 	}
 
-	public function getCheck() {
-		return (Auth::check()) ? 'true' : 'false';
+	public function getLogout() {
+		
+	}
+
+	public function getCheck(Request $req) {
+		// return $req;
+		$v = \Cookie::get('pplbandung');
+		return $v == false ? 'false' : $v;
+		// var_dump($req->ajax());
+		// var_dump(Auth::user());
+		// return (Auth::check()) ? 'true' : 'false';
 	}
 
 }
