@@ -47,9 +47,10 @@ header.directive('header', function () {
 				$scope.reset();
 				// $scope.isContact = true;
 			}
-			$scope.doneLoading = false;
+			$scope.doneLoading = true;
 			User.check().then(function(data) {
 				console.log(User);
+				// alert('asdf')
 				$scope.user = angular.copy({});
 				$scope.user.isUserLogged = User.isLogged;
 				$scope.user.nama = User.nama;
@@ -58,6 +59,17 @@ header.directive('header', function () {
 				$scope.isAccountError = false;
 				$scope.isLoading = false;
 				console.log(User.isLogged);
+				$scope.doneLoading = true;
+			}, function (err) {
+				// alert('asdfasdfd')
+				console.log(User.isLogged);
+				$scope.user = angular.copy({});
+				$scope.user.isUserLogged = User.isLogged;
+				$scope.user.nama = User.nama;
+				$scope.user.nik = User.nik;
+				$scope.user.isAdmin = User.isAdmin;
+				$scope.isAccountError = false;
+				$scope.isLoading = false;
 				$scope.doneLoading = true;
 			});
 			if ($location.path() == '/' || $location.path() == '') {

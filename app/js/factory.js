@@ -28,6 +28,8 @@ ginaAppFactory.factory('User', function($sessionStorage, ApiURL, $http, $q) {
 					console.log(err1);
 					def.reject()
 				})
+			} else {
+				def.reject()
 			}
 		}, function(err) {
 			console.log(err)
