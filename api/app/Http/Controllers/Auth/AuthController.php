@@ -40,7 +40,7 @@ class AuthController extends Controller {
 	public function postLogin(Request $request) {
 		$r = $request->all();	
 		if (Auth::attempt(['nik' => $r['nik'], 'password' => $r['password']])) {
-			return response(Auth::user())->withCookie(cookie('pplbandung', Auth::user()->id, 20));
+			return response(Auth::user())->withCookie(cookie('pplbandung', Auth::user()->id, 200));
 		}
 		return 'false';
 	}

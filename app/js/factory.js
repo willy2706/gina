@@ -1,14 +1,39 @@
 var ginaAppFactory = angular.module('ginaApp.factories', []);
 
-ginaAppFactory.factory('User', function($sessionStorage) {
+ginaAppFactory.factory('User', function($sessionStorage, ApiURL, $http, $q) {
 	var self = this;
 	self.id = '';
 	self.nama = '';
 	self.isLogged = false;
 	self.nik = '';
 	self.isAdmin = false;
-	if ($sessionStorage.user) {
-		self = $sessionStorage.user;
+	self.check = function() {
+		var def = $q.defer()
+		if ($sessionStorage.user) {
+			self = $sessionStorage.user;
+		}
+		$http.get(ApiURL + 'check/authenticated').then(function(data) {
+			if (data.data != 'false') {
+				console.log(data.data);
+				$http.get(ApiURL + 'check/ktp/' + data.data).then(function(data1) {
+					console.log("ok")
+					self.id = data1.data.id
+					self.nama = data1.data.nama
+					self.isLogged = true
+					self.nik = data1.data.nik
+					self.isAdmin = data1.data.is_admin
+					console.log("ok")
+					def.resolve();
+				}, function (err1) {
+					console.log(err1);
+					def.reject()
+				})
+			}
+		}, function(err) {
+			console.log(err)
+			def.reject()
+		});
+		return def.promise;
 	}
 	self.session = function() {
         $sessionStorage.user = self;

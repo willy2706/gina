@@ -5,7 +5,7 @@ header.directive('header', function () {
 		restrict: 'A',
 		replace: true, 
 		templateUrl: "app/partials/header.html",
-		controller: function($scope, $location, $state, Server, User, $rootScope){
+		controller: function($scope, $location, $state, Server, User, $rootScope, $http, ApiURL){
 			$scope.reset = function() {
 				$scope.user = angular.copy({});
 				$scope.user.isUserLogged = User.isLogged;
@@ -47,16 +47,17 @@ header.directive('header', function () {
 				$scope.reset();
 				// $scope.isContact = true;
 			}
-
-			
-			$scope.user = angular.copy({});
-			$scope.user.isUserLogged = User.isLogged;
-			$scope.user.nama = User.nama;
-			$scope.user.nik = User.nik;
-			$scope.user.isAdmin = User.isAdmin;
-			$scope.isAccountError = false;
-			$scope.isLoading = false;
-			console.log(User.isLogged);
+			User.check().then(function(data) {
+				console.log(User);
+				$scope.user = angular.copy({});
+				$scope.user.isUserLogged = User.isLogged;
+				$scope.user.nama = User.nama;
+				$scope.user.nik = User.nik;
+				$scope.user.isAdmin = User.isAdmin;
+				$scope.isAccountError = false;
+				$scope.isLoading = false;
+				console.log(User.isLogged);
+			});
 			if ($location.path() == '/' || $location.path() == '') {
 				$scope.isHome = true;
 			} else if ($location.path() == '/kk') {
