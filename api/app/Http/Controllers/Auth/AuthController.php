@@ -54,7 +54,7 @@ class AuthController extends Controller {
 	}
 
 	public function getCheck(Request $req) {
-		// return $req;
+		return $req;
 		$v = \Cookie::get('pplbandung');
 		return $v == false ? 'false' : $v;
 		// var_dump($req->ajax());

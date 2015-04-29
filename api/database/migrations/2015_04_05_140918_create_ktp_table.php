@@ -19,6 +19,8 @@ class CreateKtpTable extends Migration {
 			$table->index('nik');
 			$table->string('password');
 			$table->string('nama');
+			$table->string('username')->unique();
+			$table->string('email');
 			$table->string('kota_lahir');
 			$table->date('tanggal_lahir');
 			$table->string('jenis_kelamin');
