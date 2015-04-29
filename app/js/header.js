@@ -47,7 +47,7 @@ header.directive('header', function () {
 				$scope.reset();
 				// $scope.isContact = true;
 			}
-			$scope.doneLoading = true;
+			$scope.doneLoading = false;
 			User.check().then(function(data) {
 				console.log(User);
 				// alert('asdf')
