@@ -50,7 +50,8 @@ class AuthController extends Controller {
 	}
 
 	public function getLogout() {
-		
+		$v = \Cookie::forget('pplbandung');
+		return response('')->withCookie($v);
 	}
 
 	public function getCheck(Request $req) {
