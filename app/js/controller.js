@@ -120,26 +120,49 @@ ginaAppControllers.controller('CreateMutasiCtrl', ['$scope', '$compile', 'Server
 
 ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', 'User',
 	function($scope, $compile, Server, User) {
-		$scope.isFetchingData = false;
-		$scope.isLogged = User.isLogged;
-		if ($scope.isLogged) {
-			$scope.isFetchingData = true;	
-			Server.get('check/kkstatus/'+User.nik).then(function(data) {
-				if (data == 'requested') $scope.isRequested = true;
-				else $scope.isRequested = false;
-				$scope.isFetchingData = false;
-			});
+		// $scope.isFetchingData = false;
+		// $scope.isLogged = User.isLogged;
+		// if ($scope.isLogged) {
+		// 	$scope.isFetchingData = true;	
+		// 	Server.get('check/kkstatus/'+User.nik).then(function(data) {
+		// 		if (data == 'requested') $scope.isRequested = true;
+		// 		else $scope.isRequested = false;
+		// 		$scope.isFetchingData = false;
+		// 	});
+		// }
+		// $scope.status_hub = [];
+		// $scope.status_hub[0] = "Kepala Keluarga";
+		// $scope.status_hub_data = ["Istri", "Suami", "Anak", "Cucu"];
+		// $scope.status_hub_data_init = ["Kepala Keluarga"];
+		// $scope.count = 1;
+		// $scope.nik_keluarga = [];
+		// $scope.nik_keluarga[0] = User.nik;
+		// $scope.pend_kel = [];
+		// $scope.pend_kel = ["SD"];
+		// $scope.pend_kel_data = ["SD", "SMP", "SMA", "S1", "S2", "S3"];
+
+		$scope.init = function() {
+			$scope.isFetchingData = false;
+			$scope.isLogged = User.isLogged;
+			if ($scope.isLogged) {
+				$scope.isFetchingData = true;	
+				Server.get('check/kkstatus/'+User.nik).then(function(data) {
+					if (data == 'requested') $scope.isRequested = true;
+					else $scope.isRequested = false;
+					$scope.isFetchingData = false;
+				});
+			}
+			$scope.status_hub = [];
+			$scope.status_hub[0] = "Kepala Keluarga";
+			$scope.status_hub_data = ["Istri", "Suami", "Anak", "Cucu"];
+			$scope.status_hub_data_init = ["Kepala Keluarga"];
+			$scope.count = 1;
+			$scope.nik_keluarga = [];
+			$scope.nik_keluarga[0] = User.nik;
+			$scope.pend_kel = [];
+			$scope.pend_kel = ["SD"];
+			$scope.pend_kel_data = ["SD", "SMP", "SMA", "S1", "S2", "S3"];
 		}
-		$scope.status_hub = [];
-		$scope.status_hub[0] = "Kepala Keluarga";
-		$scope.status_hub_data = ["Istri", "Suami", "Anak", "Cucu"];
-		$scope.status_hub_data_init = ["Kepala Keluarga"];
-		$scope.count = 1;
-		$scope.nik_keluarga = [];
-		$scope.nik_keluarga[0] = User.nik;
-		$scope.pend_kel = [];
-		$scope.pend_kel = ["SD"];
-		$scope.pend_kel_data = ["SD", "SMP", "SMA", "S1", "S2", "S3"];
 
 		$scope.addKeluarga = function() {
 			$scope.status_hub[$scope.count] = "Istri";
@@ -174,10 +197,11 @@ ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', '
 			$scope.count++;
 		}
 
-		$scope.$on('logoutEvent', function(event, data) {
+		$scope.$on('logoutEvent', function (event, data) {
 			// console.log(data);
 			// console.log('aaaaa');
 			$scope.isLogged = User.isLogged;
+			$scope.init();
 		});
 
 		$scope.submitRequestKK = function() {
@@ -225,10 +249,39 @@ ginaAppControllers.controller('KKIndexCtrl', ['$scope', '$compile', 'Server', 'U
 
 		$scope.$on('logoutEvent', function(event, data) {
 			$scope.isLogged = User.isLogged;
+			$scope.init();
 		});
 
 		$scope.request = function () {
 			$state.go('kk-request');
+		}
+	}]
+);
+
+ginaAppControllers.controller('AktaLahirIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
+		$scope.init = function() {
+			Server.get('aktalahir/status/' + User.nik).then(function(data) {
+				$scope.datas = data;
+				$scope.canRequest = true;
+				for (var i = 0; i < data.length; ++i) {
+					if (data[i].status == 'approved' || data[i].status == 'requested') {
+						$scope.canRequest = false;
+					}
+				}
+			}, function(err) {
+				console.log(err);
+			});
+		}
+		$scope.isLogged = User.isLogged;
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+			$scope.init();
+		});
+
+		$scope.request = function () {
+			$state.go('akta-lahir-request');
 		}
 	}]
 );
@@ -522,6 +575,7 @@ ginaAppControllers.controller('KKAdminDetailCtrl', ['$scope', 'Server', '$stateP
 	}]
 );
 
+
 ginaAppControllers.controller('MPAdminDetailCtrl', ['$scope', 'Server', '$stateParams', 'User',
 	function ($scope, Server, $stateParams, User) {
 		$scope.isLogged = User.isLogged;
@@ -680,33 +734,37 @@ ginaAppControllers.controller('KKAdminCreateCtrl', ['$scope', '$compile', 'Serve
 
 ginaAppControllers.controller('CreateAktaLahirCtrl', ['$scope', '$compile', 'Server', 'User',
 	function ($scope, $compile, Server, User) {
-		$scope.isFetchingData = false;
-		$scope.isLogged = User.isLogged;
-		if ($scope.isLogged) {
-			$scope.isFetchingData = true;
-			Server.get('check/aktalahirstatus/' + User.nik).then(function(data) {
-				console.log(data);
-				if (data == 'requested') {
-					$scope.isRequested = true;
-				} else {
-					$scope.isRequested = false;
-				}
-				$scope.isFetchingData = false;
-			});
+
+		$scope.init = function() {
+			$scope.isFetchingData = false;
+			$scope.isLogged = User.isLogged;
+			if ($scope.isLogged) {
+				$scope.isFetchingData = true;
+				Server.get('check/aktalahirstatus/' + User.nik).then(function(data) {
+					console.log(data);
+					if (data == 'requested') {
+						$scope.isRequested = true;
+					} else {
+						$scope.isRequested = false;
+					}
+					$scope.isFetchingData = false;
+				});
+			}
+
+			$scope.jenis_kelamin = [];
+			$scope.jenis_kelamin_data = ["Laki-Laki", "Perempuan"];
+			$scope.jenis_kelamin_init = "Laki-Laki";
+
+			$scope.kewarganegaraan = "Warga Negara Indonesia";
+			$scope.kewarganegaraan_data = ["Warga Negara Indonesia", "Warga Negara Asing"];
+			$scope.kewarganegaraan_init = ["Warga Negara Indonesia"];
+
+			$scope.nik_ayah = User.nik;
 		}
-
-		// TODO gunanya init buat apa
-		$scope.jenis_kelamin = [];
-		$scope.jenis_kelamin_data = ["Laki-Laki", "Perempuan"];
-		$scope.jenis_kelamin_init = "Laki-Laki";
-
-		// TODO gunanya init buat apa
-		$scope.kewarganegaraan = "Warga Negara Indonesia";
-		$scope.kewarganegaraan_data = ["Warga Negara Indonesia", "Warga Negara Asing"];
-		$scope.kewarganegaraan_init = ["Warga Negara Indonesia"];
 
 		$scope.$on('logoutEvent', function(event, data) {
 			$scope.isLogged = User.isLogged;
+			$scope.init();
 		});
 
 		$scope.submitRequestAktaLahir = function() {
@@ -730,8 +788,51 @@ ginaAppControllers.controller('CreateAktaLahirCtrl', ['$scope', '$compile', 'Ser
 	}]
 );
 
-ginaAppControllers.controller('AktaLahirAdminIndexCtrl', ['$scope', '$compile', 'Server', 'User',
-	function ($scope, $compile, Server, User) {
+ginaAppControllers.controller('AktaLahirAdminCreateCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
+
+		$scope.init = function() {
+			$scope.isLogged = User.isLogged;
+
+			$scope.jenis_kelamin = [];
+			$scope.jenis_kelamin_data = ["Laki-Laki", "Perempuan"];
+			$scope.jenis_kelamin_init = "Laki-Laki";
+
+			$scope.kewarganegaraan = "Warga Negara Indonesia";
+			$scope.kewarganegaraan_data = ["Warga Negara Indonesia", "Warga Negara Asing"];
+			$scope.kewarganegaraan_init = ["Warga Negara Indonesia"];
+		}
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+			$scope.init();
+		});
+
+		$scope.submitRequestAktaLahir = function() {
+			var params = angular.copy({});
+
+			params.nama = $scope.nama;
+			params.tempat_lahir = $scope.tempat_lahir;
+			params.tgl_lahir = $scope.tgl_lahir;
+			params.anak_ke = $scope.anak_ke;
+			params.jenis_kelamin = $scope.jenis_kelamin;
+			params.nik_ayah = $scope.nik_ayah;
+			params.nik_ibu = $scope.nik_ibu;
+			params.kewarganegaraan = $scope.kewarganegaraan;
+
+			Server.post('admin/aktalahir/create', params).then(function(data) {
+				alert('berhasil')
+				$state.go('akta-lahir-admin')
+			}, function(err) {
+				alert('gagal')
+				console.log(err);
+			})
+		}
+	}]
+);
+
+ginaAppControllers.controller('AktaLahirAdminIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
 		$scope.init = function() {
 			Server.get('admin/aktalahir/all').then(function(data) {
 				$scope.datas = data;
@@ -741,7 +842,9 @@ ginaAppControllers.controller('AktaLahirAdminIndexCtrl', ['$scope', '$compile', 
 		}
 		$scope.isLogged = User.isLogged;
 		$scope.statusIncludes = [];
-
+		$scope.create = function() {
+			$state.go('akta-lahir-admin-create');
+		}
 		$scope.approve = function($no_akta)  {
 			Server.get('admin/aktalahir/approve/' + $no_akta).then(function(data) {
 				$scope.init();
@@ -785,13 +888,13 @@ ginaAppControllers.controller('AktaLahirAdminIndexCtrl', ['$scope', '$compile', 
 	}]
 );
 
-ginaAppControllers.controller('AktaLahirAdminDetailCtrl', ['$scope', 'Server', '$stateParams',
-	function ($scope, Server, $stateParams) {
+ginaAppControllers.controller('AktaLahirAdminDetailCtrl', ['$scope', 'Server', '$stateParams', 'User',
+	function ($scope, Server, $stateParams, User) {
 		Server.get('admin/aktalahir/view/' + $stateParams.id)
 		.then(function(data) {
 			console.log($stateParams.id);
 			console.log(data);
-			$scope.datas = data;
+			$scope.data = data;
 		}, function(err) {
 			console.log(err);
 		});
@@ -801,6 +904,8 @@ ginaAppControllers.controller('AktaLahirAdminDetailCtrl', ['$scope', 'Server', '
 		});
 	}]
 );
+
+
 
 ginaAppControllers.controller('CreateAktaMatiCtrl', ['$scope', '$compile', 'Server', 'User',
 	function ($scope, $compile, Server, User) {

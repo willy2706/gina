@@ -1,0 +1,36 @@
+ <div class="col-md-12" ng-controller = "AktaLahirAdminDetailCtrl">
+ <br><br>
+	<div >
+	 	<table class="table table-bordered">
+		 	<thead>
+				<tr>
+					<td style="font-size:14px">No Akta</td>
+					<td style="font-size:14px">Nama</td>
+					<td style="font-size:14px">NIK</td>
+					<td style="font-size:14px">Jenis Kelamin</td>
+					<td style="font-size:14px">Tempat Lahir</td>
+					<td style="font-size:14px">Tanggal Lahir</td>
+					<td style="font-size:14px">Anak ke</td>
+					<td style="font-size:14px">Nik Ayah</td>
+					<td style="font-size:14px">Nik Ibu</td>
+				</tr>
+		 	</thead>
+		 	<tbody>
+				<tr>
+					<td style="font-size:14px">{{data.no_akta}}</td>
+					<td style="font-size:14px">{{data.nama}}</td>
+					<td style="font-size:14px">{{data.nik}}</td>
+					<td style="font-size:14px">{{data.jenis_kelamin}}</td>
+					<td style="font-size:14px">{{data.tempat_lahir}}</td>
+					<td style="font-size:14px">{{data.tgl_lahir}}</td>
+					<td style="font-size:14px">{{data.anak_ke}}</td>
+					<td style="font-size:14px">{{data.nik_ayah}}</td>
+					<td style="font-size:14px">{{data.nik_ibu}}</td>
+				</tr>
+		 	</tbody>
+		</table>
+	</div>
+	<div ng-show="!isLogged" >
+		Anda belum login
+	</div>
+</div>

@@ -9,9 +9,10 @@ ginaAppFactory.factory('User', function($sessionStorage, ApiURL, $http, $q) {
 	self.isAdmin = false;
 	self.check = function() {
 		var def = $q.defer()
-		if ($sessionStorage.user) {
-			self = $sessionStorage.user;
-		}
+		// if ($sessionStorage.user) {
+		// 	console.log('masuk sini')
+		// 	self = $sessionStorage.user;
+		// }
 		$http.get(ApiURL + 'check/authenticated').then(function(data) {
 			if (data.data != 'false') {
 				console.log(data.data);

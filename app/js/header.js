@@ -50,9 +50,10 @@ header.directive('header', function () {
 			$scope.doneLoading = false;
 			User.check().then(function(data) {
 				console.log(User);
+				console.log(data);
 				// alert('asdf')
 				$scope.user = angular.copy({});
-				$scope.user.isUserLogged = User.isLogged;
+				$scope.user.isUserLogged = true;
 				$scope.user.nama = User.nama;
 				$scope.user.nik = User.nik;
 				$scope.user.isAdmin = User.isAdmin;
@@ -60,6 +61,7 @@ header.directive('header', function () {
 				$scope.isLoading = false;
 				console.log(User.isLogged);
 				$scope.doneLoading = true;
+				$rootScope.$broadcast('logoutEvent',[1,2,3]);
 			}, function (err) {
 				// alert('asdfasdfd')
 				console.log(User.isLogged);
@@ -71,6 +73,7 @@ header.directive('header', function () {
 				$scope.isAccountError = false;
 				$scope.isLoading = false;
 				$scope.doneLoading = true;
+				$rootScope.$broadcast('logoutEvent',[1,2,3]);
 			});
 			if ($location.path() == '/' || $location.path() == '') {
 				$scope.isHome = true;

@@ -130,6 +130,18 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
       })
       .state('akta-lahir', {
         url: "/akta-lahir",
+        templateUrl: "app/partials/akta-lahir-index.html",
+        controller: function($scope) {
+        }
+      })
+      .state('akta-lahir-detail', {
+        url: "/akta-lahir/detail/:id",
+        templateUrl: "app/partials/akta-lahir-detail.html",
+        controller: function($scope) {
+        }
+      })
+      .state('akta-lahir-request', {
+        url: "/akta-lahir/request",
         templateUrl: "app/partials/create-akta-lahir.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
@@ -138,6 +150,13 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
       .state('akta-lahir-admin', {
         url: "/akta-lahir-admin",
         templateUrl: "app/partials/akta-lahir-admin-index.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-lahir-admin-create', {
+        url: "/akta-lahir-admin/create",
+        templateUrl: "app/partials/akta-lahir-admin-create.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
         }
