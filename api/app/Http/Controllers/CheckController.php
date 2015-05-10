@@ -94,16 +94,29 @@ class CheckController extends Controller {
 		//return response($akta_kawin_suami);
 		$akta_kawin_istri = Akta_Kawin::wherenik_istri($nik)->first();
 		//return response($akta_kawin_istri);
-		if (empty($akta_kawin_suami) && empty($akta_kawin_istri)) {
+		if ((empty($akta_kawin_suami) || $akta_kawin_suami == null) && (empty($akta_kawin_istri) || $akta_kawin_istri == null)) {
 			return response ('not yet');
 		} else {
-			if ($akta_kawin_suami->request || $akta_kawin_istri->request) {
-				return response('requested');
-			} else {
-				if ($akta_kawin_suami->message == NULL && $akta_kawin_istri->message == NULL) {
-					return response('approved');
+			// return $akta_kawin_istri == null ? 'asdf' : 'aassdf';	
+			if ($akta_kawin_suami) {
+				if ($akta_kawin_suami->request) {
+					return response('requested');
 				} else {
-					return response('rejected');
+					if ($akta_kawin_suami->message == NULL) {
+						return response('approved');
+					} else {
+						return response('rejected');
+					}
+				}
+			} else {
+				if ($akta_kawin_istri->request) {
+					return response('requested');
+				} else {
+					if ($akta_kawin_istri->message == NULL) {
+						return response('approved');
+					} else {
+						return response('rejected');
+					}
 				}
 			}
 		}

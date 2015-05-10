@@ -40,4 +40,15 @@ class AdminAktaCeraiController extends Controller {
 		return response('success');
 	}
 
+	public function postCreate() {
+		$input = Input::all();
+		$akta_cerai = new Akta_Cerai;
+		$akta_cerai->fill($input);
+		$akta_cerai->request = false;
+
+		$akta_cerai->no_akta = time();
+		$akta_cerai->save();
+		return response('success');
+	}
+
 }

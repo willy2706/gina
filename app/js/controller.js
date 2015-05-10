@@ -1275,8 +1275,35 @@ ginaAppControllers.controller('CreateAktaCeraiCtrl', ['$scope', '$compile', 'Ser
 	}]
 );
 
-ginaAppControllers.controller('AktaCeraiAdminIndexCtrl', ['$scope', '$compile', 'Server', 'User',
-	function ($scope, $compile, Server, User) {
+ginaAppControllers.controller('AktaCeraiAdminCreateCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
+		$scope.isLogged = User.isLogged;
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+
+		$scope.submitRequestAktaCerai = function() {
+			var params = angular.copy({});
+
+			params.akta_kawin = $scope.akta_kawin;
+			params.tanggal_cerai = $scope.tanggal_cerai;
+			params.tempat_cerai = $scope.tempat_cerai;
+
+			Server.post('admin/aktacerai/create', params).then(function(data) {
+				alert('berhasil')
+				$state.go('akta-cerai-admin')
+			}, function(err) {
+				console.log(err);
+				alert('gagal')
+			})
+		}
+
+	}]
+);
+
+ginaAppControllers.controller('AktaCeraiAdminIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
 		$scope.init = function() {
 			Server.get('admin/aktacerai/all').then(function(data) {
 				$scope.datas = data;
@@ -1323,6 +1350,10 @@ ginaAppControllers.controller('AktaCeraiAdminIndexCtrl', ['$scope', '$compile', 
 					return;
 			}
 			return data;
+		}
+
+		$scope.create = function() {
+			$state.go('akta-cerai-admin-create')
 		}
 
 		$scope.$on('logoutEvent', function(event, data) {

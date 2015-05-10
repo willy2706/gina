@@ -3,6 +3,7 @@
 		<div class="col-xs-12 kk-approval" ng-controller="AktaCeraiAdminIndexCtrl">
 			<div ng-show="isLogged" class="table-responsive" ng-init= "init()">
 				<h2>Akta Perceraian</h2>
+				<button type="button" ng-href = "create" ng-click="create()" class="btn btn-default">Create</button>
 				<div class="form-group">
 					<div class="col-xs-2">
 						<input type="checkbox" ng-click="includeStatus('approved')" /> Approved

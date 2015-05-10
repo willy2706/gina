@@ -238,6 +238,13 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
           // $scope.isFeatures = true;
         }
       })
+      .state('akta-cerai-admin-create', {
+        url: "/akta-cerai-admin/create",
+        templateUrl: "app/partials/akta-cerai-admin-create.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
       .state('akta-cerai-admin', {
         url: "/akta-cerai-admin",
         templateUrl: "app/partials/akta-cerai-admin-index.html",
