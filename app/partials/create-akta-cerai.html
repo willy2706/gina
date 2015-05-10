@@ -1,0 +1,48 @@
+<div class="partial">
+	<div class="row">
+		<div class="col-xs-12 kk-approval" ng-controller="CreateAktaCeraiCtrl">
+			<div ng-show="isLogged && !isFetchingData">
+				<div ng-show="!isRequested">
+					<h2>Pembuatan Akta Perceraian</h2>
+					<form name="createAktaCeraiForm" class="form form-horizontal" ng-submit="submitRequestAktaCerai()">
+						<div class="form-group">
+							<div class="col-xs-12">
+								<input noaktakawin-validator ng-model="akta_kawin" class="form-control" type="text" name="akta_kawin" placeholder="Nomor Akta Kawin" required/>
+								<div ng-if="createAktaCeraiForm.akta_kawin.$dirty">
+				                    <div ng-messages="createAktaCeraiForm.akta_kawin.$error" class="validation-error">
+				                        <div ng-message="noaktakawin">Nomor akta kawin tidak ada</div>
+				                        <div ng-message="required">Nomor akta kawin dibutuhkan</div>
+				                    </div>
+				                    <div ng-messages="createAktaCeraiForm.nik_suami.$pending" class="validation-pending">
+				                        <div ng-message="noaktakawin">Sedang Mengecek Nomor akta kawin</div>
+				                    </div>
+				                </div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<input ng-model="tanggal_cerai" type="date" class="form-control" name="tanggal_cerai" id="tanggal_cerai" placeholder="Tanggal Cerai" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<input ng-model="tempat_cerai" type="text" class="form-control" name="tempat_cerai" id="tempat_cerai" placeholder="Tempat Cerai" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<button ng-disabled="createAktaCeraiForm.$invalid || createAktaCeraiForm.$pending" type="submit" class="btn btn default">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div ng-show="isRequested">
+					<h2>Anda telah mengajukan akta perceraian</h2>
+				</div>
+			</div>
+			<div ng-hide="isLogged">
+				<h2>Maaf anda belum log in</h2>		
+			</div>
+		</div>
+	</div>
+</div>

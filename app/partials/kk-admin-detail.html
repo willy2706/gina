@@ -1,0 +1,43 @@
+ <script type="text/javascript">
+function showText(obj) {
+	if(obj.value=='Show') {
+		document.getElementById('mytext').style.display='block';
+		obj.value='Hide';
+	} else {
+		document.getElementById('mytext').style.display='none';
+		obj.value='Show';
+	}
+	return;
+}
+</script>
+
+ <div class="col-md-12" ng-controller = "KKAdminDetailCtrl">
+ <br><br>
+	<div ng-show="isLogged" >
+	 	<table class="table table-bordered">
+		 	<thead>
+				<tr>
+					<td style="font-size:14px">Nama</td>
+					<td style="font-size:14px">NIK</td>
+					<td style="font-size:14px">Jenis Kelamin</td>
+					<td style="font-size:14px">Tempat Lahir</td>
+					<td style="font-size:14px">Tanggal Lahir</td>
+					<td style="font-size:14px">Agama</td>
+				</tr>
+		 	</thead>
+		 	<tbody>
+				<tr ng-repeat = "data in datas.anggota_keluarga">
+					<td style="font-size:14px">{{data.ktp.nama}}</td>
+					<td style="font-size:14px">{{data.ktp.nik}}</td>
+					<td style="font-size:14px">{{data.ktp.jenis_kelamin}}</td>
+					<td style="font-size:14px">{{data.ktp.kota_lahir}}</td>
+					<td style="font-size:14px">{{data.ktp.tanggal_lahir}}</td>
+					<td style="font-size:14px">{{data.ktp.agama}}</td>
+				</tr>
+		 	</tbody>
+		</table>
+	</div>
+	<div ng-show="!isLogged" >
+		Anda belum login
+	</div>
+</div>

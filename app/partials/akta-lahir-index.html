@@ -1,0 +1,35 @@
+<div class="col-xs-12 kk-approval" ng-controller="AktaLahirIndexCtrl">
+	<div ng-init= "init()">
+		<div ng-show="isLogged" class="table-responsive">
+			<h2>
+				<div class="col-xs-4">
+					Akta Lahir		
+				</div>
+				<div class="col-xs-4">
+				</div>
+				<div class="col-xs-4" ng-show = "canRequest">
+					<button type="button" ng-click = "request()" class="btn btn-default">Ajukan Akta Lahir</button>
+				</div>
+			</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<td>No Akta Lahir yang pernah diajukan</td>
+						<td>Status</td>
+				    </tr>
+				</thead>
+				<tbody>
+					<tr class="active" ng-repeat="data in datas ">
+						<td>
+							<a ng-href="#/akta-lahir-admin/detail/{{data.no_akta}}">{{data.no_akta}}</a>
+						</td>
+						<td>{{data.status}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div ng-hide = "isLogged">
+		Maaf anda belum log in
+	</div>
+</div>

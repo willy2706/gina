@@ -1,0 +1,67 @@
+ <script type="text/javascript">
+function showText(obj) {
+	if(obj.value=='Show') {
+		document.getElementById('mytext').style.display='block';
+		obj.value='Hide';
+	} else {
+		document.getElementById('mytext').style.display='none';
+		obj.value='Show';
+	}
+	return;
+}
+</script>
+
+ <div class="col-md-12" ng-controller = "MPAdminDetailCtrl">
+ <br><br>
+	<div ng-show="isLogged" >
+		<form class="form-horizontal" role="form">
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">Nomor Surat Mutasi</label>
+	            <div class="col-sm-10">
+	            	<div class="form-control">
+	            		{{datas.no_mp}}
+	            	</div>
+	            </div>
+	        </div>
+	    </form>
+	    <form class="form-horizontal" role="form">
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">NIK Peminta</label>
+	            <div class="col-sm-10">
+	            	<div class="form-control">
+	            		{{datas.nik}}
+	            	</div>
+	            </div>
+	        </div>
+	    </form>
+	    <form class="form-horizontal" role="form">
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">Alamat Tujuan</label>
+	            <div class="col-sm-10">
+	            	<div class="form-control">
+	            		{{datas.alamat_tujuan}}
+	            	</div>
+	            </div>
+	        </div>
+	    </form>
+	    <table class="table table-bordered">
+		 	<thead>
+				<tr>
+					<td style="font-size:14px">NIK</td>
+					<td style="font-size:14px">Nama</td>
+					<td style="font-size:14px">Status Keluarga</td>
+				</tr>
+		 	</thead>
+		 	<tbody>
+				<tr ng-repeat = "data in datas.pengikut_mp">
+					<td style="font-size:14px">{{data.ktp.nik}}</td>
+					<td style="font-size:14px">{{data.ktp.nama}}</td>
+					<td style="font-size:14px">{{data.status_kel_pengikut}}</td>
+				</tr>
+		 	</tbody>
+		</table>
+	</div>
+	<div ng-show="!isLogged" >
+		Anda belum login
+	</div>
+</div>

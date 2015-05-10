@@ -1,0 +1,162 @@
+.box-form{
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 10px;
+	padding: 30px;
+}
+
+.navbar-profile{
+	width: 200px;
+	background: #ff0;
+}
+
+.rightheaderelement{
+	color: #354B77;
+	font-weight: bold;
+	margin-right: 10%;
+	display: inline;
+	float: none;
+}
+
+.rightheaderelement a{
+	text-decoration: none;
+	color: #354B77;
+}
+
+.err-message{
+	color: #F81414 !important;
+}
+
+.rightheaderelement a:hover {
+	color: #F15F43;
+	border-bottom: 2px solid #F15F43;
+}
+
+.rightheader{
+	margin-top: 2.5%;
+	font-size: 14px;
+	float: right;
+
+}
+
+.btn-default:disabled{
+	color: #727563;
+	background-color: rgba(241,241,239,0.6);
+}
+
+.cust-form{
+	margin-left: 20px !important;
+	margin-bottom: 10px !important;
+}
+
+
+.kk-approval{
+	margin-top: 30px;
+	margin-bottom: 100px;
+	margin-left: 10%; 
+	margin-right: 10%;
+	padding-bottom: 50px;
+	border-bottom: solid thin #354B77;
+}
+
+.cust-margin{
+	margin-bottom: 100px;
+	padding-bottom: 50px;
+	border-bottom: solid thin #354B77;
+}
+
+.cust-table{
+	text-align: center;
+}
+
+.partial{
+	margin-left: 20px;
+	min-height: 400px;
+}
+
+@media (max-width: 768px){
+	.rightheader{
+		margin-top: 0px;
+		border-top: solid thin #354B77;
+		float: none;
+	}
+	.rightheaderelement{
+		display: block;
+		padding: 4px 8px;
+	}
+}
+
+.dropdown:hover .dropdown-menu{
+	display: block;
+}
+
+.password-error{
+	color: #E31D07;
+	background-color: #FFF;
+	border-radius: 10px;
+	padding: 5px;
+	font-weight: bold;
+}
+
+
+.loader {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  perspective: 800px;
+}
+
+.inner {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;  
+}
+
+.inner.one {
+  left: 0%;
+  top: 0%;
+  -webkit-animation: rotate-one 1s linear infinite;
+  border-bottom: 3px solid #EFEFFA;
+}
+
+.inner.two {
+  right: 0%;
+  top: 0%;
+  -webkit-animation: rotate-two 1s linear infinite;
+  border-right: 3px solid #EFEFFA;
+}
+
+.inner.three {
+  right: 0%;
+  bottom: 0%;
+  -webkit-animation: rotate-three 1s linear infinite;
+  border-top: 3px solid #EFEFFA;
+}
+
+@-webkit-keyframes rotate-one {
+  0% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+  }
+}
+
+@-webkit-keyframes rotate-two {
+  0% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+  }
+}
+
+@-webkit-keyframes rotate-three {
+  0% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+  }
+}

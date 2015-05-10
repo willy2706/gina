@@ -1,0 +1,50 @@
+<div class="partial">
+	<div class="row">
+		<div class="col-xs-12 kk-approval" ng-controller="AktaMatiAdminIndexCtrl">
+			<div ng-show="isLogged" class="table-responsive" ng-init= "init()">
+				<h2>Akta Kematian</h2>
+				<div class="form-group">
+					<div class="col-xs-2">
+						<input type="checkbox" ng-click="includeStatus('approved')" /> Approved
+					</div>
+					<div class="col-xs-2">
+						<input type="checkbox" ng-click="includeStatus('rejected')" /> Rejected
+					</div>
+					<div class="col-xs-2">
+						<input type="checkbox" ng-click="includeStatus('requested')" /> Requested
+					</div>
+					<div class="col-xs-6">
+						<input type="search" ng-model="filter" placeholder="Filter" />
+					</div>
+				</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<td>Nomor Permintaan</td>
+							<td>No Akta Kematian</td>
+							<td>Status</td>
+					    </tr>
+					</thead>
+					<tbody>
+						<tr class="active" ng-repeat="data in datas | filter: filter | filter: statusFilter ">
+							<td>{{ data.id }}</td>
+							<td>
+								<a ng-href="#/akta-mati-admin/detail/{{ data.no_akta }}">{{ data.no_akta }}</a>
+							</td>
+							<td>{{ data.status }}</td>
+							<td>
+								<div ng-show="{{ data.request }}">
+									<button type="button" ng-click="approve(data.no_akta)" class="btn btn-default">Approve</button>
+									<button type="button" ng-click="reject(data.no_akta)" class="btn btn-default">Reject</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div ng-hide = "isLogged">
+				Maaf anda belum log in
+			</div>
+		</div>
+	</div>
+</div>

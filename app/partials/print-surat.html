@@ -1,0 +1,36 @@
+<div class="col-md-8" ng-controller="PrintSuratCtrl">
+	<h2>Pembuatan Kartu Keluarga</h2>
+	<p>*Tambahkan seluruh anggota keluarga anda</p>
+	<form class="form form-horizontal">
+		<div id="form-surat">
+			<div class="form-group col-xs-4 cust-form">
+				<select class="form-control" name="jenis_0" id="jenis_0">
+				<option>Jenis Surat</option>
+				<option>Kartu Keluarga</option>
+				<option>Surat Mutasi Penduduk</option>
+				</select>
+			</div>
+			<div class="form-group col-xs-4 cust-form">
+				<input class="form-control" type="text" name="no_surat_0" id="no_surat_0" placeholder="NIK anggota keluarga"/>
+			</div>
+			<div class="form-group col-xs-2 cust-form">
+				<button type="button" name="btn_print_0" class="btn btn-default">Print</button>
+			</div>
+			<br>
+		</div>
+		<!-- <div class="form-group col-xs-5 cust-form">
+			<input class="form-control" type="text" name="nik" placeholder="NIK anggota keluarga"/>
+		</div>
+		<div class="form-group col-xs-5 cust-form">
+			<select class="form-control">
+				<option>Status dalam keluarga</option>
+				<option>Kepala keluarga</option>
+				<option>Istri</option>
+				<option>Anak</option>
+				<option>Cucu</option>
+			</select>
+		</div><br> -->
+		<div class="form-group cust-form col-xs-10"><button type="button" class="btn btn-default" ng-click="addSurat()">Tambah Surat</button></div><br>
+		<div class="form-group cust-form col-xs-10"><button type="button" class="btn btn default">Print All</button></div>
+	</form>
+</div>

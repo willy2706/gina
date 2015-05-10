@@ -1,0 +1,129 @@
+<div class="partial" ng-controller="CreateAktaLahirCtrl">
+	<div class="row" ng-init="init()">
+		<div class="col-xs-12 kk-approval">
+			<div ng-show="isLogged && !isFetchingData">
+				<div ng-show="!isRequested">
+					<h2>Pengajuan Akta Kelahiran</h2>
+					<form name="createAktaLahirForm" class="form form-horizontal" ng-submit="submitRequestAktaLahir()">
+						<div class="row">
+							<div class="col-xs-5">
+								<div class="form-group">
+									<label class="col-xs-2 control-label">Alamat</label>
+									<div class="col-xs-10">
+										<input ng-model="nama" type="text" class="form-control" name="nama" id="nama" placeholder="Nama" required/>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-5">
+								<div class="form-group">
+									<label class="col-xs-2 control-label">Tempat Lahir</label>
+									<div class="col-xs-10">
+										<input ng-model="tempat_lahir" type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" placeholder="Tempat Lahir" required/>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-5">
+								<div class="form-group">
+									<label class="col-xs-2 control-label">Tanggal Lahir</label>
+									<div class="col-xs-10">
+										<input ng-model="tgl_lahir" type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" placeholder="Tanggal Lahir" required/>
+									</div>
+								</div>
+							</div>
+						</div> 
+						<div class="row">
+							<div class="col-xs-5">
+								<div class="form-group">
+									<label class="col-xs-2 control-label">Anak ke</label>
+									<div class="col-xs-10">
+										<input ng-model="anak_ke" type="number" min = "1" class="form-control" name="anak_ke" id="anak_ke" placeholder="Anak Ke" required/>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-5">
+								<div class="form-group">
+									<label class="col-xs-2 control-label">Jenis Kelamin</label>
+									<div class="col-xs-10">
+										<select class="form-control" ng-model="jenis_kelamin" ng-options="a for a in jenis_kelamin_data">
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-5">
+								<div class="form-group">
+									<label class="col-xs-2 control-label">Nik Ayah</label>
+									<div class="col-xs-10">
+										<input nik-validator ng-model="nik_ayah" class="form-control" type="text" name="nik_ayah" placeholder="NIK Ayah" required readonly/>
+										<div ng-if="createAktaLahirForm.nik_ayah.$dirty">
+						                    <div ng-messages="createAktaLahirForm.nik_ayah.$error" class="validation-error">
+						                        <div ng-message="nik">NIK Ayah salah</div>
+						                        <div ng-message="required">NIK Ayah dibutuhkan</div>
+						                    </div>
+						                    <div ng-messages="createAktaLahirForm.nik_ayah.$pending" class="validation-pending">
+						                        <div ng-message="nik">Sedang Mengecek NIK</div>
+						                    </div>
+						                </div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-5">
+								<div class="form-group">
+									<label class="col-xs-2 control-label">Nik Ibu</label>
+									<div class="col-xs-10">
+										<input nik-validator ng-model="nik_ibu" class="form-control" type="text" name="nik_ibu" placeholder="NIK Ibu" required/>
+										<div ng-if="createAktaLahirForm.nik_ibu.$dirty">
+						                    <div ng-messages="createAktaLahirForm.nik_ibu.$error" class="validation-error">
+						                        <div ng-message="nik">NIK Ibu salah</div>
+						                        <div ng-message="required">NIK Ibu dibutuhkan</div>
+						                    </div>
+						                    <div ng-messages="createAktaLahirForm.nik_ibu.$pending" class="validation-pending">
+						                        <div ng-message="nik">Sedang Mengecek NIK</div>
+						                    </div>
+						                </div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-5">
+								<div class="form-group">
+									<label class="col-xs-2 control-label">Kewarganegaraan</label>
+									<div class="col-xs-10">
+										<select class="form-control" ng-model="kewarganegaraan" ng-options="a for a in kewarganegaraan_data">
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-5">
+								<div class="form-group">
+									<label class="col-xs-2 control-label"></label>
+									<div class="col-xs-10">
+										<button ng-disabled="createAktaLahirForm.$invalid || createAktaLahirForm.$pending" type="submit" class="btn btn default">Submit</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div ng-show="isRequested">
+					<h2>Anda telah mengajukan akta kelahiran</h2>
+				</div>
+			</div>
+			<div ng-hide="isLogged">
+				<h2>Maaf anda belum log in</h2>		
+			</div>
+		</div>
+	</div>
+</div>

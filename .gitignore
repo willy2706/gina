@@ -1,0 +1,6 @@
+/api/vendor
+/api/node_modules
+/api/.env
+/api/composer.lock
+/api/composer.phar
+bower_components/

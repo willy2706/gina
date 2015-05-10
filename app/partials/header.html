@@ -1,0 +1,114 @@
+<div class="header_bg"><!-- start header -->
+	<div class="container">
+		<div class="row header">
+			<nav class="navbar" role="navigation">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="" class="img-responsive"/> </a>
+			    </div>
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="menu nav navbar-nav ">
+						<li ><a ui-sref = "home" ng-click = "home()">home</a></li>
+						<li class="dropdown">
+							<a ng-href="#" class="dropdown-toggle" data-toggle="dropdown" href="#">Kependudukan<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a ui-sref="ktp">KTP</a></li>
+								<li><a ui-sref="kk" ng-click = "kk()">KK</a></li>
+								<li><a ui-sref="mp" ng-click = "mp()">Mutasi Penduduk</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a ui-sref="blog" ng-click = "blog()" class="dropdown-toggle" data-toggle="dropdown" href="#">
+							Pencatatan Sipil<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a ui-sref="akta-lahir">Akta Kelahiran</a></li>
+								<li><a ui-sref="akta-kawin">Akta Perkawinan</a></li>
+								<li><a ui-sref="akta-cerai">Akta Perceraian</a></li>
+								<li><a ui-sref="akta-mati">Akta Kematian</a></li>
+								<li><a ui-sref="akta-sah-aku-anak">Akta Pengakuan dan Pengesahan Anak</a></li>
+							</ul>
+						</li>
+						<li ng-show="user.isAdmin" class = "dropdown" ng-show = "" >
+							<a ng-href = "#" class="dropdown-toggle" data-toggle="dropdown">
+							Manajemen<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a ui-sref="ktp-admin">KTP</a></li>
+								<li><a ui-sref="kk-admin">KK</a></li>
+								<li><a ui-sref="mp-admin">Mutasi Penduduk</a></li>
+								<li><a ui-sref="akta-lahir-admin">Akta Kelahiran</a></li>
+								<li><a ui-sref="akta-kawin-admin">Akta Perkawinan</a></li>
+								<li><a ui-sref="akta-cerai-admin">Akta Perceraian</a></li>
+								<li><a ui-sref="akta-mati-admin">Akta Kematian</a></li>
+								<li><a ui-sref="akta-sah-aku-anak-admin">Akta Pengakuan dan Pengesahan Anak</a></li>
+							</ul>
+						</li>
+						<li ng-class="{active : isAbout}"><a ui-sref="about" ng-click = "about()">about</a></li>
+					</ul>
+			      	<div class="rightheader" ng-show = "user.isUserLogged">
+				    	<div class="rightheaderelement">
+				    		{{user.nama}} ({{user.nik}})
+				    	</div>
+				    	<div class="rightheaderelement">
+				    		<a href="" ng-click="logout()">
+				    			LOGOUT
+				    		</a>
+				    	</div>
+			    	</div>
+			    </div><!-- /.navbar-
+			    collapse -->
+			    
+			  </div><!-- /.container-fluid -->
+			</nav>
+		</div>
+		<div class="row slider text-center" ng-show = "isHome">
+			<div class="col-md-8">
+					<div class="col-md-10 slider_text">
+						<h2>Cabut uban</h2>
+						<h3>pencatatan sipil dan kependudukan untuk bandung!</h3>
+					</div>
+			</div>
+			<div class="col-md-4" ng-hide = "user.isUserLogged">
+				<div class="contact-form" ng-show = "doneLoading">
+					<h2 style="color: #FFF">Login Penduduk</h2>
+					<form name="loginForm" class="form box-form" role="form"  ng-submit="login()">
+						
+						<div class="form-group">
+							<span><label for="NIK" class="col-sm-2" style="color:#fff">NIK: </label></span>
+							<input type="text" class="form-control" ng-model = "nik" ng-focus="isAccountError = false" name="nik" id="NIK" placeholder="NIK" required/>
+						</div>
+						<div class="form-group">
+							<span><label for="password" class="col-sm-2" style="color:#fff">Password</label></span>
+							<input type="password" class="form-control" ng-model = "password" ng-focus="isAccountError = false" id="password" name="password" placeholder="password" required/>
+						</div>
+						<div class="form-group" ng-show="isAccountError">
+						<span><div class="password-error">
+							Username / password salah
+							</div>
+						</span>
+						</div>
+						<button type="submit" class="btn btn-default" ng-disabled="loginForm.$invalid || loginForm.$pending" id="btn-login">
+							<div ng-show="!isLoading">Go</div>
+							<div ng-show="isLoading" class="loader">
+							  <div class="inner one"></div>
+							  <div class="inner two"></div>
+							  <div class="inner three"></div>
+							</div>
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<ol class="breadcrumb" ng-show = "!isHome">
+		  <li><a href="#" ng-click ="home()">Home</a></li>
+		  <li class="active">features</li>
+		</ol>
+	</div>
+</div>

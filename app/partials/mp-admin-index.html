@@ -1,0 +1,50 @@
+<div class="partial">
+	<div class="row">
+		<div class="col-md-12 kk-approval" ng-controller="MPAdminIndexCtrl">
+			<div ng-show="isLogged" class="table-responsive" ng-init= "init()">
+				<button type="button" ng-href = "create" ng-click="create()" class="btn btn-default">Create</button>	
+				<h2> Mutasi Penduduk </h2>
+					<div class="col-xs-2">
+						<input type="checkbox" ng-click="includeStatus('approved')"/> Approved</br/>
+					</div>
+					<div class="col-xs-2">
+						<input type="checkbox" ng-click="includeStatus('requested')"/> Requested</br/>
+					</div>
+					<div class="col-xs-2">
+						<input type="checkbox" ng-click="includeStatus('rejected')"/> Rejected</br/>
+					</div>
+					<div class="col-xs-6">
+						<input type="search" size = "19.5" ng-model="q" placeholder="filter mp..." />	
+					</div>
+				</h2>
+				<table class="table">
+					<thead>
+						<tr>
+							<td>Nomor Permintaan</td>
+							<td>No MP</td>
+							<td>Status</td>
+					    </tr>
+					</thead>
+					<tbody>
+						<tr class="active" ng-repeat="data in datas | filter:q | filter : statusFilter ">
+							<td>{{data.id}}</td>
+							<td>
+								<a ng-href="#/mp-admin/detail/{{data.no_mp}}">{{data.no_mp}}</a>
+							</td>
+							<td>{{data.status}}</td>
+							<td>
+								<div ng-show="{{data.request}}">
+									<button type="button" ng-click = "approve(data.no_mp)" class="btn btn-default">Approve</button>
+									<button type="button" ng-click = "reject(data.no_mp)" class="btn btn-default">Reject</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div ng-hide = "isLogged">
+				Maaf anda belum log in
+			</div>
+		</div>
+</div>
+</div>

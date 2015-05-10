@@ -1,0 +1,33 @@
+<div class="col-md-10 kk-approval" ng-controller="MPIndexCtrl">
+	<div ng-show="isLogged" class="table-responsive" ng-init= "init()">
+		<h2>
+			<div class="col-xs-4">
+				Mutasi Penduduk		
+			</div>
+			<div class="col-xs-4">
+			</div>
+			<div class="col-xs-4" ng-show = "canRequest">
+				<button type="button" ng-click = "request()" class="btn btn-default">Ajukan Mutasi Penduduk</button>
+			</div>
+		</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<td>No Surat Mutasi yang pernah diajukan</td>
+					<td>Status</td>
+			    </tr>
+			</thead>
+			<tbody>
+				<tr class="active" ng-repeat="data in datas | filter : statusFilter as result ">
+					<td>
+						<!--<a ng-href="#/kk-admin/detail/{{data.no_mp}}">-->{{data.no_mp}}<!--</a>-->
+					</td>
+					<td>{{data.status}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div ng-hide = "isLogged">
+		Maaf anda belum log in
+	</div>
+</div>

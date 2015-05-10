@@ -1,0 +1,80 @@
+<script type="text/javascript">
+	function showText(obj) {
+		if(obj.value=='Show') {
+			document.getElementById('mytext').style.display='block';
+			obj.value='Hide';
+		} else {
+			document.getElementById('mytext').style.display='none';
+			obj.value='Show';
+		}
+	}
+</script>
+
+<div class="col-xs-12" ng-controller = "AktaLahirAdminDetailCtrl">
+	<form class="form-horizontal" role="form">>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">No Akta</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+					{{ data.no_akta }}					
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">Nama</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+					{{ data.nama }}					
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">Tempat Lahir</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+					{{ data.tempat_lahir }}					
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">Tanggal Lahir</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+					{{ data.tgl_lahir }}					
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">Anak Ke</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+					{{ data.anak_ke }}					
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">Jenis Kelamin</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+					{{ data.jenis_kelamin }}					
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">Nik Ayah</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+					{{ data.nik_ayah }}					
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">Nik Ibu</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+					{{ data.nik_ibu }}					
+				</div>
+			</div>
+		</div>
+	 </form>
+</div>

@@ -1,0 +1,36 @@
+<div class="partial">
+	<div class="row">
+		<div class="col-md-8 kk-approval" ng-controller="CreateMutasiCtrl">
+			<div ng-show="isLogged">
+				<h2>Pembuatan Surat Mutasi Penduduk</h2>
+				<form name="createMutasiForm" class="form form-horizontal" ng-submit="submitRequestMutasi()">
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="alamat_tujuan">Alamat Tujuan</label>
+						<div class="col-sm-10">
+							<input ng-model = "alamat_tujuan" type="text" class="form-control" name="alamat_tujuan" id="alamat_tujuan" required/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="alasan">Alasan</label>
+						<div class="col-sm-10">
+							<input ng-model = "alasan" type="text" class="form-control" name="alasan" id="alasan"/>
+						</div>
+					</div>
+					<div id="form-mutasi">
+						
+					</div>
+					<div class="form-group cust-form col-xs-10">
+						<button type="button" class="btn btn-default" ng-click="addPengikut()">Tambah pengikut</button>
+					</div>
+					<br>
+					<div class="form-group cust-form col-xs-10">
+						<button ng-disabled="createMutasiForm.$invalid || createMutasiForm.$pending" type="submit" class="btn btn default" >Submit</button>
+					</div>
+				</form>
+			</div>
+			<div ng-hide="isLogged">
+				<h2>Maaf anda belum log in</h2>		
+			</div>
+		</div>
+	</div>
+</div>

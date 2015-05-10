@@ -1,0 +1,127 @@
+ <script type="text/javascript">
+function showText(obj) {
+	if(obj.value=='Show') {
+		document.getElementById('mytext').style.display='block';
+		obj.value='Hide';
+	} else {
+		document.getElementById('mytext').style.display='none';
+		obj.value='Show';
+	}
+	return;
+}
+</script>
+
+ <div class="col-md-12" ng-controller = "KtpAdminDetailCtrl">
+ <br><br>
+ 	<div ng-show="isLogged">
+		<form class="form-horizontal" role="form">
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">NIK</label>
+	            <div class="col-sm-10">
+	            	<div class="form-control">
+	            		{{data.nik}}
+	            	</div>
+	            </div>
+	        </div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Nama</label>
+				<div class="col-sm-10">
+					<div class="form-control">
+						{{data.nama}}
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Tempat/Tanggal Lahir</label>
+				<div class="col-sm-10">
+					<div class="form-control">
+						{{data.kota_lahir}} / {{data.tanggal_lahir}}
+					</div>
+				</div>
+			</div>
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">Jenis Kelamin</label>
+	            <div class="col-sm-10">
+	            	<div class="form-control">
+	            		{{data.jenis_kelamin}}
+	            	</div>
+	            </div>
+	        </div>
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">Golongan Darah</label>
+	            <div class="col-sm-10">
+	            	<div class="form-control">
+	            		{{data.gol_darah}}
+	            	</div>
+	            </div>
+	        </div>
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">Alamat</label>
+	            <div class="col-sm-10">
+	            	<div class="form-control">
+	            		{{data.alamat}}
+	            	</div>
+	            </div>
+	        </div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">RT / RW</label>
+				<div class="col-sm-10">
+					<div class="form-control">
+						{{data.rt}} / {{data.rw}}
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Kelurahan/Desa</label>
+				<div class="col-sm-10">
+					<div class="form-control">
+						{{data.kel_desa}}
+					</div>
+				</div>
+			</div>
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">Agama</label>
+	            <div class="col-sm-10">
+	            	<div class="form-control">
+	            		{{data.agama}}
+	            	</div>
+	            </div>
+	        </div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Status Perkawinan</label>
+				<div class="col-sm-10">
+					<div class="form-control">
+						{{data.status}}
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Kecamatan</label>
+				<div class="col-sm-10">
+					<div class="form-control">
+						{{data.kec}}
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Kewarganegaraan</label>
+				<div class="col-sm-10">
+					<div class="form-control">
+						{{data.kewarganegaraan}}
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Berlaku hingga</label>
+				<div class="col-sm-10">
+					<div class="form-control">
+						{{data.tgl_kadaluarsa}}
+					</div>
+				</div>
+			</div>
+	    </form>
+ 	</div>
+  	<div ng-show="!isLogged">
+	  	Maaf anda belum Login
+ 	</div>
+</div>
