@@ -103,6 +103,13 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
           // $scope.isFeatures = true;
         }
       })
+      .state('mp-admin-create', {
+        url: "/mp-admin/create",
+        templateUrl: "app/partials/mp-admin-create.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
       .state('mp-admin-detail', {
         url: "/mp-admin/detail/:id",
         templateUrl: "app/partials/mp-admin-detail.html",

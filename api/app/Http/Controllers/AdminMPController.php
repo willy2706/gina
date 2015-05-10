@@ -48,4 +48,24 @@ class AdminMPController extends Controller {
 		return response('success');
 	}
 
+	function postCreate() {
+		$input = Input::all();
+		$mp = new MP();
+		$mp->no_mp = $this->getTimestamp();
+		$mp->nik = $input['nik'];
+		$mp->alamat_tujuan = $input['alamat_tujuan'];
+		$mp->request = false;
+		$mp->save();
+
+		for ($i = 1; $i <= $input['pengikut_count']; $i++) {
+			$pengikut_mp = new Pengikut_MP();
+			$pengikut_mp->no_mp = $mp->no_mp;
+			$pengikut_mp->nik_pengikut = $input['nik_pengikut'][$i];
+			$pengikut_mp->pekerjaan_pengikut = $input['pekerjaan'][$i];
+			$pengikut_mp->status_kel_pengikut = $input['status_kel'][$i];
+			$pengikut_mp->save();
+		}
+
+		return response('success');
+	}
 }

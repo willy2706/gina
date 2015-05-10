@@ -54,8 +54,8 @@ ginaAppControllers.controller('PrintSuratCtrl',
 	}
 );
 
-ginaAppControllers.controller('CreateMutasiCtrl', ['$scope', '$compile', 'Server', 'User',
-	function($scope, $compile, Server, User) {
+ginaAppControllers.controller('CreateMutasiCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function($scope, $compile, Server, User, $state) {
 		$scope.isLogged = User.isLogged;
 		$scope.status_hub = [];
 		$scope.status_hub_data = ["Istri", "Suami", "Anak", "Cucu", "Lainnya..."];
@@ -111,6 +111,72 @@ ginaAppControllers.controller('CreateMutasiCtrl', ['$scope', '$compile', 'Server
 			}
 			Server.post('mp/request', params).then(function(data) {
 				console.log(data);
+				alert('berhasil');
+				$state.go('mp');
+			}, function(err) {
+				console.log(err);
+			})
+		}
+	}]
+);
+
+ginaAppControllers.controller('MPAdminCreateCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function($scope, $compile, Server, User, $state) {
+		$scope.isLogged = User.isLogged;
+		$scope.status_hub = [];
+		$scope.status_hub_data = ["Istri", "Suami", "Anak", "Cucu", "Lainnya..."];
+		$scope.status_hub_data_init = ["Lainnya..."];
+		$scope.count = 0;
+		$scope.nik_pengikut = [];
+		$scope.addPengikut = function(){
+			$scope.status_hub[$scope.count] = "Lainnya...";
+			var a = angular.element(document.getElementById('form-mutasi'))
+				.append($compile('<div class="form-inline" id="row_'+$scope.count+'">\
+						<div class="form-group cust-form">\
+							<input nik-validator ng-model = nik_pengikut['+$scope.count+'] class="form-control" type="text" name="nik_pengikut_'+$scope.count+'" placeholder="NIK pengikut" required/>\
+							<div ng-if="createMutasiForm.nik_pengikut_'+$scope.count+'.$dirty">\
+			                    <div ng-messages="createMutasiForm.nik_pengikut_'+$scope.count+'.$error" class="validation-error">\
+			                        <div ng-message="nik">Nik tidak valid</div>\
+			                        <div ng-message="required">Nik required</div>\
+			                    </div>\
+			                    <div ng-messages="createMutasiForm.nik_pengikut_'+$scope.count+'.$pending" class="validation-pending">\
+			                        <div ng-message="nik">Cek Nik</div>\
+			                    </div>\
+			                </div>\
+						</div>\
+					</div>')($scope));
+			$compile(a)($scope);
+			var id = "row_" + $scope.count;
+			var b = angular.element(document.getElementById(id))
+					.append($compile('<div class="form-group cust-form">\
+							<select class="form-control" ng-model="status_hub['+$scope.count+']" ng-options="s for s in status_hub_data">\
+							</select>\
+						</div>')($scope));
+			$scope.count++;
+		}
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+		});
+
+		$scope.submitRequestMutasi = function() {
+			var params = angular.copy({});
+			params.nik = $scope.nik;
+			params.nik_pengikut = [];
+			params.status_kel = [];
+			params.pekerjaan = [];
+			params.alamat_tujuan = $scope.alamat_tujuan;
+			params.alasan = $scope.alasan;
+			params.pengikut_count = $scope.count;
+			for (var i = 1; i <= params.pengikut_count; i++) {
+				params.nik_pengikut[i] = $scope.nik_pengikut[i-1];
+				params.status_kel[i] = $scope.status_hub[i-1];
+				params.pekerjaan[i] = "kerjaan";
+			}
+			Server.post('admin/mp/create', params).then(function(data) {
+				console.log(data);
+				alert('berhasil');
+				$state.go('mp-admin');
 			}, function(err) {
 				console.log(err);
 			})
@@ -120,27 +186,6 @@ ginaAppControllers.controller('CreateMutasiCtrl', ['$scope', '$compile', 'Server
 
 ginaAppControllers.controller('CreateKKCtrl', ['$scope', '$compile', 'Server', 'User',
 	function($scope, $compile, Server, User) {
-		// $scope.isFetchingData = false;
-		// $scope.isLogged = User.isLogged;
-		// if ($scope.isLogged) {
-		// 	$scope.isFetchingData = true;	
-		// 	Server.get('check/kkstatus/'+User.nik).then(function(data) {
-		// 		if (data == 'requested') $scope.isRequested = true;
-		// 		else $scope.isRequested = false;
-		// 		$scope.isFetchingData = false;
-		// 	});
-		// }
-		// $scope.status_hub = [];
-		// $scope.status_hub[0] = "Kepala Keluarga";
-		// $scope.status_hub_data = ["Istri", "Suami", "Anak", "Cucu"];
-		// $scope.status_hub_data_init = ["Kepala Keluarga"];
-		// $scope.count = 1;
-		// $scope.nik_keluarga = [];
-		// $scope.nik_keluarga[0] = User.nik;
-		// $scope.pend_kel = [];
-		// $scope.pend_kel = ["SD"];
-		// $scope.pend_kel_data = ["SD", "SMP", "SMA", "S1", "S2", "S3"];
-
 		$scope.init = function() {
 			$scope.isFetchingData = false;
 			$scope.isLogged = User.isLogged;
@@ -418,6 +463,7 @@ ginaAppControllers.controller('MPIndexCtrl', ['$scope', '$compile', 'Server', 'U
 
 		$scope.$on('logoutEvent', function(event, data) {
 			$scope.isLogged = User.isLogged;
+			$scope.init();
 		});
 
 		$scope.request = function () {
