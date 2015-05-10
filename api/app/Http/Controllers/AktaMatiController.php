@@ -10,7 +10,6 @@ class AktaMatiController extends Controller {
 		$akta_mati = new Akta_Mati;
 		$akta_mati->fill($input);
 		$akta_mati->request = true;
-		// TODO generate no_akta
 		$akta_mati->no_akta = time();
 		$akta_mati->save();
 		return response('success');
@@ -19,6 +18,11 @@ class AktaMatiController extends Controller {
 	function getView($no_akta) {
 		$akta_mati = Akta_Mati::whereno_akta($no_akta)->first();
 		return response($akta_mati);
+	}
+
+	public function getStatus($nik) {
+		$akta_mati = Akta_Mati::wherenik_request($nik)->get();
+		return $akta_mati;
 	}
 
 	function postUpdate() {

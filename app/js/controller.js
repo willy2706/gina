@@ -286,6 +286,34 @@ ginaAppControllers.controller('AktaLahirIndexCtrl', ['$scope', '$compile', 'Serv
 	}]
 );
 
+ginaAppControllers.controller('AktaMatiIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
+		$scope.init = function() {
+			Server.get('aktamati/status/' + User.nik).then(function(data) {
+				$scope.datas = data;
+				$scope.canRequest = true;
+				for (var i = 0; i < data.length; ++i) {
+					if (data[i].status == 'approved' || data[i].status == 'requested') {
+						$scope.canRequest = false;
+					}
+				}
+			}, function(err) {
+				console.log(err);
+			});
+		}
+		$scope.isLogged = User.isLogged;
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+			$scope.init();
+		});
+
+		$scope.request = function () {
+			$state.go('akta-mati-create');
+		}
+	}]
+);
+
 ginaAppControllers.controller('AktaCeraiIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
 	function ($scope, $compile, Server, User, $state) {
 		$scope.init = function() {
@@ -962,27 +990,25 @@ ginaAppControllers.controller('AktaLahirAdminDetailCtrl', ['$scope', 'Server', '
 	}]
 );
 
+ginaAppControllers.controller('CreateAktaMatiCtrl', ['$scope', '$compile', 'Server', 'User', '$state', 
+	function ($scope, $compile, Server, User, $state) {
 
-
-ginaAppControllers.controller('CreateAktaMatiCtrl', ['$scope', '$compile', 'Server', 'User',
-	function ($scope, $compile, Server, User) {
-		$scope.isFetchingData = false;
-		$scope.isLogged = User.isLogged;
-		if ($scope.isLogged) {
-			$scope.isFetchingData = true;
-			Server.get('check/aktamatistatus/' + User.nik).then(function(data) {
-				console.log(data);
-				if (data == 'requested') {
-					$scope.isRequested = true;
-				} else {
-					$scope.isRequested = false;
-				}
-				$scope.isFetchingData = false;
-			});
+		$scope.init = function () {
+			$scope.isFetchingData = false;
+			$scope.isLogged = User.isLogged;
+			console.log(User.isLogged)
+			if ($scope.isLogged) {
+				$scope.isFetchingData = true;
+				Server.get('check/aktamatistatus/' + User.nik).then(function(data) {
+					console.log(data);
+					$scope.isFetchingData = false;
+				});
+			}
 		}
 
 		$scope.$on('logoutEvent', function(event, data) {
 			$scope.isLogged = User.isLogged;
+			$scope.init();
 		});
 
 		$scope.submitRequestAktaMati = function() {
@@ -991,18 +1017,62 @@ ginaAppControllers.controller('CreateAktaMatiCtrl', ['$scope', '$compile', 'Serv
 			params.nik = $scope.nik;
 			params.kota_meninggal = $scope.kota_meninggal;
 			params.waktu_meninggal = $scope.waktu_meninggal;
-
+			params.nik_request = User.nik;
+			
 			Server.post('aktamati/request', params).then(function(data) {
-				$scope.isRequested = true;
+				alert('berhasil')
+				$state.go('akta-mati')
 			}, function(err) {
+				alert('gagal')
 				console.log(err);
 			})
 		}
 	}]
 );
 
-ginaAppControllers.controller('AktaMatiAdminIndexCtrl', ['$scope', '$compile', 'Server', 'User',
-	function ($scope, $compile, Server, User) {
+ginaAppControllers.controller('AktaMatiAdminCreateCtrl', ['$scope', '$compile', 'Server', 'User', '$state', 
+	function ($scope, $compile, Server, User, $state) {
+
+		$scope.init = function () {
+			$scope.isFetchingData = false;
+			$scope.isLogged = User.isLogged;
+			console.log(User.isLogged)
+			if ($scope.isLogged) {
+				$scope.isFetchingData = true;
+				Server.get('check/aktamatistatus/' + User.nik).then(function(data) {
+					console.log(data);
+					$scope.isFetchingData = false;
+				});
+			}
+		}
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+			$scope.init();
+		});
+
+		$scope.submitRequestAktaMati = function() {
+			var params = angular.copy({});
+
+			params.nik = $scope.nik;
+			params.kota_meninggal = $scope.kota_meninggal;
+			params.waktu_meninggal = $scope.waktu_meninggal;
+			params.nik_request = User.nik;
+			
+			Server.post('admin/aktamati/create', params).then(function(data) {
+				alert('berhasil')
+				$state.go('akta-mati-admin')
+			}, function(err) {
+				alert('gagal')
+				console.log(err);
+			})
+		}
+	}]
+);
+
+
+ginaAppControllers.controller('AktaMatiAdminIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
 		$scope.init = function() {
 			Server.get('admin/aktamati/all').then(function(data) {
 				$scope.datas = data;
@@ -1048,6 +1118,10 @@ ginaAppControllers.controller('AktaMatiAdminIndexCtrl', ['$scope', '$compile', '
 					return;
 			}
 			return data;
+		}
+
+		$scope.create = function() {
+			$state.go('akta-mati-admin-create')
 		}
 
 		$scope.$on('logoutEvent', function(event, data) {

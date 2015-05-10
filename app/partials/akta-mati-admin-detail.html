@@ -1,27 +1,36 @@
-<script type="text/javascript">
-	function showText(obj) {
-		if(obj.value=='Show') {
-			document.getElementById('mytext').style.display='block';
-			obj.value='Hide';
-		} else {
-			document.getElementById('mytext').style.display='none';
-			obj.value='Show';
-		}
-	}
-</script>
-
 <div class="col-xs-12" ng-controller = "AktaMatiAdminDetailCtrl">
-	<h2>{{datas.no_akta}}</h2>
-	<div class="form-group">
-		<label class="col-xs-2 control-label">NIK</label>
-		{{ datas.nik }}
-	</div>
-	<div class="form-group">
-		<label class="col-xs-2 control-label">Kota Meninggal</label>
-		{{ datas.kota_meninggal }}
-	</div>
-	<div class="form-group">
-		<label class="col-xs-2 control-label">Waktu Meninggal</label>
-		{{ datas.waktu_meninggal }}
-	</div>
+	<form class="form-horizontal" role="form">
+		<div class="form-group">
+			<label class="col-xs-2 control-label">No Akta</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+				{{ datas.no_akta }}
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">NIK</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+				{{ datas.nik }}
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">Kota Meninggal</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+				{{ datas.kota_meninggal }}
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">Waktu Meninggal</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+					{{ datas.waktu_meninggal }}
+				</div>
+			</div>
+		</div>
+	</form>
 </div>

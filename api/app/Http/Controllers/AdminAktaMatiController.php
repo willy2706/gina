@@ -40,4 +40,14 @@ class AdminAktaMatiController extends Controller {
 		return response('success');
 	}
 
+	function postCreate() {
+		$input = Input::all();
+		$akta_mati = new Akta_Mati;
+		$akta_mati->fill($input);
+		$akta_mati->request = false;
+		$akta_mati->no_akta = time();
+		$akta_mati->save();
+		return response('success');
+	}
+
 }

@@ -6,7 +6,7 @@ class Akta_Mati extends Model {
 
 	protected $table = 'ppl_dukcapil_akta_mati';
 
-	protected $fillable = ['nik', 'kota_meninggal', 'waktu_meninggal'];
+	protected $fillable = ['nik', 'kota_meninggal', 'waktu_meninggal', 'nik_request'];
 
 	protected $appends = ['status'];
 

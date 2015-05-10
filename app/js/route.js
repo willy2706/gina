@@ -170,7 +170,21 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
       })
       .state('akta-mati', {
         url: "/akta-mati",
+        templateUrl: "app/partials/akta-mati-index.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-mati-create', {
+        url: "/akta-mati/create",
         templateUrl: "app/partials/create-akta-mati.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-mati-admin-create', {
+        url: "/akta-mati-admin/create",
+        templateUrl: "app/partials/akta-mati-admin-create.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
         }
