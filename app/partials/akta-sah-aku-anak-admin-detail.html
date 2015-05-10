@@ -11,17 +11,38 @@
 </script>
 
 <div class="col-xs-12" ng-controller = "AktaSahAkuAnakAdminDetailCtrl">
-	<h2>{{datas.no_akta}}</h2>
-	<div class="form-group">
-		<label class="col-xs-2 control-label">NIK</label>
-		{{ datas.nik }}
-	</div>
-	<div class="form-group">
-		<label class="col-xs-2 control-label">No Akta Perkawinan</label>
-		{{ datas.no_akta_kawin }}
-	</div>
-	<div class="form-group">
-		<label class="col-xs-2 control-label">No Akta Kelahiran Anak</label>
-		{{ datas.no_akta_lahir }}
-	</div>
+	<form class="form-horizontal" role="form">
+		<div class="form-group">
+			<label class="col-xs-2 control-label">No Akta</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+				{{ datas.no_akta }}
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">NIK</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+				{{ datas.nik }}
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">No Akta Perkawinan</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+				{{ datas.no_akta_kawin }}
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">No Akta Kelahiran Anak</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+				{{ datas.no_akta_lahir }}
+				</div>
+			</div>
+		</div>
+	</form>
 </div>

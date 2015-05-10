@@ -275,6 +275,13 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
       })
       .state('akta-sah-aku-anak', {
         url: "/akta-sah-aku-anak",
+        templateUrl: "app/partials/akta-sah-aku-anak-index.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-sah-aku-anak-create', {
+        url: "/akta-sah-aku-anak/create",
         templateUrl: "app/partials/create-akta-sah-aku-anak.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
@@ -283,6 +290,13 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
       .state('akta-sah-aku-anak-admin', {
         url: "/akta-sah-aku-anak-admin",
         templateUrl: "app/partials/akta-sah-aku-anak-admin-index.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-sah-aku-anak-admin-create', {
+        url: "/akta-sah-aku-anak-admin/create",
+        templateUrl: "app/partials/akta-sah-aku-anak-admin-create.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
         }

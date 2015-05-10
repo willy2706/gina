@@ -75,7 +75,6 @@ ginaAppValidator.directive('noaktalahirValidator', function ($http, $q, ApiURL, 
 	}
 });
 
-
 ginaAppValidator.directive('selfaktaceraiValidator', function ($http, $q, ApiURL, $timeout, User) {
 	return {
 		require: 'ngModel',
@@ -95,3 +94,44 @@ ginaAppValidator.directive('selfaktaceraiValidator', function ($http, $q, ApiURL
 		}
 	}
 });
+
+ginaAppValidator.directive('selfaktakawinValidator', function ($http, $q, ApiURL, $timeout, User) {
+	return {
+		require: 'ngModel',
+		link: function(scope, element, attrs, ngModel) {
+			ngModel.$asyncValidators.selfaktakawin = function(modelValue, viewValue) {
+				return $http.get(ApiURL + 'check/selfaktakawin/' + viewValue + '/' + User.nik).then(
+					function(response) {
+						console.log(response.data)
+						var deferred = $q.defer();
+						if (response.data == "false")  deferred.reject();
+						else deferred.resolve();
+						deferred.resolve();
+						return deferred.promise;
+					}
+				);
+			};
+		}
+	}
+});
+
+ginaAppValidator.directive('anaksendiriValidator', function ($http, $q, ApiURL, $timeout, User) {
+	return {
+		require: 'ngModel',
+		link: function(scope, element, attrs, ngModel) {
+			ngModel.$asyncValidators.anaksendiri = function(modelValue, viewValue) {
+				return $http.get(ApiURL + 'check/anaksendiri/' + viewValue + '/' + User.nik).then(
+					function(response) {
+						console.log(response.data)
+						var deferred = $q.defer();
+						if (response.data == "false")  deferred.reject();
+						else deferred.resolve();
+						deferred.resolve();
+						return deferred.promise;
+					}
+				);
+			};
+		}
+	}
+});
+

@@ -158,4 +158,18 @@ class CheckController extends Controller {
 		return 'false';
 	}
 
+	public function getSelfaktakawin($no_akta_kawin, $nik) {
+		$akta_kawin = Akta_Kawin::whereno_akta($no_akta_kawin)->first();
+		// return response($akta_kawin);
+		if($akta_kawin->nik_suami == $nik || $akta_kawin->nik_istri == $nik) return 'true';
+		return 'false';	
+	}
+
+	public function getAnaksendiri($no_akta_lahir, $nik) {
+		$akta_lahir = Akta_Lahir::whereno_akta($no_akta_lahir)->first();
+		if ($akta_lahir->nik_ayah == $nik) return 'true';
+		if ($akta_lahir->nik_ibu == $nik) return 'true';
+		return 'false';
+	}
+
 }

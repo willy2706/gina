@@ -16,4 +16,11 @@ class Akta_Sah_Aku_Anak extends Model {
 		return $stat;
 	}
 	
+	public function aktalahir() {
+		return $this->belongsTo('App\Akta_Lahir', 'no_akta_lahir', 'no_akta');
+	}
+
+	public function aktakawin() {
+		return $this->belongsTo('App\Akta_Kawin', 'no_akta_kawin', 'no_akta');
+	}
 }

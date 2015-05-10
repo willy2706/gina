@@ -37,4 +37,14 @@ class AdminAktaSahAkuAnakController extends Controller {
 		return response('success');
 	}
 
+	function postCreate() {
+		$input = Input::all();
+		$akta_sah_aku_anak = new Akta_Sah_Aku_Anak;
+		$akta_sah_aku_anak->fill($input);
+		$akta_sah_aku_anak->request = false;
+		$akta_sah_aku_anak->no_akta = time();
+		$akta_sah_aku_anak->save();
+		return response('success');
+	}
+
 }
