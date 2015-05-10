@@ -42,7 +42,7 @@ class KTP extends Model implements AuthenticatableContract, CanResetPasswordCont
     }
 
     public function getIsAdminAttribute() {
-    	return $this->role == 'admin';
+    	return $this->role == 'dukcapil_admin';
     }
 
 }
