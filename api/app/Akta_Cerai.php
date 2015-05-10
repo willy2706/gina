@@ -14,4 +14,8 @@ class Akta_Cerai extends Model {
 		$stat = ($this->request ? 'requested' : ($this->message == NULL ? 'approved' :  'rejected'));
 		return $stat;
 	}
+
+	public function aktakawin() {
+		return $this->belongsTo('App\Akta_Kawin', 'akta_kawin', 'no_akta');
+	}
 }

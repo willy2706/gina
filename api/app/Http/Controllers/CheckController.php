@@ -138,4 +138,11 @@ class CheckController extends Controller {
 		}
 	}
 
+	public function getSelfaktacerai($no_akta_kawin, $nik) {
+		$akta_kawin = Akta_Kawin::whereno_akta($no_akta_kawin)->first();
+		// return response($akta_kawin);
+		if($akta_kawin->nik_suami == $nik || $akta_kawin->nik_istri == $nik) return 'true';
+		return 'false';
+	}
+
 }

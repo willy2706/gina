@@ -7,13 +7,14 @@
 					<form name="createAktaCeraiForm" class="form form-horizontal" ng-submit="submitRequestAktaCerai()">
 						<div class="form-group">
 							<div class="col-xs-12">
-								<input noaktakawin-validator ng-model="akta_kawin" class="form-control" type="text" name="akta_kawin" placeholder="Nomor Akta Kawin" required/>
+								<input noaktakawin-validator selfaktacerai-validator ng-model="akta_kawin" class="form-control" type="text" name="akta_kawin" placeholder="Nomor Akta Kawin" required/>
 								<div ng-if="createAktaCeraiForm.akta_kawin.$dirty">
 				                    <div ng-messages="createAktaCeraiForm.akta_kawin.$error" class="validation-error">
 				                        <div ng-message="noaktakawin">Nomor akta kawin tidak ada</div>
+				                        <div ng-message="selfaktacerai">Nomor akta kawin bukan punya anda</div>
 				                        <div ng-message="required">Nomor akta kawin dibutuhkan</div>
 				                    </div>
-				                    <div ng-messages="createAktaCeraiForm.nik_suami.$pending" class="validation-pending">
+				                    <div ng-messages="createAktaCeraiForm.akta_kawin.$pending" class="validation-pending">
 				                        <div ng-message="noaktakawin">Sedang Mengecek Nomor akta kawin</div>
 				                    </div>
 				                </div>

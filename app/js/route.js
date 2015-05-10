@@ -226,6 +226,13 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
       })
       .state('akta-cerai', {
         url: "/akta-cerai",
+        templateUrl: "app/partials/akta-cerai-index.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-cerai-create', {
+        url: "/akta-cerai/create",
         templateUrl: "app/partials/create-akta-cerai.html",
         controller: function($scope) {
           // $scope.isFeatures = true;

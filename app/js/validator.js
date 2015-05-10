@@ -74,3 +74,24 @@ ginaAppValidator.directive('noaktalahirValidator', function ($http, $q, ApiURL, 
 		}
 	}
 });
+
+
+ginaAppValidator.directive('selfaktaceraiValidator', function ($http, $q, ApiURL, $timeout, User) {
+	return {
+		require: 'ngModel',
+		link: function(scope, element, attrs, ngModel) {
+			ngModel.$asyncValidators.selfaktacerai = function(modelValue, viewValue) {
+				return $http.get(ApiURL + 'check/selfaktacerai/' + viewValue + '/' + User.nik).then(
+					function(response) {
+						console.log(response.data)
+						var deferred = $q.defer();
+						if (response.data == "false")  deferred.reject();
+						else deferred.resolve();
+						deferred.resolve();
+						return deferred.promise;
+					}
+				);
+			};
+		}
+	}
+});

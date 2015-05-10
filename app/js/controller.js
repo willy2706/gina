@@ -286,6 +286,34 @@ ginaAppControllers.controller('AktaLahirIndexCtrl', ['$scope', '$compile', 'Serv
 	}]
 );
 
+ginaAppControllers.controller('AktaCeraiIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
+		$scope.init = function() {
+			Server.get('aktacerai/status/' + User.nik).then(function(data) {
+				$scope.datas = data;
+				$scope.canRequest = true;
+				for (var i = 0; i < data.length; ++i) {
+					if (data[i].status == 'approved' || data[i].status == 'requested') {
+						$scope.canRequest = false;
+					}
+				}
+			}, function(err) {
+				console.log(err);
+			});
+		}
+		$scope.isLogged = User.isLogged;
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+			$scope.init();
+		});
+
+		$scope.request = function () {
+			$state.go('akta-cerai-create');
+		}
+	}]
+);
+
 ginaAppControllers.controller('AktaKawinIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
 	function ($scope, $compile, Server, User, $state) {
 		$scope.init = function() {

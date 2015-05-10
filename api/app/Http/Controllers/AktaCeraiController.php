@@ -5,11 +5,6 @@ use Input;
 
 class AktaCeraiController extends Controller {
 
-	public function getStatus($no_akta) {
-		$k = Akta_Cerai::whereno_akta($no_akta)->get();
-		return response($k);
-	}
-
 	function postRequest() {
 		$input = Input::all();
 		$akta_cerai = new Akta_Cerai;
@@ -34,6 +29,15 @@ class AktaCeraiController extends Controller {
 		$akta_cerai->request = true;
 		$akta_cerai->save();
 		return response('success');
+	}
+
+	public function getStatus($nik) {
+		$akta_cerai = Akta_Cerai::whereHas('aktakawin', function ($q) use ($nik) {
+			$q->wherenik_istri($nik);
+		})->orWhereHas('aktakawin', function ($q) use ($nik) {
+			$q->wherenik_suami($nik);
+		})->get();
+		return response($akta_cerai);
 	}
 
 }
