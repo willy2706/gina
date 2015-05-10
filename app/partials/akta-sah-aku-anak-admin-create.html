@@ -1,0 +1,83 @@
+<div class="partial">
+	<div class="row">
+		<div class="col-xs-12 kk-approval" ng-controller="AktaSahAkuAnakAdminCreateCtrl">
+			<div ng-show="isLogged">
+				<h2>Pembuatan Akta Pengesahan dan Pengakuan Anak</h2>
+				<form name="createAktaSahAkuAnakForm" class="form form-horizontal" ng-submit="submitRequestAktaSahAkuAnak()">
+					<div class="row">
+						<div class="col-xs-5">
+							<div class="form-group">
+								<label class="col-xs-2 control-label">NIK</label>
+								<div class="col-xs-10">
+									<input nik-validator ng-model="nik" class="form-control" type="text" name="nik" placeholder="NIK" required/>
+									<div ng-if="createAktaSahAkuAnakForm.nik.$dirty">
+					                    <div ng-messages="createAktaSahAkuAnakForm.nik.$error" class="validation-error">
+					                        <div ng-message="nik">NIK salah</div>
+					                        <div ng-message="required">NIK dibutuhkan</div>
+					                    </div>
+					                    <div ng-messages="createAktaSahAkuAnakForm.nik.$pending" class="validation-pending">
+					                        <div ng-message="nik">Sedang Mengecek NIK</div>
+					                    </div>
+					                </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5">
+							<div class="form-group">
+								<label class="col-xs-2 control-label">No Akta Perkawinan</label>
+								<div class="col-xs-10">
+									<input noaktakawin-validator ng-model="no_akta_kawin" class="form-control" type="text" name="no_akta_kawin" placeholder="No Akta Perkawinan" required/>
+									<div ng-if="createAktaSahAkuAnakForm.no_akta_kawin.$dirty">
+					                    <div ng-messages="createAktaSahAkuAnakForm.no_akta_kawin.$error" class="validation-error">
+					                        <div ng-message="noaktakawin">No Akta Perkawinan salah</div>
+					                        <div ng-message="selfaktakawin">No Akta Kawin Bukan Milik Anda</div>
+					                        <div ng-message="required">No Akta Perkawinan dibutuhkan</div>
+					                    </div>
+					                    <div ng-messages="createAktaSahAkuAnakForm.no_akta_kawin.$pending" class="validation-pending">
+					                        <div ng-message="noaktakawin">Sedang Mengecek No Akta</div>
+					                    </div>
+					                </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5">
+							<div class="form-group">
+								<label class="col-xs-2 control-label">No Akta Lahir Anak</label>
+								<div class="col-xs-10">
+									<input noaktalahir-validator ng-model="no_akta_lahir" class="form-control" type="text" name="no_akta_lahir" placeholder="No Akta Kelahiran Anak" required/>
+									<div ng-if="createAktaSahAkuAnakForm.no_akta_lahir.$dirty">
+					                    <div ng-messages="createAktaSahAkuAnakForm.no_akta_lahir.$error" class="validation-error">
+					                        <div ng-message="noaktalahir">No Akta Kelahiran Anak salah</div>
+					                        <div ng-message="anaksendiri">Bukan Anak Anda</div>
+					                        <div ng-message="required">No Akta Kelahiran Anak dibutuhkan</div>
+					                    </div>
+					                    <div ng-messages="createAktaSahAkuAnakForm.no_akta_lahir.$pending" class="validation-pending">
+					                        <div ng-message="noaktalahir">Sedang Mengecek No Akta</div>
+					                    </div>
+					                </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5">
+							<div class="form-group">
+								<label class="col-xs-2 control-label"></label>
+								<div class="col-xs-10">
+									<button ng-disabled="createAktaSahAkuAnakForm.$invalid || createAktaSahAkuAnakForm.$pending" type="submit" class="btn btn default">Submit</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div ng-hide="isLogged">
+				<h2>Maaf anda belum log in</h2>		
+			</div>
+		</div>
+	</div>
+</div>
