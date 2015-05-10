@@ -11,8 +11,10 @@
 |
 */
 use Illuminate\Http\Request;
+use App\Ktp;
 
 Route::get('/', function (Request $req) {
+	return Ktp::all();
 	return response('it works!');
 });
 
