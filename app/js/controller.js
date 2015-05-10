@@ -286,6 +286,35 @@ ginaAppControllers.controller('AktaLahirIndexCtrl', ['$scope', '$compile', 'Serv
 	}]
 );
 
+ginaAppControllers.controller('AktaKawinIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
+		$scope.init = function() {
+			Server.get('aktakawin/status/' + User.nik).then(function(data) {
+				$scope.datas = data;
+				$scope.canRequest = true;
+				for (var i = 0; i < data.length; ++i) {
+					if (data[i].status == 'approved' || data[i].status == 'requested') {
+						$scope.canRequest = false;
+					}
+				}
+			}, function(err) {
+				console.log(err);
+			});
+		}
+		$scope.isLogged = User.isLogged;
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+			$scope.init();
+		});
+
+		$scope.request = function () {
+			$state.go('akta-kawin-request');
+		}
+	}]
+);
+
+
 ginaAppControllers.controller('MPIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
 	function ($scope, $compile, Server, User, $state) {
 		$scope.init = function() {
@@ -1022,23 +1051,32 @@ ginaAppControllers.controller('AktaMatiAdminDetailCtrl', ['$scope', 'Server', '$
 
 ginaAppControllers.controller('CreateAktaKawinCtrl', ['$scope', '$compile', 'Server', 'User',
 	function ($scope, $compile, Server, User) {
-		$scope.isFetchingData = false;
-		$scope.isLogged = User.isLogged;
-		if ($scope.isLogged) {
-			$scope.isFetchingData = true;
-			Server.get('check/aktakawinstatus/' + User.nik).then(function(data) {
-				console.log(data);
-				if (data == 'requested') {
-					$scope.isRequested = true;
-				} else {
-					$scope.isRequested = false;
-				}
-				$scope.isFetchingData = false;
-			});
+		console.log(User.jenisKelamin)
+		
+		$scope.init = function () {
+			$scope.isFetchingData = false;
+			$scope.isLogged = User.isLogged;
+			if (User.jenisKelamin == 'laki-laki')
+				$scope.nik_suami = User.nik;
+			else
+				$scope.nik_istri = User.nik;
+			if ($scope.isLogged) {
+				$scope.isFetchingData = true;
+				Server.get('check/aktakawinstatus/' + User.nik).then(function(data) {
+					console.log(data);
+					if (data == 'requested') {
+						$scope.isRequested = true;
+					} else {
+						$scope.isRequested = false;
+					}
+					$scope.isFetchingData = false;
+				});
+			}
 		}
 
 		$scope.$on('logoutEvent', function(event, data) {
 			$scope.isLogged = User.isLogged;
+			$scope.init();
 		});
 
 		$scope.submitRequestAktaKawin = function() {
@@ -1058,17 +1096,49 @@ ginaAppControllers.controller('CreateAktaKawinCtrl', ['$scope', '$compile', 'Ser
 	}]
 );
 
-ginaAppControllers.controller('AktaKawinAdminIndexCtrl', ['$scope', '$compile', 'Server', 'User',
-	function ($scope, $compile, Server, User) {
+ginaAppControllers.controller('AktaKawinAdminCreateCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
+		console.log(User.jenisKelamin)
+		
+		$scope.init = function () {
+			$scope.isLogged = User.isLogged;
+		}
+
+		$scope.$on('logoutEvent', function(event, data) {
+			$scope.isLogged = User.isLogged;
+			$scope.init();
+		});
+
+		$scope.submitRequestAktaKawin = function() {
+			var params = angular.copy({});
+
+			params.nik_suami = $scope.nik_suami;
+			params.nik_istri = $scope.nik_istri;
+			params.tanggal_nikah = $scope.tanggal_nikah;
+			params.tempat_nikah = $scope.tempat_nikah;
+
+			Server.post('admin/aktakawin/create', params).then(function(data) {
+				alert('berhasil')
+				$state.go('akta-kawin-admin')
+			}, function(err) {
+				alert('gagal')
+				console.log(err);
+			})
+		}
+	}]
+);
+
+ginaAppControllers.controller('AktaKawinAdminIndexCtrl', ['$scope', '$compile', 'Server', 'User', '$state',
+	function ($scope, $compile, Server, User, $state) {
 		$scope.init = function() {
 			Server.get('admin/aktakawin/all').then(function(data) {
 				$scope.datas = data;
 			}, function(err) {
 				console.log(err);
 			});
+			$scope.isLogged = User.isLogged;
+			$scope.statusIncludes = [];
 		}
-		$scope.isLogged = User.isLogged;
-		$scope.statusIncludes = [];
 
 		$scope.approve = function($no_akta)  {
 			Server.get('admin/aktakawin/approve/' + $no_akta).then(function(data) {
@@ -1108,14 +1178,19 @@ ginaAppControllers.controller('AktaKawinAdminIndexCtrl', ['$scope', '$compile', 
 			return data;
 		}
 
+		$scope.create = function () {
+			$state.go('akta-kawin-admin-create')
+		}
+
 		$scope.$on('logoutEvent', function(event, data) {
 			$scope.isLogged = User.isLogged;
+			$scope.init();
 		});
 	}]
 );
 
-ginaAppControllers.controller('AktaKawinAdminDetailCtrl', ['$scope', 'Server', '$stateParams',
-	function ($scope, Server, $stateParams) {
+ginaAppControllers.controller('AktaKawinAdminDetailCtrl', ['$scope', 'Server', '$stateParams', 'User',
+	function ($scope, Server, $stateParams, User) {
 		Server.get('admin/aktakawin/view/' + $stateParams.id)
 		.then(function(data) {
 			console.log($stateParams.id);

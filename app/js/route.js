@@ -190,7 +190,14 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('akta-kawin', {
-        url: "/akta-kawin",
+        url: "/akta-kawin-index",
+        templateUrl: "app/partials/akta-kawin-index.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-kawin-request', {
+        url: "/akta-kawin/create",
         templateUrl: "app/partials/create-akta-kawin.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
@@ -199,6 +206,20 @@ ginaRoutes.config(['$stateProvider', '$urlRouterProvider',
       .state('akta-kawin-admin', {
         url: "/akta-kawin-admin",
         templateUrl: "app/partials/akta-kawin-admin-index.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-kawin-admin-create', {
+        url: "/akta-kawin-admin/create",
+        templateUrl: "app/partials/akta-kawin-admin-create.html",
+        controller: function($scope) {
+          // $scope.isFeatures = true;
+        }
+      })
+      .state('akta-kawin-admin-detail', {
+        url: "/akta-kawin-admin/detail/:id",
+        templateUrl: "app/partials/akta-kawin-admin-detail.html",
         controller: function($scope) {
           // $scope.isFeatures = true;
         }

@@ -37,4 +37,14 @@ class AdminAktaKawinController extends Controller {
 		return response('success');
 	}
 
+	public function postCreate() {
+		$input = Input::all();
+		$akta_kawin = new Akta_Kawin;
+		$akta_kawin->fill($input);
+		$akta_kawin->request = false;
+		$akta_kawin->no_akta = time();
+		$akta_kawin->save();
+		return response('success');
+	}
+
 }

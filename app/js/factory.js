@@ -23,6 +23,7 @@ ginaAppFactory.factory('User', function($sessionStorage, ApiURL, $http, $q) {
 					self.isLogged = true
 					self.nik = data1.data.nik
 					self.isAdmin = data1.data.is_admin
+					self.jenisKelamin = data1.data.jenis_kelamin
 					console.log("ok")
 					def.resolve();
 				}, function (err1) {
@@ -47,6 +48,7 @@ ginaAppFactory.factory('User', function($sessionStorage, ApiURL, $http, $q) {
     	self.nik = '';
     	self.isLogged = false;
     	self.isAdmin = false;
+    	self.jenisKelamin = ''
     	delete $sessionStorage.user;
     }
 	return self;

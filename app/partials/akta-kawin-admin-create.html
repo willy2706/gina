@@ -1,0 +1,82 @@
+<div class="partial" ng-controller="AktaKawinAdminCreateCtrl">
+	<div class="row" ng-init = "init()">
+		<div class="col-xs-12 kk-approval" >
+			<div ng-show="isLogged">
+				<h2>Pembuatan Akta Perkawinan</h2>
+				<form name="createAktaKawinForm" class="form form-horizontal" ng-submit="submitRequestAktaKawin()">
+					<div class="row">
+						<div class="col-xs-5">
+							<div class="form-group">
+								<label class="col-xs-2 control-label">NIK Suami</label>
+								<div class="col-xs-10">
+									<input nik-validator ng-model="nik_suami" class="form-control" type="text" name="nik_suami" placeholder="NIK Suami" required/>
+									<div ng-if="createAktaKawinForm.nik_suami.$dirty">
+					                    <div ng-messages="createAktaKawinForm.nik_suami.$error" class="validation-error">
+					                        <div ng-message="nik">NIK Suami salah</div>
+					                        <div ng-message="required">NIK Suami dibutuhkan</div>
+					                    </div>
+					                    <div ng-messages="createAktaKawinForm.nik_suami.$pending" class="validation-pending">
+					                        <div ng-message="nik">Sedang Mengecek NIK</div>
+					                    </div>
+					                </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5">
+							<div class="form-group">
+								<label class="col-xs-2 control-label">Nik Istri</label>
+								<div class="col-xs-10">
+									<input nik-validator ng-model="nik_istri" class="form-control" type="text" name="nik_istri" placeholder="NIK Istri" required/>
+									<div ng-if="createAktaKawinForm.nik_istri.$dirty">
+					                    <div ng-messages="createAktaKawinForm.nik_istri.$error" class="validation-error">
+					                        <div ng-message="nik">NIK Istri salah</div>
+					                        <div ng-message="required">NIK Istri dibutuhkan</div>
+					                    </div>
+					                    <div ng-messages="createAktaKawinForm.nik_istri.$pending" class="validation-pending">
+					                        <div ng-message="nik">Sedang Mengecek NIK</div>
+					                    </div>
+					                </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5">
+							<div class="form-group">
+								<label class="col-xs-2 control-label">Tanggal Nikah</label>
+								<div class="col-xs-10">
+									<input ng-model="tanggal_nikah" type="date" class="form-control" name="tanggal_nikah" id="tanggal_nikah" placeholder="Tanggal Nikah" required/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5">
+							<div class="form-group">
+								<label class="col-xs-2 control-label">Tempat Nikah</label>
+								<div class="col-xs-10">
+									<input ng-model="tempat_nikah" type="text" class="form-control" name="tempat_nikah" id="tempat_nikah" placeholder="Tempat Nikah" required/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5">
+							<div class="form-group">
+								<label class="col-xs-2 control-label"></label>
+								<div class="col-xs-10">
+									<button ng-disabled="createAktaKawinForm.$invalid || createAktaKawinForm.$pending" type="submit" class="btn btn default">Submit</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div ng-hide="isLogged">
+				<h2>Maaf anda belum log in</h2>		
+			</div>
+		</div>
+	</div>
+</div>

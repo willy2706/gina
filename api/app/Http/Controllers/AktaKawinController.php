@@ -30,4 +30,9 @@ class AktaKawinController extends Controller {
 		return response('success');
 	}
 
+	public function getStatus($nik) {
+		$akta_kawin = Akta_Kawin::wherenik_suami($nik)->orWhere('nik_istri',$nik)->get();
+		return $akta_kawin;
+	}
+
 }

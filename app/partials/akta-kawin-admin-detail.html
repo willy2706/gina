@@ -11,21 +11,46 @@
 </script>
 
 <div class="col-xs-12" ng-controller = "AktaKawinAdminDetailCtrl">
-	<h2>{{datas.no_akta}}</h2>
-	<div class="form-group">
-		<label class="col-xs-2 control-label">NIK Suami</label>
-		{{ datas.nik_suami }}
-	</div>
-	<div class="form-group">
-		<label class="col-xs-2 control-label">NIK Istri</label>
-		{{ datas.nik_istri }}
-	</div>
-	<div class="form-group">
-		<label class="col-xs-2 control-label">Tanggal Nikah</label>
-		{{ datas.tanggal_nikah }}
-	</div>
-	<div class="form-group">
-		<label class="col-xs-2 control-label">Tempat Nikah</label>
-		{{ datas.tempat_nikah }}
-	</div>
+	<form class="form-horizontal" role="form">
+		<div class="form-group">
+			<label class="col-xs-2 control-label">No Akta</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+					{{ datas.no_akta }}
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">NIK Suami</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+					{{ datas.nik_suami }}
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">NIK Istri</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+					{{ datas.nik_istri }}
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">Tanggal Nikah</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+					{{ datas.tanggal_nikah }}
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-2 control-label">Tempat Nikah</label>
+			<div class="col-xs-10">
+				<div class="form-control">
+					{{ datas.tempat_nikah }}
+				</div>
+			</div>
+		</div>
+	</form>
 </div>

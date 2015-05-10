@@ -97,6 +97,7 @@ header.directive('header', function () {
 					User.nama = data.nama;
 					User.nik = data.nik;
 					User.isAdmin = data.is_admin;
+					User.jenisKelamin = data.jenis_kelamin;
 					User.session();
 					$scope.user.isUserLogged = true;
 					$scope.user.nama = User.nama;
